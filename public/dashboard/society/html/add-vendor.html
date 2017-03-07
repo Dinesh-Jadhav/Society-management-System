@@ -1,0 +1,106 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Vendor</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Add Vendor
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-8 col-sm-8">
+                <form role="form" name="addBlockForm" ng-submit="addVendor()" novalidate>
+                    <div class="form">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Vendor Name</label>
+                                    <input type="text" class="form-control" name="societyName" placeholder="Enter Name" ng-model="vendor.vendor_name" ng-readonly="hasNoBlocks" required>
+                                    <p ng-show="addBlockForm.societyName.$invalid && !addBlockForm.societyName.$pristine" class="help-block red-text">Please enter society name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="Enter Email" class="form-control" ng-model="vendor.email" name="blockManager" required>
+                                    <p ng-show="addBlockForm.blockManager.$invalid && !addBlockForm.blockManager.$pristine" class="help-block red-text">Please enter valid email.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>ID Proof File</label>
+                                    <input type="file" accept="application/pdf,image/*" class="form-control" name="idFile" placeholder="Enter Name" file-model="idFile" ng-blur="upload_idImage()" ng-readonly="hasNoBlocks" required>
+                                    <p ng-show="addBlockForm.idFile.$invalid && !addBlockForm.idFile.$pristine" class="help-block red-text">Please select id proof image</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Contact Number</label>
+                                    <input type="text" placeholder="Enter Contact Number" class="form-control" ng-model="vendor.contact" maxlength="10" minlength="10" name="contactNumber" required>
+                                    <p ng-show="addBlockForm.contactNumber.$invalid && !addBlockForm.contactNumber.$pristine" class="help-block red-text">Please enter contact number.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="checkbox" ng-model="vendor.payuavailable" ng-true-value="1" ng-false-value="0">
+                                    <span><b>Pay U Availabe</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="vendor.payuavailable==1">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Id</label>
+                                    <input type="text" placeholder="Enter Merchant Id" class="form-control" ng-model="vendor.merchant_id" name="Merchant_Id">
+                                    <p ng-show="addBlockForm.Merchant_Id.$invalid && !addBlockForm.Merchant_Id.$pristine" class="help-block red-text">Please enter merchant id.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Key</label>
+                                    <input type="text" placeholder="Enter Merchant Key" class="form-control" ng-model="vendor.merchant_key" name="merchant_Key">
+                                    <p ng-show="addBlockForm.merchant_Key.$invalid && !addBlockForm.merchant_Key.$pristine" class="help-block red-text">Please enter merchant key.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="vendor.payuavailable==1">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Salt</label>
+                                    <input type="text" placeholder="Enter Merchant Salt" class="form-control" ng-model="vendor.merchant_salt" name="Merchant_Salt">
+                                    <p ng-show="addBlockForm.Merchant_Salt.$invalid && !addBlockForm.Merchant_Salt.$pristine" class="help-block red-text">Please enter merchant id.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="desc" placeholder="Enter Description" ng-model="vendor.description" required></textarea>
+                                    <p ng-show="addBlockForm.desc.$invalid && !addBlockForm.desc.$pristine" class="help-block red-text">Please Enter Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

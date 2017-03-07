@@ -1,0 +1,19 @@
+<div class="modal popup">
+	<div class="booking_room choose-block">
+		<p>You must login to approve request</p>
+		<h6>Please enter your email & password to approve request</h6>
+		<h6 class="help-block red-text" ng-show="BlankForm">Please fill all fields.</h6>
+		<div class="form-group">
+			<input type="email" class="form-control" name="email" placeholder="Enter Email..." ng-model="manager.userName">
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" name="password" placeholder="Enter Password..."  ng-model="manager.password">
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" placeholder="Enter Your Comment...." ng-model="manager.manager_comment"></textarea>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-success" ng-click="ApproveRequest()">Login</button>
+		</div>
+	</div>
+</div>

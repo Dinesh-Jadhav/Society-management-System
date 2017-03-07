@@ -1,0 +1,35 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Contributions</h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-inr"></i> Contributions
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="contribution in contributions">
+                <div class="outer-cover" style="background-image: url(uploads/{{contribution.image}}); ">
+                    <div class="cover-overlay">
+                        <div class="title">{{contribution.title}}</div>
+                        <div class="title description">{{contribution.description}}</div>
+                        <div class="title charge">Desired Amount: <i class="fa fa-inr"></i> {{contribution.amount}}</div>
+                        <div class="title">
+                            <a href="#/resident-contribution/{{contribution.id}}">
+                                <button class="btn btn-success" ng-show="contribution.isPaid=='Unpaid'">Contribute</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

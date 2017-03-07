@@ -1,0 +1,374 @@
+<div class="man2helpForm"></div>
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    Dashboard <small>Statistics Overview</small>
+                </h3>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <i class="fa fa-dashboard"></i> Dashboard
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comment fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{pending}}</div>
+                                <div>Pending Complaints!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#/pending-complaint-list/{{id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View All</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comment fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{under_surveillance}}</div>
+                                <div>Under Servillance Compaints!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#/underS-complaint-list/{{id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View All</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comment fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{resolved}}</div>
+                                <div>Resolved Complaints!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#/resolved-complaint-list/{{id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View All</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-tasks fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-center">
+                                <div>Defaulter List</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#/defaulter-list/{{id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-tasks fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{totalRes}}</div>
+                                <div>Total Residents!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#/resident-list/{{id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View All</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pie-chart" aria-hidden="true"></i> All Complaints of {{block.name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div google-chart chart="ComplaintChart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pie-chart" aria-hidden="true"></i> Flats of {{block.name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div google-chart chart="FlatChart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pie-chart" aria-hidden="true"></i> Maintainance Collection of last {{lastMonths}} months of {{block.name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div google-chart chart="MaintainanceChart"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pie-chart" aria-hidden="true"></i> Maintainance Collection of last {{lastMonths}} months of {{block.name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div google-chart chart="MaintainanceChartLine"></div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <div class="container-fluid">
+        <h4>Manage {{block.name}} <a href="#/society-flats/{{id}}" ng-show="isUpdated"> | <small>Manage Flats</small></a></h4>
+        <hr>
+        <h4>Total Number Of flats: {{flat_count}}</h4>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="block-container">
+                    <div class="block-image" ng-repeat="storey in blockStorey | orderBy:'-storeyNo'">
+                        <div class="block-storey">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h5 class="storey-name">Storey {{storey.storeyNo}}</h5>
+                                </div>
+                                <div class="block-flat" ng-repeat="flat in storey.flats | orderBy:'flat_number'" ng-class="{ 'bhk-1' : flat.type_of_flat=='1', 'bhk-2' : flat.type_of_flat=='2', 'bhk-3' : flat.type_of_flat=='3', 'bhk-4' : flat.type_of_flat=='4'}">
+                                    <div class="flat-number">
+                                        <span data-toggle="modal" data-target="#myModal1" ng-click="GetFlatDetails(flat.id)" style="display: block;">{{flat.flat_number}}</span>
+                                        <div style="margin-left:-30%;">
+                                            <span ng-click="flatDetails(flat.id,flat.type_of_flat, flat.flat_number)" data-toggle="modal" data-target="#myModal"><i class="fa fa-info flat-options-icon" style="margin: 10% !important;font-size: 10px" > </i></span>|<span><i class="fa flat-options-icon" style="font-size: 10px; margin: 3px 0px 0 0px !important" ng-click="addResident(flat.id)" ng-class="{ 'fa-plus' : flat.is_updated=='0', 'fa-edit' : flat.is_updated!='0'}"></i></span>
+                                        </div>
+                                        <div class="upar-arrow" ng-show="showArrow{{flat.flat_number}}()"></div>
+                                    </div>
+                                    <div class="info-container" ng-show="showInfo{{flat.flat_number}}()">
+                                        <span class="resident">Resident: Sonu</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div>
+                    <div class="bhk-1 indicator"></div> <span> 1 BHK</span></div>
+                <div>
+                    <div class="bhk-2 indicator"></div> <span> 2 BHK</span></div>
+                <div>
+                    <div class="bhk-3 indicator"></div> <span> 3 BHK</span></div>
+                <div>
+                    <div class="bhk-4 indicator"></div> <span> 4 BHK</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Flat Details</h4>
+            </div>
+            <div class="modal-body">
+                <form name="flatUpdateForm">
+                    <div class="alert alert-danger" ng-show="Error">{{ErrorMsg}}</div>
+                    <div class="alert alert-success" ng-show="success">{{successMsg}}</div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Flat Number</label>
+                                <input type="text" class="form-control" ng-model="flatInfo.flat_number" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Flat Type</label>
+                                <input type="text" class="form-control" ng-model="flatInfo.flat_type" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Flat Area(In Square Fit)</label>
+                                <input type="text" class="form-control" name="first_name" ng-model="flatInfo.area" placeholder="Enter Flat Area" required>
+                                <p ng-show="flatUpdateForm.first_name.$invalid && !flatUpdateForm.first_name.$pristine" class="help-block red-text">Please enter area in numbers</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Flat Location</label>
+                                <select class="form-control" ng-model="flatInfo.location" name="balcony" required>
+                                    <option value="">Select Location</option>
+                                    <option value="center">Center</option>
+                                    <option value="front">Front</option>
+                                    <option value="back">Back</option>
+                                </select>
+                                <p ng-show="flatUpdateForm.balcony.$invalid && !flatUpdateForm.balcony.$pristine" class="help-block red-text">Please select flat location</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="parkAvail">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Select Parking Slot</label>
+                                <select class="form-control" select2 multiple="true" data-selected="{{flatInfo.parking_slots}}" ng-model="flatInfo.parking_slots">
+                                    <option value="0" name="park_id">none</option>
+                                    <option ng-repeat="park in parkArray" value="{{park.id}}">{{park.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="flatUpdateForm.$invalid" ng-click="updateFlatDetails()" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal" ng-click="close()">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<!-- For Details of Resident and Flat -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Flat & Resident's Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Flat Details</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Flat Number</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.flat_number}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Flat Location</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.location}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Flat Area</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.area}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Flat Type</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.type_of_flat}} BHK</span></div>
+                </div>
+                <div ng-show="parkAvail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="pull-left">Parking Availiable For</label>
+                        </div>
+                        <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.parking_type}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="pull-left">Parking Area</label>
+                        </div>
+                        <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.parking_area}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="pull-left">Parking Information</label>
+                        </div>
+                        <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.parking_desc}}</span></div>
+                    </div>
+                </div>
+                <h4 class="pull-left">Resident's Details</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Resident's Name</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.residen_name}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Resident's Email</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.residen_email}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Resident's Contact Number</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right">{{flatsFullDetails.residen_contact_number}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="pull-left">Resience Type</label>
+                    </div>
+                    <div class="col-sm-6"><span class="pull-right" style="text-transform: capitalize">{{flatsFullDetails.resdent_type}}</span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<chat></chat>
+<society-footer></society-footer>

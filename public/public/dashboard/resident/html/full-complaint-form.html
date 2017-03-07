@@ -1,0 +1,76 @@
+<div id="page-wrapper" >
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h2 class="Complaint-Form-Header">Complaint Form</h2>
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-xs-1"></div>
+            <table class="main-complaint-container">
+                <tr>
+                    <th class="Complaint-Form-Label">Compaint No. <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.id}}</td>
+                    <th class="Complaint-Form-Label">Date <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.date}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Society <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.society_name}}</td>
+                    <th class="Complaint-Form-Label">Block <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.block_name}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Manager <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.manager_name}}</td>
+                    <th class="Complaint-Form-Label">Flat Number <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.flat_number}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Compaint Status <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.status}}</td>
+                    <th class="Complaint-Form-Label">Resident ID <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.resident_id}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Full Name <b>:</b></th>
+                    <td colspan="3" class="Complaint-Form-Value">{{complaintDetail.resident_name}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Contact <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.contact_no}}</td>
+                    <th class="Complaint-Form-Label">Email <b>:</b></th>
+                    <td class="Complaint-Form-Value">{{complaintDetail.email}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Subject <b>:</b></th>
+                    <td class="Complaint-Form-Value" colspan="3">{{complaintDetail.subject}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Compaint <b>:</b></th>
+                    <td class="Complaint-Form-Value" colspan="3">{{complaintDetail.complaint}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label">Suggestion <b>:</b></th>
+                    <td class="Complaint-Form-Value" colspan="3">{{complaintDetail.suggestion}}</td>
+                </tr>
+                <tr ng-show="complaintDetail.status=='Resolved'">
+                    <th class="Complaint-Form-Label">Manager's Comment <b>:</b></th>
+                    <td class="Complaint-Form-Value" colspan="3">{{complaintDetail.managers_comment}}</td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label"></th>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <th class="Complaint-Form-Label"></th>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td class="Complaint-Form-Label" colspan="2" style="text-align: left;">Thank You</td>
+                    
+                    <td class="Complaint-Form-Value" colspan="2" style="text-align: center;color:#000; ">Signature</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

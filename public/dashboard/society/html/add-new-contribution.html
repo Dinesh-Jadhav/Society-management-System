@@ -1,0 +1,101 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Contribution</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Add Contribution
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-8 col-sm-8">
+                <form role="form" name="addBlockForm" ng-submit="addContribution()" novalidate>
+                    <div class="form">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Contribution Subject</label>
+                                    <input type="text" class="form-control" name="societyName" placeholder="Enter Subject for Contribution" ng-model="contribution.contribution_sub" required>
+                                    <p ng-show="addBlockForm.societyName.$invalid && !addBlockForm.societyName.$pristine" class="help-block red-text">Please enter contribution subject</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    <input type="number" minvalue="0" placeholder="Enter Amount " class="form-control" ng-model="contribution.charge" name="blockManager" required>
+                                    <p ng-show="addBlockForm.blockManager.$invalid && !addBlockForm.blockManager.$pristine" class="help-block red-text">Enter Amount.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label>Choose Images</label>
+                                    <input type="file" class="form-control" name="imageID" accept="image/*" ng-blur="upload_Image()" file-model="imageID" ng-readonly="hasNoBlocks" required>
+                                    <p ng-show="addBlockForm.imageID.$invalid && !addBlockForm.imageID.$pristine" class="help-block red-text">Please select image for amenity </p>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Last Contribution Date</label>
+                                        <input type="datepicker" minvalue="0" placeholder=" Last Contribution Date" class="form-control" ng-model="contribution.last_date" name="blockManager" required data-mindate="{{today}}" datetimepicker>
+                                        <p ng-show="addBlockForm.blockManager.$invalid && !addBlockForm.blockManager.$pristine" class="help-block red-text">Enter Last Date for Contribution.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="desc" placeholder="Enter Description" ng-model="contribution.description" required></textarea>
+                                    <p ng-show="addBlockForm.desc.$invalid && !addBlockForm.desc.$pristine" class="help-block red-text">Please Enter Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Crop Image</h4>
+                    <p>Uncroped image will not save.</p>
+                </div>
+                <div class="modal-body">
+                    <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+                        <img-crop image="picFile  | ngfDataUrl" area-min-size="50" aspect-ratio="3" result-image-size='{w: 690,h: 345}' area-type="rectangle" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" ng-hide="cropedImg"></img-crop>
+                        <div class="crop-image-container">
+                            <img ng-src="{{croppedDataUrl}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span ng-show="result">Croped Successfully</span>
+                    <span class="progress" ng-show="progress >= 0">
+                                <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                            </span>
+                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                    <button type="button" class="btn btn-default" ng-click="upload_cover(croppedDataUrl, picFile.name,'cover')" ng-hide="crop">Crop</button>
+                    <button type="button" class="btn btn-danger" ng-hide="close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

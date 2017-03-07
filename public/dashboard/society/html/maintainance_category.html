@@ -1,0 +1,74 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Maintainance Category</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i>Add Maintainance Category
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h3>Add Maintainance Category</h3>
+        </div>
+        <div class="row" style="margin-top: 10px ">
+            <div class="col-lg-8 col-sm-8">
+                <form role="form" name="categoryAddForm" ng-submit="addMaintainanceCategory()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <input type="text" class="form-control" name="categoryName" placeholder="Enter Category Name" ng-model="maintainCategory.category" required>
+                                <p ng-show="categoryAddForm.categoryName.$invalid && !categoryAddForm.categoryName.$pristine" class="help-block red-text">Please enter Category Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button ng-disabled="categoryAddForm.$invalid" type="submit" class="btn btn-success pull-right">
+                            Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Maintainance Category List</h2>
+                        <div class="table-responsive">
+                            <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                                <thead>
+                                    <th>Maintainance Category</th>
+                                    <th>Added On</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr ng-show="noData">
+                        <td colspan="9" align="center">No Due</td>
+                      </tr> -->
+                                    <tr ng-repeat="req in maintain_category">
+                                        <td>{{req.category}}</td>
+                                        <td>{{req.addedon | date: 'dd MMM,yyyy hh:mma'}}</td>
+                                        <td><a href="javascript:void(0)" ng-click="deleteCategory(req.id)"><i class="fa fa-trash"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container-fluid -->
+</div>
+<society-footer></society-footer>

@@ -1,0 +1,56 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    <!-- Dashboard -->
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Log New Complaint
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 addBlockForm">
+                <form role="form" name="addBlockForm" ng-submit="addComplaint()" novalidate>
+                    <div class="form">
+                        <h2>Log A New Complaint</h2>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Complaint Subject *</label>
+                                    <input type="text" class="form-control" ng-model="complaint.subject" placeholder="Enter Complaint Subject" name="subject" required>
+                                    <p ng-show="addBlockForm.subject.$invalid && !addBlockForm.subject.$pristine" class="help-block red-text">Please enter subject of Complaint</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Your Complaint *</label>
+                                    <textarea class="form-control" name="compaint" ng-model="complaint.complaint" required placeholder="Describe Your Problem"></textarea>
+                                    <p ng-show="addBlockForm.compaint.$invalid && !addBlockForm.compaint.$pristine" class="help-block red-text">Please enter complaint</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Suggestion For Solution <small>(Optional)</small></label>
+                            <textarea class="form-control" placeholder="Enter Suggestion" ng-model="complaint.suggestion" name="societyAddress"></textarea>
+                        </div>
+                    </div>
+                    <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Log Complaint</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

@@ -1,0 +1,105 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                Payment Dues
+            </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Payment Dues
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Due for Facilities</h4>
+                        <div class="table-responsive">
+                            <table id="entry-grid" width="100%">
+                                <thead>
+                                    <th>Select</th>
+                                    <th>Invoice Type</th>
+                                    <th>Invoice For</th>
+                                    <th>Request Approval Date</th>
+                                    <!-- <th>Last Payment Date</th> -->
+                                    <th>Recurring Peroid</th>
+                                    <th>Days For Amenity</th>
+                                    <th>Charge</th>
+                                    <th>Tax</th>
+                                    <th>Total Charge</th>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr ng-show="noData">
+                        <td colspan="9" align="center">No Due</td>
+                      </tr> -->
+                                    <tr ng-repeat="req in Facilities" ng-hide="req.availFcaility">
+                                        <td>
+                                            <input type="checkbox" ng-change="changeFacility()" ng-model="changeFac[req.req_id]" ng-true-value="'{{req.charges}}'">
+                                        </td>
+                                        <td>{{req.facility_name}}</td>
+                                        <td>Facility</td>
+                                        <td>{{req.response_date | date:'dd MMM, yyyy'}}</td>
+                                        <!-- <td>{{req.last_payment_date | date:'dd MMM, yyyy'}}</td> -->
+                                        <td>{{req.recurring_peroid}}</td>
+                                        <td>-</td>
+                                        <td>{{req.charges}}</td>
+                                        <td>0</td>
+                                        <td>{{req.charges + 0}}</td>
+                                        <!-- <td><div class="alert alert-danger" ng-show="req.availFcaility">No</div><div class="alert alert-success"  ng-hide="req.availFcaility">Yes</div></td> -->
+                                    </tr>
+                                    <tr ng-repeat="req in Amenities">
+                                        <td>
+                                            <input type="checkbox" ng-model="changeAme[req.req_id]" ng-change="changeAmenity()" ng-true-value="'{{req.amount}}'">
+                                        </td>
+                                        <td>{{req.aminity_name}}</td>
+                                        <td>Amenity</td>
+                                        <td>{{req.booking_end_date | date:'dd MMM, yyyy'}}</td>
+                                        <td>-</td>
+                                        <td>{{req.days}} Day(s)</td>
+                                        <td>{{req.charges}}</td>
+                                        <td>0</td>
+                                        <td>{{req.amount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8"><b>Total Due Payable Amount</b></td>
+                                        <td><b>{{totalPayable}}</b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <form name="paymentFrm" action="https://test.payu.in/_payment" method="post">
+                    <div>
+                        <input type="hidden" name="key" value="{{paymentDetails.key}}" />
+                        <input type="hidden" name="hash" value="{{paymentDetails.hash}}" />
+                        <input type="hidden" name="txnid" value="{{paymentDetails.txnid}}" />
+                        <input type="hidden" name="amount" value="{{totalPayable}}" />
+                        <input type="hidden" name="firstname" value="{{paymentDetails.firstname}}" />
+                        <input type="hidden" name="email" value="{{paymentDetails.email}}" />
+                        <input type="hidden" name="phone" value="{{paymentDetails.phone}}" />
+                        <input type="hidden" name="productinfo" value="{{paymentDetails.productinfo}}">
+                        <input type="hidden" name="surl" value="{{paymentDetails.surl}}">
+                        <input type="hidden" name="furl" value="{{paymentDetails.furl}}">
+                        <input type="hidden" name="udf1" value="{{paymentDetails.udf1}}">
+                        <input type="hidden" name="udf2" value="{{paymentDetails.udf2}}">
+                        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="pull-right btn btn-success" ng-click="pay($event)">Pay Using PayUMoney</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

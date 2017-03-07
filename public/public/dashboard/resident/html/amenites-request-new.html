@@ -1,0 +1,123 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Request For New Amenity
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Request For New Amenity
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>All Amenities</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>Amenity ID</th>
+                            <th>Amenity Name</th>
+                            <th>Charge(Per Day)</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in Amenities">
+                                <td>{{facility.id}}</td>
+                                <td>{{facility.aminity_name}}</td>
+                                <td>{{facility.charges}}</td>
+                                <td>{{facility.description}}</td>
+                                <td>
+                                    <a href="#" data-toggle="modal" data-target="#myModal" ng-click="ShowAvailiability(facility.id)" title="View Availiablity Date"><i class="fa fa-calendar"></i></a>|<a href="#" data-toggle="modal" data-target="#myModal1" ng-click="setID(facility.id)">Request</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Availiablity</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Request Amenity Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Enter Details</h4>
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Booking Start Date</label>
+                                <input type="text" placeholder="Enter booking Start Date" class="form-control" name="start" ng-model="booking_start_date" data-mindate="{{today}}" datepicker required>
+                                <p ng-show="updateFaciilityDetail.start.$invalid && !updateFaciilityDetail.start.$pristine" class="help-block red-text">Please Enter booking starting date here</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Booking End Date</label>
+                                <input type="text" placeholder="Enter booking end Date" class="form-control" name="end" ng-model="booking_end_date" data-mindate="{{today}}" datepicker required>
+                                <p ng-show="updateFaciilityDetail.end.$invalid && !updateFaciilityDetail.end.$pristine" class="help-block red-text">Please Enter booking starting date here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Comment</label>
+                                <textarea placeholder="Enter Resident Comment Here" class="form-control" name="rescomment" ng-model="resident_message" required></textarea>
+                                <p ng-show="updateFaciilityDetail.rescomment.$invalid && !updateFaciilityDetail.rescomment.$pristine" class="help-block red-text">Please enter your Comment here</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="RequestForAmenity()" class="btn btn-success" data-dismiss="modal">Request</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<society-footer></society-footer>

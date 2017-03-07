@@ -1,0 +1,83 @@
+<style type="text/css">
+	div#wrapper {
+    padding-left: 0;
+}
+</style>
+<!-- Login Option -->
+<div class="login-section">
+  <h4 class="login-section-header">{{ societyDetails.name }} is on <br><a href="http://man2help.com/" target="_blank"><img src="http://man2help.com/images2/logo.png" style="
+    width: 55%;
+"></a></h4>
+  <a href="#/society-login"  class="btn btn-login">Login</a>
+</div>
+<!-- Banner -->
+<section id="banner">
+	<img src="uploads/{{societyDetails.cover_img}}">
+</section>
+<section>
+	<div class="society-logo">
+		<img src="uploads/{{societyDetails.general_img}}" alt="Society Logo">
+	</div>
+</section>
+<div class="container">
+<!-- Contact -->
+<section id="contact" class="wrapper">
+	<div class="inner split">
+		<section>
+			<h2>Contact Information</h2>
+			<div class="row split info-section">
+				<div class="col-md-6 contact-info">
+					<h5>{{ societyDetails.owner }}</h5>
+					<small class="small">(Owner)</small>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> {{ societyDetails.contact_number }}</p>
+					
+				</div>
+				<div class="col-md-6 contact-info">
+					<h5>{{ societyDetails.chair_person }}</h5>
+					<small class="small">(Chairman)</small>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> {{ societyDetails.chair_person_contact }}</p>
+					
+				</div>
+			</div>
+			<hr>
+			<div class="row split info-section">
+				<div class="col-md-6 contact-info">
+					<h5>{{ societyDetails.secretary }}</h5>
+					<small class="small">(Secretary)</small>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> {{ societyDetails.secretary_contact }}</p>
+					
+				</div>
+				<div class="col-md-6 contact-info">
+					<h5>{{ societyDetails.treasurer }}</h5>
+					<small class="small">(Treasurer)</small>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> {{ societyDetails.treasurer_contact }}</p>
+					
+				</div>
+			</div>	
+			
+		</section>
+		<section>
+			<h2><i class="fa fa-map-marker" aria-hidden="true"></i> Reach {{ societyDetails.name }}</h2>
+			<div id="society-map" style="height: 200px;"></div>
+		</section>
+	</div>
+</section>
+<hr>
+<section class="wrapper">
+	<div class="inner">
+		<h2>Society Details:</h2>
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Address:</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				{{ societyDetails.name }}, <br>
+				{{ societyDetails.address }}
+			</div>	
+		</div>
+	</div>
+</section>
+</div>
+<div class="frontFooter"></div>

@@ -1,0 +1,324 @@
+<indexheader></indexheader>
+<!-- - - - - - - - - - - - - - Layer slider - - - - - - - - - - - - - - - - -->
+<div class="silder-img" ng-style="{'background-image': 'linear-gradient(to bottom, rgba(11, 60, 5, 0.8), rgba(0, 0, 0, 0.4)), url(' + PosterUrl + ')'}">
+    <!-- - - - - - - - - - - - - - Slide 1 - - - - - - - - - - - - - - - - -->
+    <h1 class="silder-heading">Man2Help brings society <span style="color:#f6c709;"> under one roof</span> for you.</h1>
+    <p class="silder-ptext">Society Management tool which serves as your friend in managing your society. Fully packed features that helps you automate most of the complex work for society management. </p>
+    <!-- - - - - - - - - - - - - - Main navigation wrapper - - - - - - - - - - - - - - - - -->
+    <div id="main_navigation_wrap" class="serbg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-xs-offset-0 col-sm-offset-1">
+                    <div class="sticky_inner">
+                        <div class="nav_item inner_offset">
+                            <!-- - - - - - - - - - - - - - Search form - - - - - - - - - - - - - - - - -->
+                            <!-- action="http://man2help.com/anyuser.php" method="post" -->
+                             <form class="clearfix search" name="landing">
+                                <div class="lined-up">
+								<input type="text" name="name" value="{{help.name}}" ng-model="help.name" tabindex="1" placeholder="First Name" required>
+                                <input type="text" name="mobile" value="{{help.mobno}}" ng-model="help.mobno" tabindex="1" placeholder="Mob No." minlenght="10" maxlength="10" class="stickyleft" required>
+                                <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
+                                <!-- <input type="hidden" name="service" value={{help.service}}> -->
+                                
+                                <!--/ .search_category.alignleft-->
+                                <!-- - - - - - - - - - - - - - End of categories - - - - - - - - - - - - - - - - -->
+                                <input type="text" name="city" value="{{help.city}}" ng-model="help.city" tabindex="1" placeholder="City/Pin/ Address" class="stickyleft" required>
+								<input type="text" name="description" value="{{help.description}}" ng-model="help.description" tabindex="1" placeholder="Problem-Description" class="stickyleft" required>
+								</div>
+                                <!-- - - - - - - - - - - - - - Categories - - - - - - - - - - - - - - - - -->
+                                <!-- <input type="hidden" name="time" value="{{help.time}}"> -->
+								<div class="lined-up">
+								<select class="search_category whitebg" ng-model="help.service" required>
+                                    <option class="open_categories" value="" class="alignleft"> Select Service </option>
+                                    <option class="open_categories" ng-repeat="ser in services" value="{{ser.service_name}}">{{ser.service_name}}</option>
+                                </select>
+                                <select class="search_category stickyleft whitebg" ng-model="help.time" required>
+                                    <option class="open_categories" value="" class="alignleft">Select Scheduled</option>
+                                    <option class="open_categories" value="9am - 12pm">9am - 12pm</option>
+                                    <option class="open_categories" value="12pm - 3pm">12pm - 3pm</option>
+                                    <option class="open_categories" value="3pm - 6pm">3pm - 6pm</option>
+                                    <option class="open_categories" value="6pm - 9pm">6pm - 9pm</option>
+                                </select>
+                                <!--/ .search_category.alignleft-->
+                                <!-- - - - - - - - - - - - - - End of categories - - - - - - - - - - - - - - - - -->
+                                <input type="text" name="date" ng-model="help.date" placeholder="Schedule Date" class="stickyleft" data-mindate="{{today}}" datepicker required>
+                               </div>
+							   <div class="lined-up">
+							    <button type="submit" ng-disabled="landing.$invalid" ng-click="requestHelp()" class="button_blue stickyleft">Log Request</button>
+							   </div>
+                            </form>
+                            <!--/ #search-->
+                            <!-- - - - - - - - - - - - - - End search form - - - - - - - - - - - - - - - - -->
+                        </div>
+                        <!--/ .nav_item-->
+                        <!-- - - - - - - - - - - - - - End of main navigation - - - - - - - - - - - - - - - - -->
+                    </div>
+                    <!--/ .main_navigation-->
+                </div>
+                <!--/ [col]-->
+            </div>
+            <!--/ .row-->
+        </div>
+        <!--/ .container-->
+    </div>
+
+    <!--/ .main_navigation_wrap-->
+    <!-- - - - - - - - - - - - - - End of slide 1 - - - - - - - - - - - - - - - - -->
+</div>
+<!--/ #layerslider-->
+<!-- - - - - - - - - - - - - - End of layer slider - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - End of main navigation wrapper - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - Page Wrapper - - - - - - - - - - - - - - - - -->
+<div class="page_wrapper p0">
+    <div class="container-fluid pwrap">
+        <!-- - - - - - - - - - - - - - Banners - - - - - - - - - - - - - - - - -->
+        <div class="container section_offset">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="menegment"> Are you part of the Management Committee <br> of your Society?</h3>
+                </div>
+                <div class="col-sm-4">
+                    <div class="banner animated transparent" data-animation="fadeInDown">
+                        <img src="images/image/first-1.jpg" alt="" class="alignleft mb0 img-center11">
+                        <p class="text-center" style="font-size:15px;">Society Management tool which serves as your friend in managing your society. Fully packed features that helps you automate All your complex work for society management.</p>
+                    </div>
+                </div>
+                <!--/ [col]-->
+                <div class="col-sm-4">
+                    <div class="banner animated transparent" data-animation="fadeInDown" data-animation-delay="150">
+                        <img src="images/image/first-2.jpg" alt="" class="alignleft mb0 img-center11">
+                        <p class="text-center" style="font-size:15px;">Keep All Members informed about Society current changes, expenses, events</p>
+                    </div>
+                </div>
+                <!--/ [col]-->
+                <div class="col-sm-4">
+                    <div class="banner animated transparent" data-animation="fadeInDown" data-animation-delay="300">
+                        <img src="images/image/first-3.jpg" alt="" class="alignleft mb0 img-center11">
+                        <p class="text-center" style="font-size:15px;">Track all Visitors,Complaints,Society Expenses under one place</p>
+                    </div>
+                </div>
+                <!--/ [col]-->
+            </div>
+            <!--/ .row-->
+        </div>
+        <!--/ .section_offset-->
+    </div>
+    <!-- - - - - - - - - - - - - - End of banners - - - - - - - - - - - - - - - - -->
+    <!-- my Style-->
+</div>
+<!-- - - - - - - - - - - - - - End Page Wrapper - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - -  - - -  Silder 2 part section - - - - - - - - - - - - - -->
+<section class="bg-img11">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="txt-white text-center">Features</h1>
+                <p class="text-center" style="color:#58b9ec; font-size:18px;">Take a look at some of the features</p>
+                <div class="container">
+                    <div class="row">
+                        <!-- Carousel -->
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                <!-- <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+ -->
+                            </ol>
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <!-- Static Header -->
+                                    <div class="header-text">
+                                        <div class="col-md-6 text-center">
+                                            <h2><img src="images/image/silder-left-img.png" alt="" class="img-responsive"/></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="txt-white padd"> Head Advantages for society</h4>
+                                            <ul class="txt-white padd-ul">
+                                                <li> Society Own Website</li>
+                                                <li> Committee Members</li>
+                                                <li> Society data Management</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /header-text -->
+                                </div>
+                                <div class="item">
+                                    <!-- Static Header -->
+                                    <div class="header-text">
+                                        <div class="col-md-6 text-center">
+                                            <h2><img src="images/image/silder-left-img.png" alt="" class="img-responsive"/></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="txt-white padd">Security, Availability & Notifications</h4>
+                                            <ul class="txt-white padd-ul">
+                                                <li>Event Management</li>
+                                                <li>Recreation Maintenance</li>
+                                                <li>Visitor Management</li>
+                                                <li>Email/SMS Broadcast</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /header-text -->
+                                </div>
+                                <div class="item">
+                                    <!-- Static Header -->
+                                    <div class="header-text">
+                                        <div class="col-md-6 text-center">
+                                            <h2><img src="images/image/silder-left-img.png" alt="" class="img-responsive"/></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="txt-white padd">Easy Money Managment</h4>
+                                            <ul class="txt-white padd-ul">
+                                                <li>Communication Dashboard</li>
+                                                <li>Get instant Payment alerts via Email/SMS</li>
+                                                <li>One Click Bill Generation</li>
+                                                <li> And Many more….</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /header-text -->
+                                </div>
+                                <div class="item">
+                                    <!-- Static Header -->
+                                    <div class="header-text">
+                                        <div class="col-md-6 text-center">
+                                            <h2><img src="images/image/silder-left-img.png" alt="" class="img-responsive"/></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="txt-white padd">Easy to manage </h4>
+                                            <ul class="txt-white padd-ul">
+                                                <li>Auto Reminders for society maintenance activity</li>
+                                                <li>Auto Reminders for society charge payments</li>
+                                                <li>Reminders</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /header-text -->
+                                </div>
+                                <!--   <div class="item">
+                                    
+                                    <div class="header-text">
+                                        <div class="col-md-6 text-center">
+                                            <h2><img src="images/image/silder-left-img.png" alt="" class="img-responsive"/></h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="txt-white padd">The features Heading</h4>
+                                            <ul class="txt-white padd-ul">
+                                                <li>Auto Reminders for society maintenance activity</li>
+                                                <li>Auto Reminders for society charge payments</li>
+                                                <li>Reminders</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                 
+                                </div> -->
+                                <!-- Controls -->
+                                <a class="left carousel-control hidden-xs" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="glyphicon  fa fa-chevron-circle-left"></span>
+                                </a>
+                                <a class="right carousel-control hidden-xs" href="#carousel-example-generic" data-slide="next">
+                                    <span class="glyphicon  fa fa-chevron-circle-right"></span>
+                                </a>
+                            </div>
+                            <!-- /carousel -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- - - - - - - - - - - - -  - - -  Silder 2 part section end - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - -  - - -  6 image part section - - - - - - - - - - - - - -->
+<section class="padd-six-img">
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center services-head">OUR SERVICES </h3>
+            <div class="clearfix"></div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" ng-non-bindable>
+                <div class="item active">
+                    <div class="col-sm-2"><img src="images/image/first-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">CARPENTER</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/second-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">COOK</h6>
+                    </div>
+                    <div class="col-sm-2"><img src='images/image/third-circel.jpg' alt="" class="img-circle img-responsive services-img " />
+                        <h6 class="text-center" style="color:#449edc;">COMPUTER SERVICES</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/fourth-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">CLEANING SERVICE</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/five-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">PARCEL/TRANSFER</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/sixth-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">DOCTOR</h6>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-sm-2"><img src="images/image/first-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">CARPENTER</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/second-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">COOK</h6>
+                    </div>
+                    <div class="col-sm-2"><img src='images/image/third-circel.jpg' alt="" class="img-circle img-responsive services-img " />
+                        <h6 class="text-center" style="color:#449edc;">COMPUTER SERVICES</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/fourth-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">CLEANING SERVICE</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/five-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">PARCEL/TRANSFER</h6>
+                    </div>
+                    <div class="col-sm-2"><img src="images/image/sixth-circel.jpg" alt="" class="img-circle img-responsive services-img" />
+                        <h6 class="text-center" style="color:#449edc;">DOCTOR</h6>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>
+<!-- - - - - - - - - - - - -  - - -  6 image part section end - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - -  - - -   ENQUIRY FORM image part section - - - - - - - - - - - - - -->
+<section class="padd-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 style="color:#0f8fd2;">WHO WE ARE </h3>
+                <p><b>There are many things that we would love to share with all you great Individuals, in our quest to find who we are and why are we here, but professionalism for now asks us to tell things related to this start-up and the loop with this.</b></p>
+                <p>This venture is in that way related to us knowing and serving the purpose of life, as we believe that even if you& we are not aware of our purpose and are still in quest to find that along the path, with all uncertainties as long as you are serving people you are somehow though totally unknown fulfilling you purpose. As service is associated with and is travelling on Technology Train… Our Team while in casual discussion just popped up as we all obviously know…Technology advancement if we look positively. Was build/born to bring Ease to Life and Closeness of our loved Ones…. while quite a lot attention has been given to later part …still the first area is in nascent stage. Also, there are already services cater around/offer things as we do…. then our thirst to Integrate and bring everything under one Banner, that makes you find time and freedom to contribute to world while we take care of your pinches up.</p>
+            </div>
+            <div class="col-sm-6" style="border-left:1px solid #666;">
+                <h3 style="color:#0f8fd2;">ENQUIRY </h3>
+                <FORM name="enquiryform">
+                    <div class="col-sm-12">
+                        <input type="text" name="nm" placeholder="Name" ng-model="enq.name" required>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="email" name="e-mail" placeholder="Email" ng-model="enq.email" required>
+                        <p ng-show="enquiryform.e-mail.$invalid && !enquiryform.e-mail.$pristine" class="help-block red-text">Enter e-mail</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" name="sub" placeholder="Subject" ng-model="enq.subject" required>
+                    </div>
+                    <div class="col-sm-12">
+                        <textarea name="desc" rows="5" placeholder="Description" ng-model="enq.description" required></textarea>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 left_side">{{enquiryStatus}}</div>
+                        <div class="col-sm-6 right_side text-right padd-rightno">
+                            <button type="submit" ng-disabled="enquiryform.$invalid" class="button_blue middle_btn pull-right" ng-click="enquiry()"> Submit </button>
+                        </div>
+                    </div>
+                </FORM>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- - - - - - - - - - - - -  - - -  ENQUIRY FORM image part section end - - - - - - - - - - - - - -->
+<indexfooter></indexfooter>

@@ -1,0 +1,55 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    All Contribution's
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> All Contribution's
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> All Contribution's </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" width="100%">
+                        <thead>
+                            <th>ID</th>
+                            <th>Contribution Image</th>
+                            <th>Contribution Subject</th>
+                            <th>Contribution Charge</th>
+                            <th>Description</th>
+                            <th>Last Payment Date</th>
+                            <!-- <th>Action</th> -->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="amenity in contri">
+                                <td>{{amenity.id}}</td>
+                                <td><img ng-src="uploads/{{amenity.image}}" width="50px"></td>
+                                <td>{{amenity.title}}</td>
+                                <td>{{amenity.amount}}</td>
+                                <td>{{amenity.description}}</td>
+                                <td>{{amenity.last_payment_date | date:'dd MMM,yyyy'}}</td>
+                                <!-- <td><a href="#" data-toggle="modal" data-target="#myModal1" ng-click="updateId(amenity.id)"><i class="fa fa-edit"></i></a> | <a href="javascript:void(0)" ng-click="deleteAmility(amenity.id)"><i class="fa fa-trash"></i></a></td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

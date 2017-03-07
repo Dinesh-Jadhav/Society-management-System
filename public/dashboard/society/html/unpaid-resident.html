@@ -1,0 +1,128 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Resident List
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Unpaid Resident List
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Maintainance Unpaid Resident List </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th><input type="checkbox" ng-model="selectAll" ng-change="selectAllRes()"></th>
+                            <th>Flat Number</th>
+                            <th>Resident's Name</th>
+                            <th>Resident's E-Mail</th>
+                            <th>Resident's Mobile Number</th>
+                            <th>Date</th>
+                            <th>Amount Paid</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="res in reslist">
+                                <td align="center">
+                                    <input type="checkbox" ng-model="isSelected[res.id]" ng-true-value="1" ng-false-value="0"  ng-change="selectRes(res.id)">
+                                </td>
+                                <td>{{res.flat_number}}</td>
+                                <td>{{res.first_name}} {{res.last_name}}</td>
+                                <td>{{res.email}}</td>
+                                <td>{{res.contact_no}}</td>
+                                <td>{{res.month | date: 'dd MMM,yyyy'}}, {{res.year | date: 'dd MMM,yyyy'}}</td>
+                                <td>{{res.amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <a href="#/maintainance/{{id}}">
+                        <button class="btn btn-primary pull-left">Back To List</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" ng-disabled="noResident">Notify</button>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal1" ng-disabled="noResident">S.M.S</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Message For Resident's</label>
+                                <textarea class="form-control" placeholder="Enter Messaage Here" name="msg" ng-model="message" required></textarea>
+                                <p ng-show="updateFaciilityDetail.msg.$invalid && !updateFaciilityDetail.msg.$pristine" class="help-block red-text">Enter message here</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="sendMsg()" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Message For Resident's</label>
+                                <textarea class="form-control" placeholder="Enter Messaage Here" name="msg" ng-model="message" required></textarea>
+                                <p ng-show="updateFaciilityDetail.msg.$invalid && !updateFaciilityDetail.msg.$pristine" class="help-block red-text">Enter message here</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="sendMsg()" class="btn btn-success" data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<society-footer></society-footer>

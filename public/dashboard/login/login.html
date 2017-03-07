@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Society | Login</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="admin/login/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="admin/login/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="admin/login/assets/css/form-elements.css">
+        <link rel="stylesheet" href="admin/login/assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                                <div class="form-top-left">
+                                    <img src="images/man2help.png" class="logo-image-man2help">
+                                </div>
+                                <div class="form-top-right society-logo-login">
+                                    <img src="images/Society-Management_logo.png" class="logo-image">
+                                </div>
+                        		<div class="form-top-left">
+                        			<h3>Login to our site</h3>
+                            		<p>{{titleContent}}</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                <div ng-hide="noError" class="ng-hide alert alert-danger">
+                                    {{ErrorMessage}}
+                                </div>
+			                    <form role="form" class="login-form" name="loginForm" ng-submit="loginAction()" novalidate>
+                                    <div class="form-group">
+			                    		<label class="sr-only" for="form-username">Enter Email</label>
+			                        	<input type="text" name="username" ng-model="user.userName" placeholder="{{userPlaceholder}}" class="form-username form-control" id="form-username" required>
+                                        <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine" class="help-block red-text">Please enter username</p>
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="password" ng-model="user.password" placeholder="Password..." class="form-password form-control" id="form-password" required>
+                                        <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block red-text">Please enter password</p>
+			                        </div>
+			                        <button type="submit" ng-disabled="loginForm.$invalid" class="btn">Sign in!</button>
+			                    </form>
+                                <a href="#/{{forget_url}}">Forget Password ?</a>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Javascript -->
+        <!-- <script src="admin/login/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="admin/login/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="admin/login/assets/js/jquery.backstretch.min.js"></script>
+        <script src="admin/login/assets/js/scripts.js"></script> -->
+        
+        <!--[if lt IE 10]>
+            <script src="admin/login/assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

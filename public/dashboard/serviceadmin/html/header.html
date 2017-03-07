@@ -1,0 +1,62 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+<!-- 
+            <img ng-src="images/man2help.png">
+        </span>
+        <span class="management-logo-container">
+            <img ng-src="images/Society-Management_logo.png">
+ -->
+        <!-- <a class="navbar-brand" href="#/dashboard">Admin</a> -->
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+            <a href="javascript:void(0)" ng-click="openModel()"><i class="fa fa-user"></i> Service Admin <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <!-- <li>
+                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                </li> -->
+                <!-- <li>
+                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                </li> -->
+                <li class="divider"></li>
+                <li>
+                    <a href="javascript:void(0)" ng-click="logOut()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav resident-nav">
+            <li style="background-color: #fff;background-color: #fff;text-align: center"><img style="width: 85%;padding: 0.3em 0.4em 0.4em;margin: 0 auto" ng-src="images/man2help.png"></li>
+            <li><img ng-src="images/Society-Management_logo.png" style="width: 100%; background: #48352a; padding: 0px 25px;"></li>
+            
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo7" ng-class="{active: activetab == 'Service'}"><i class="fa fa-globe"></i>Man2Help Request <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo7" class="collapse" ng-class="{in: activetab == 'Service'}">
+                    <!-- <li>
+                        <a href="#/service-all"><i class="fa fa-circle-o"></i> List</a>
+                    </li>
+                     --><!-- <li>
+                        <a href="#/add-service"> <i class="fa fa-circle-o"></i> Add Service</a>
+                    </li> -->
+                    <li>
+                        <a href="#/home-service-list"><i class="fa fa-circle-o"></i> Home Page Request</a>
+                    </li>
+                    <li>
+                        <a href="#/admin-service-list"><i class="fa fa-circle-o"></i> Registered Member Request</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

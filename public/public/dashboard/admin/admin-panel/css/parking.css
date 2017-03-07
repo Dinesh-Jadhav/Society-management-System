@@ -1,0 +1,35 @@
+.parking1{
+	border: solid;
+
+}
+
+
+
+.parking {
+    border: ridge;
+    margin: 0.2em 0.05em;
+    color: #fff;
+    text-align: center;
+    font-size: 0.9em;
+    padding: 0;
+}
+.back
+{
+	background-color: #FE9A2E;
+}
+.parking i.fa.fa-car {
+    text-align: center;
+    padding: 5px 0 0 15px;
+}
+.parkingAvail {
+    background: #3ABC99;
+}
+.parkingBooked {
+    background: #D46161;
+}
+.parkingBooked.legend, .parkingAvail.legend {
+    height: 10px;
+    width: 20%;
+    float: left;
+    margin: 10px 5px 0 -5px;
+}

@@ -1,0 +1,76 @@
+<div class="societyHeader"></div>
+	<div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add Block</h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-edit"></i> Add Blocks
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-lg-6 addBlockForm">
+                    <form role="form" name="addBlockForm" ng-submit="addBlocks()" novalidate>
+                        <div class="form" ng-repeat="block in blocks track by $index">
+                		    <h3>Block {{ block.block_number }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+        	                	    <div class="form-group">
+        	                            <label>Name</label>
+                                        <input type="text" class="form-control" name="societyName" placeholder="Enter Name" ng-model="block.name" ng-readonly="hasNoBlocks" required>
+        	                            <p ng-show="addBlockForm.societyName.$invalid && !addBlockForm.societyName.$pristine" class="help-block red-text">Please enter society name</p>
+        	                        </div>
+                                </div>
+                                <div class="col-lg-6">
+        	                        <div class="form-group">
+        	                            <label>Block Manager</label>
+        	                            <select  class="form-control" ng-model="block.manager" name="blockManager" ng-disabled="noManager" required>
+                                           <option value="">Select Manager</option>
+                                           <option ng-repeat="societyManagers in ActiveManagers" value="{{ societyManagers.id }}">{{ societyManagers.manager_name }}</option>
+                                        </select>
+        	                            <p ng-show="addBlockForm.blockManager.$invalid && !addBlockForm.blockManager.$pristine" class="help-block red-text">Please select block manager</p>
+        	                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Number of Storeys</label>
+                                        <input type="text" class="form-control" name="storeys" placeholder="Number of Storeys" ng-model="block.storeys" min='1' required>
+                                        <p ng-show="addBlockForm.storeys.$invalid && !addBlockForm.storeys.$pristine" class="help-block red-text">Please enter number of storeys</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Total Number of Flats</label>
+                                        <input type="text" class="form-control" name="flats" placeholder="Total Number of Flats" min='1' ng-model="block.flats"  required>
+                                        <p ng-show="addBlockForm.flats.$invalid && !addBlockForm.flats.$pristine" class="help-block red-text">Please enter number of flats</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" placeholder="Enter Description" ng-model="block.description" name="societyAddress" required></textarea>
+                                <p ng-show="addBlockForm.societyAddress.$invalid && !addBlockForm.societyAddress.$pristine" class="help-block red-text">Please enter address</p>
+                            </div>
+	                    </div>
+                        <a href="javscript:void(0)" ng-click="addMoreBlock()" ng-show="hasBlocks"><i class="fa fa-plus"></i> Add more</a>
+                        <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Add Block</button>
+				    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+<society-footer></society-footer>

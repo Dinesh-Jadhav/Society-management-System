@@ -1,0 +1,80 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12 ">
+                <h1 class="page-header">
+                    Staff Member's Details
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-users"></i> Staff
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Staff Member's Detail
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Staff Member's Details</h2>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <br>
+                        <h3>Member's Details</h3>
+                        <div class="row">
+                            <div class="col-sm-4">Name</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.name}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Email</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.email}}</span></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">Contact Number</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.contact_number}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Type</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.type}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Id Proof</div>
+                            <div class="col-sm-8"><span class="pull-right"><!-- <img ng-src="uploads/{{tenantDetail.id_proof}}"> -->
+                            <a href="uploads/{{member.id_file}}" target="_blank">View Id</a></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">For</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.staff_type}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Description</div>
+                            <div class="col-sm-8"><span class="pull-right">{{member.description}}</span></div>
+                        </div>
+
+                        <br>
+                        <div class="row"  ng-show="staff_type_flats">
+                            <div class="col-sm-4">Availiable For Flats</div>
+                        </div>
+                        <div class="row" ng-show="staff_type_flats">
+                            <div class="col-sm-2" ng-repeat="Flats in flats">
+                                {{Flats.flat_number}}
+                            </div>
+                        </div>
+                        <a href="#/staff-list/{{id}}"><button class="btn btn-primary">Back To List</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

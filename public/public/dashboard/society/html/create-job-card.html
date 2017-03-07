@@ -1,0 +1,158 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    <!-- Dashboard -->
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-file"></i> Add New Job Card
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-lg-8 ">
+                    <form role="form" name="maintainanceForm" ng-submit="addMaintainance()" novalidate>
+                        <div class="form">
+                            <h3>Add New Job Card</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Maintainance Category</label>
+                                        <select name="categorytype" class="form-control" ng-model="maintainance.category_id"  required>
+                                            <option value="">-Select-</option>
+                                            <option ng-repeat="societyMana in maintainance_category" value="{{ societyMana.id }}">{{ societyMana.category }}</option>
+                                        </select>
+                                         <p ng-show="maintainanceForm.categorytype.$invalid && !maintainanceForm.categorytype.$pristine" class="help-block red-text">Please select the category</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Job Card Type</label>
+                                        <select name="type" class="form-control" ng-model="maintainance.job_card_type" required>
+                                            <option value="">-Select-</option>
+                                            <option value="1">One Time </option>
+                                            <option value="2">Recurring </option>
+                                        </select>
+                                    <p ng-show="maintainanceForm.type.$invalid && !maintainanceForm.type.$pristine" class="help-block red-text">Please select the Job Card type</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Vendor Name</label>
+                                        <select name="vendor" class="form-control" ng-model="maintainance.vendor_id"  required>
+                                            <option value="">-Select-</option>
+                                            <option ng-repeat="societyManagers in Vendors" value="{{ societyManagers.id }}">{{ societyManagers.vendor_name }}</option>
+                                        </select>
+                                    <p ng-show="maintainanceForm.vendor.$invalid && !maintainanceForm.vendor.$pristine" class="help-block red-text">Please select the vendor type</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"  ng-show="maintainance.job_card_type==2">
+                                        <label>Contract Type</label>
+                                        <select name="contract_type" class="form-control" ng-model="maintainance.contract_type">
+                                            <option value="">-Select-</option>
+                                            <option value="1">Periodic </option>
+                                            <option value="2">AMC(Annual Maintainance Contract) </option>
+                                        </select>
+
+                                    <p ng-show="maintainanceForm.contract_type.$invalid && !maintainanceForm.contract_type.$pristine" class="help-block red-text">Please select the Job Card type</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Starting Date</label>
+                                    <input type="text" class="form-control" name="start_date" ng-model="maintainance.start_date" placeholder="Enter starting date" data-mindate="{{today}}" datepicker required>
+                                    <p ng-show="maintainanceForm.start_date.$invalid && !maintainanceForm.start_date.$pristine" class="help-block red-text">Please Enter the starting date</p>
+                                </div>     
+                            </div>
+                            <div class="col-md-6" ng-show="maintainance.job_card_type==2 && maintainance.contract_type==2">
+                                <div class="form-group" >
+                                    <label>Approximate Visit Date</label>
+                                    <select name="visit_date" class="form-control" ng-model="maintainance.approximate_visit_date">
+                                        <option value=""> Select </option>
+                                        <option ng-repeat="i in approximate" value="{{i}}">{{i}}</option>
+                                    </select>
+                                    <p ng-show="maintainanceForm.visit_date.$invalid && !maintainanceForm.visit_date.$pristine" class="help-block red-text">Please Enter the approximate visiting date</p>
+                                </div>     
+                            </div>
+                            <div class="col-md-6"  ng-show="maintainance.contract_type==1">
+                                <div class="form-group">
+                                    <label>Ending Date</label>
+                                    <input type="text" name="end_date" class="form-control" ng-model="maintainance.end_date" placeholder="Enter ending date" data-mindate="{{today}}" datepicker>
+                                    <p ng-show="maintainanceForm.end_date.$invalid && !maintainanceForm.end_date.$pristine" class="help-block red-text">Please Enter the ending date</p>
+                                </div>     
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="maintainance.job_card_type==2">
+                                    <label>Number of Visits</label>
+                                    <input type="number" min="0" name="visits" class="form-control" ng-model="maintainance.total_visits" placeholder="Enter the number of visits">
+                                    <p ng-show="maintainanceForm.visits.$invalid && !maintainanceForm.visits.$pristine" class="help-block red-text">Please Enter the total number of visits</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group" ng-show="maintainance.job_card_type==2 && maintainance.contract_type==2">
+                                    <label>Recurring Days</label>
+                                    <input type="number" min="0" name="rec_days" class="form-control" ng-model="maintainance.reccuring_days" placeholder="Enter the number of recurring days">
+                                    <p ng-show="maintainanceForm.rec_days.$invalid && !maintainanceForm.rec_days.$pristine" class="help-block red-text">Please Enter the total number of visits</p>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Payment Type</label>
+                                    <select name="payment_type" class="form-control" ng-model="maintainance.pay_type">
+                                        <option value="">-Select The Payment Type-</option>
+                                        <option value="0" ng-show="maintainance.job_card_type==1">One time </option>
+                                        <option value="1" ng-show="maintainance.job_card_type==2">Monthly </option>
+                                        <option value="2" ng-show="maintainance.job_card_type==2">Quarterly </option>
+                                        <option value="3" ng-show="maintainance.job_card_type==2">Half-Yearly</option>
+                                        <option value="4" ng-show="maintainance.job_card_type==2">Yearly </option>
+                                    </select>
+                                    <p ng-show="maintainanceForm.payment_type.$invalid && !maintainanceForm.payment_type.$pristine" class="help-block red-text">Please select the Payment type</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Payment</label>
+                                    <input type="number" min="0" name="pay" class="form-control" ng-model="maintainance.charge" placeholder="Enter the total payment">
+                                    <p ng-show="maintainanceForm.pay.$invalid && !maintainanceForm.pay.$pristine" class="help-block red-text">Please Enter the total payment</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="desc" ng-model="maintainance.description" class="form-control" placeholder="Enter the description" required></textarea>
+                                    <p ng-show="maintainanceForm.desc.$invalid && !maintainanceForm.desc.$pristine" class="help-block red-text">Please Enter the description</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button ng-disabled="maintainanceForm.$invalid" type="submit" class="btn btn-success pull-right">Submit</button>
+                        </div>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>   

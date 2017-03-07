@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Basic page needs
+		============================================ -->
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="author" content="">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+
+		<!-- Mobile specific metas
+		============================================ -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Favicon
+		============================================ -->
+		<link rel="shortcut icon" type="image/x-icon" href="images/fav_icon.ico">
+
+		<!-- Google web fonts
+		============================================ -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300italic,300,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+		<!-- Libs CSS
+		============================================ -->
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- <link rel="stylesheet" href="css/datepicker.css"> -->
+		<link rel="stylesheet" href="css/fontello.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		
+		 <!-- DatePicker Css -->
+	    <link href="dashboard/admin/admin-panel/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+	    <link href="dashboard/admin/admin-panel/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
+		<!-- Theme CSS
+		============================================ -->
+		<!--<link rel="stylesheet" href="js/layerslider/css/layerslider.css">-->
+		<link rel="stylesheet" href="js/owlcarousel/owl.carousel.css">
+		<!--<link rel="stylesheet" href="js/arcticmodal/jquery.arcticmodal.css">-->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- JS Libs
+		============================================ -->
+		<script src="js/modernizr.js"></script>
+
+		<!-- Old IE stylesheet
+		============================================ -->
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" type="text/css" href="css/oldie.css">
+		<![endif]-->
+	</head>
+    <style>
+	#toggle2{ display:none;}
+	#toggle3{ display:none;}
+	
+    </style>
+    
+    
+	<body class="front_page">
+		<!-- - - - - - - - - - - - - - Main Wrapper - - - - - - - - - - - - - - - - -->
+		<div class="wide_layout">
+			<ng-view></ng-view>
+		</div><!--/ [layout]-->
+		<!-- - - - - - - - - - - - - - End Main Wrapper - - - - - - - - - - - - - - - - -->		
+		<!-- Include Libs & Plugins
+		============================================ -->
+		
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="dashboard/js/jquery.min.js"></script>
+    	<script src="dashboard/js/jquery-ui.min.js"></script>
+    	<script src="dashboard/js/jquery-ui-timepicker-addon.js"></script>
+    
+		
+		<script src="js/queryloader2.min.js"></script>
+        
+		<!--<script src="js/layerslider/js/greensock.js"></script>
+		<script src="js/layerslider/js/layerslider.transitions.js"></script>
+		<script src="js/layerslider/js/layerslider.kreaturamedia.jquery.js"></script>-->
+		<script src="js/jquery.appear.js"></script>
+		<script src="js/owlcarousel/owl.carousel.min.js"></script>
+		<!--<script src="js/jquery.countdown.plugin.min.js"></script>
+		<script src="js/jquery.countdown.min.js"></script>
+		<script src="js/arcticmodal/jquery.arcticmodal.js"></script>
+		<script src="twitter/jquery.tweet.min.js"></script>
+		<script src="js/colorpicker/colorpicker.js"></script>-->
+		<script src="js/retina.min.js"></script>
+		<!--<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>-->
+        
+        
+		<!-- Theme files
+		============================================ -->
+		<script src="js/theme.core.js"></script>
+
+		<!-- Angular Files -->
+		<script src="js/angular.min.js"></script>
+    	<script src="js/angular-route.js"></script>
+
+
+    	<script src="js/app.js"></script>
+
+    	<!-- Add Controllers -->
+    	<script src="js/controllers/home.js"></script>
+
+    	<!-- Add Directives -->
+    	<script src="js/directives/header.js"></script>
+    	<script src="js/directives/footer.js"></script>
+    	<script src="dashboard/js/directives/jQuery-plugins.js"></script>
+
+<script>
+$('#toggle1').click(function() {
+ $('#toggle2').slideToggle('slow');
+   return false;
+});
+
+$('#toggle4').click(function() {
+ $('#toggle3').slideToggle('slow');
+   return false;
+});
+</script>
+<script>
+	angular.bootstrap(document, ['socialApp']);
+	$(function(){
+		setTimeout(function(){
+		$("#carouselExampleIndicators").owlCarousel({
+		autoplay: 3000, //Set AutoPlay to 3 seconds
+        dots: false,
+        items: 1,
+        itemsDesktop: [1199, 1],
+        itemsDesktopSmall: [979, 1],
+		loop:true,
+		slidespeed: 600,
+    });
+	},1000);
+});
+</script>
+</body>
+</html>

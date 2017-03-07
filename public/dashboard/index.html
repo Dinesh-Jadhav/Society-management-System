@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <title></title>
+    <!-- Bootstrap Core CSS -->
+    <link href="admin/admin-panel/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" href="images/icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icon.png">
+    <link rel="apple-touch-icon-precomposed" href="images/icon.png">
+    <!-- Custom CSS -->
+    <link href="admin/admin-panel/css/sb-admin.css" rel="stylesheet">
+    <link href="admin/admin-panel/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="front/assets/css/main.css" />
+    <!-- Morris Charts CSS -->
+    <link href="admin/admin-panel/css/plugins/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="admin/admin-panel/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <!-- DatePicker Css -->
+    <link href="admin/admin-panel/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="admin/admin-panel/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
+    <!-- Datatable CSS -->
+    <link href="js/dataTable/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="js/dataTable/css/buttons.dataTables.min.css">
+    <!-- Add google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="admin/admin-panel/css/select2.min.css" rel="stylesheet" />
+    <!-- Full Calendor -->
+    <link rel="stylesheet" type="text/css" href="admin/admin-panel/css/fullcalendar.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.css"> -->
+    <!-- Add Jquery -->
+    <script src="js/jquery-latest.js"></script>
+</head>
+
+<body ng-controller="appController">
+    <div class="loader-container" ng-show="loader">
+        <img class="loader-img" src="images/hourglass.gif">
+    </div>
+    <div id="wrapper">
+        <ng-view>
+        </ng-view>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
+    <!-- Angular Files main & routes -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-hmac-sha512.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/fullcalendar.min.js"></script>
+    <!-- <script src="js/provogue.js"></script>
+ -->
+    <!-- Datatable & its other -->
+    <script src="js/dataTable/js/jquery.dataTables.js"></script>
+    <script src="js/dataTable/js/angular-datatables.js"></script>
+    <script src="js/dataTable/js/dataTables.buttons.min.js"></script>
+    <script src="js/dataTable/js/buttons.flash.min.js"></script>
+    <script src="js/dataTable/js/buttons.html5.min.js"></script>
+    <script src="js/dataTable/js/buttons.print.min.js"></script>
+    <script src="js/dataTable/js/angular-datatables.buttons.js"></script>
+    <!-- UI bootstrap -->
+    <script src="js/ui-bootstrap-tpls-2.1.4.min.js"></script>
+    <!-- File upload & crop -->
+    <script src="js/ng-file-upload-shim.js"></script>
+    <script src="js/ng-file-upload.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="js/ng-img-crop/unminified/ng-img-crop.js?1"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAswrPjfWysN8XZHUrXMUwW7Uzuvv13PlM"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
+    <script src="admin/admin-panel/js/bootstrap.min.js"></script>
+    <!-- Angular Google Chart -->
+    <script src="js/ng-google-chart.js"></script>
+    <!-- Datepicker -->
+    <!-- Controllers  -->
+    <script src="js/controllers/app.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/add-society.js"></script>
+    <script src="js/controllers/society-list.js"></script>
+    <script src="js/controllers/block-list.js"></script>
+    <script src="js/controllers/managers.js"></script>
+    <script src="js/controllers/blocks.js"></script>
+    <script src="js/controllers/resident-list.js"></script>
+    <script src="js/controllers/society-login.js"></script>
+    <script src="js/controllers/dashboard.js"></script>
+    <script src="js/controllers/complaints.js"></script>
+    <script src="js/controllers/profile.js"></script>
+    <script src="js/controllers/tenant.js"></script>
+    <script src="js/controllers/neighbours.js"></script>
+    <script src="js/controllers/front-index.js"></script>
+    <script src="js/controllers/front-society.js"></script>
+    <script src="js/controllers/front-block.js"></script>
+    <script src="js/controllers/staff.js"></script>
+    <script src="js/controllers/visitors.js"></script>
+    <script src="js/controllers/job-card.js"></script>
+    <script src="js/controllers/facility.js"></script>
+    <script src="js/controllers/vendor.js"></script>
+    <script src="js/controllers/parking.js"></script>
+    <script src="js/controllers/service.js"></script>
+    <script src="js/controllers/notice.js"></script>
+    <script src="js/controllers/amenity.js"></script>
+    <script src="js/controllers/payments.js"></script>
+    <script src="js/controllers/family.js"></script>
+    <script src="js/controllers/contribution.js"></script>
+    <script src="js/controllers/entertainment.js"></script>
+    <!-- Directives -->
+    <script src="js/directives/header.js"></script>
+    <script src="js/directives/footer.js"></script>
+    <script src="js/directives/fileModel.js"></script>
+    <script src="js/directives/jQuery-plugins.js"></script>
+    <!-- Services -->
+    <script src="js/services/fileUpload.js"></script>
+    <script src="js/services/jQuery-plugins.js"></script>
+    <!-- Factory -->
+    <script src="js/factory/encrypt.js"></script>
+    <!-- Assign Bootstrap App -->
+    <script>
+        angular.bootstrap(document, ['socialApp']);
+    </script>
+
+    <script>
+            $("#button").click(function(){
+                if($(this).html() == "-"){
+                    $(this).html("+");
+                }
+                else{
+                    $(this).html("-");
+                }
+                $("#box").slideToggle();
+            });
+    </script>
+</body>
+
+</html>

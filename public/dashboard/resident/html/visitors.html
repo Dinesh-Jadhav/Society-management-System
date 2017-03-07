@@ -1,0 +1,58 @@
+<residentheader></residentheader>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Visitors
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-users"></i> Visitors
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <h2>Visitors List <small>| <a href="#/add-new-visitor-resident">Add New</a></small> </h2>
+                    <div class="table-responsive">
+                        <table id="entry-grid" datatable="ng" class="stripe" width="100%">
+                            <thead>
+                                <th>Visitor's Id</th>
+                                <th>Vistor's Name</th>
+                                <th>Visitor Type</th>
+                                <th>Number Of Persons with Visitor</th>
+                                <th>Visitor's Contact Number</th>
+                                <th>Estimate Visiting Date</th>
+                                <th>View Details</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="Visitor in AllVisitors">
+                                    <td>{{Visitor.id}}</td>
+                                    <td>{{Visitor.name}}</td>
+                                    <td>{{Visitor.type}}</td>
+                                    <td>{{Visitor.no_of_persons}}</td>
+                                    <td>{{Visitor.contact_no}}</td>
+                                    <td>{{Visitor.estimate_arival_date_time | date: 'dd MMMM, yyyy hh:mm a'}}</td>
+                                    <td><a href="#/visitor-details-for-resident/{{Visitor.enid}}"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+        <!-- /#page-wrapper -->
+<society-footer></society-footer>

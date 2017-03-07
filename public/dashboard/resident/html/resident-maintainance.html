@@ -1,0 +1,69 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Maintainance 
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-residentDashboard"></i> <a href="#/residentDashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Maintainance
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Maintainance Due's</h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" class="stripe" width="100%">
+                        <thead>
+                            <th>From Date </th>
+                            <th>To Date</th>
+                            <th>Expected Amount</th>
+                            <th>Last Date </th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="req in resmain">
+                                <td>{{req.month | date:'dd MMM, yyyy'}}</td>
+                                <td>{{req.year | date:'dd MMM, yyyy'}}</td>
+                                <td>{{req.amount}}</td>
+                                <td>{{req.last_payment_date | date:'dd MMM, yyyy'}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success" ng-click="pay(req.id,req.amount,$event)">Pay Using PayUMoney</button>
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+                <form name="paymentFrm" action="https://test.payu.in/_payment" method="post">
+                    <div>
+                        <input type="hidden" name="key" value="{{paymentDetails.key}}" />
+                        <input type="hidden" name="hash" value="{{paymentDetails.hash}}" />
+                        <input type="hidden" name="txnid" value="{{paymentDetails.txnid}}" />
+                        <input type="hidden" name="amount" value="{{paymentDetails.amount}}" />
+                        <input type="hidden" name="firstname" value="{{paymentDetails.firstname}}" />
+                        <input type="hidden" name="email" value="{{paymentDetails.email}}" />
+                        <input type="hidden" name="phone" value="{{paymentDetails.phone}}" />
+                        <input type="hidden" name="productinfo" value="{{paymentDetails.productinfo}}">
+                        <input type="hidden" name="surl" value="{{paymentDetails.surl}}">
+                        <input type="hidden" name="furl" value="{{paymentDetails.furl}}">
+                        <input type="hidden" name="udf1" value="{{paymentDetails.udf1}}">
+                        <input type="hidden" name="udf2" value="{{paymentDetails.udf2}}">
+                        <input type="hidden" name="udf3" value="{{paymentDetails.udf3}}">
+                        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+                    </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

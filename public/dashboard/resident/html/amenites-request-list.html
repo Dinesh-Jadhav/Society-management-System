@@ -1,0 +1,56 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Your Requests
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Your Requests
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Your Requests </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" class="stripe" width="100%">
+                        <thead>
+                            <th>Amenity Name</th>
+                            <th>Charge(Per Day)</th>
+                            <th>Booking Start Date</th>
+                            <th>Booking End Date</th>
+                            <th>Manager's Reply</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in Amenities">
+                                <td>{{facility.aminity_name}}</td>
+                                <td>{{facility.charges}}</td>
+                                <td>{{facility.booking_start_date | date: 'dd MMM, yyyy'}}</td>
+                                <td>{{facility.booking_end_date | date: 'dd MMM, yyyy'}}</td>
+                                <td>{{facility.manager_message}}</td>
+                                <td>{{facility.request_date | date: 'dd MMM, yyyy hh:mm a'}}</td>
+                                <td><div class="alert alert-danger" ng-show="facility.status==0">Requested</div><div class="alert alert-warning" ng-hide="facility.status==0 || facility.status==2">Reserved</div><div class="alert alert-success" ng-show="facility.status==2">Booked</div></td>    
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+<society-footer></society-footer>

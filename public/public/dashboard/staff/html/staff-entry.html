@@ -1,0 +1,59 @@
+<staffmember></staffmember>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12 ">
+                <h1 class="page-header">
+                    Staff Attandance
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/resident-dashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i>Staff Attandance
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Staff In/Out</h2>
+                <div class="row">
+                    <div class="col-sm-8">
+                    	<form name="profileUpdateForm" ng-submit="staffAttandance()" novalidate>
+                    		<p><b>Note: </b>If staff member is already in, then please provide out time, and if not provide entry time.</p>
+                            <div class="alert alert-success" ng-show="successMsg">{{successMsg}}<i class="fa fa-times pull-right" ng-click="successMsg=false" style="cursor: pointer;"></i></div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                    				<label>Select Member Name</label>
+                    				<select class="form-control" ng-model="staffData.staff_id" name="first_name" required>
+                    					<option value="">-Select Member Name-</option>
+                                        <option ng-repeat="member in AllStaffMEmeber | orderBy: 'name'" value="{{member.id}}">{{member.id}} - {{member.name}}</option>
+                    				</select>
+                                    <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please select member</p>
+                    			</div>
+                    			<div class="col-sm-6">
+                    				<label>Select Time In/Out</label>
+                    				<input timepicker ng-model="staffData.time_inout" placeholder="Select In/Out Time" name="select_date" class="form-control" readonly required>
+                                    <p ng-show="profileUpdateForm.select_date.$invalid && !profileUpdateForm.select_date.$pristine" class="help-block red-text">Please select date and time</p>
+                    			</div>
+                    		</div>
+                    		<div class="row">
+                    			<div class="col-sm-6"></div>
+                    			<div class="col-sm-6">
+                    				<button type="submit" ng-disabled="profileUpdateForm.$invalid" class="btn btn-success pull-right" style="margin-top: 5%">Submit</button>
+                    			</div>
+                    		</div>
+                    	</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

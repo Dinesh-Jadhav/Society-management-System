@@ -1,0 +1,41 @@
+<div class="societyHeader"></div>
+	<div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add Resident</h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-edit"></i>Resident Details
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row"  style="margin-top: 10px ">
+                <div class="col-lg-8 col-sm-8">
+                	<p><b>Note:</b> <small>A username and password will sent to the email you enter below and other details of resident will be set by resident.</small></p>
+                	<form role="form" name="societyAddForm" ng-submit="addResident()" novalidate>
+                		<div class="row">
+	                		<div class="col-md-12">
+                                <div class="alert alert-danger" ng-show="errorShow">{{error}}</div>
+	                		    <div class="form-group">
+		                            <label>Enter Resident Email</label>
+		                            <input type="email" class="form-control" name="societyName" placeholder="Enter Email" ng-model="resident.email" required>
+		                            <p ng-show="societyAddForm.societyName.$invalid && !societyAddForm.societyName.$pristine" class="help-block red-text">Please enter valid email</p>
+		                        </div>
+		                    </div>
+		                </div>
+		                <button ng-disabled="societyAddForm.$invalid" type="submit" class="btn btn-success pull-right">Assign</button>
+                    </form>
+				</div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+	</div>
+    <!-- /#page-wrapper -->
+<society-footer></society-footer>

@@ -1,0 +1,94 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:50px; ">
+                <!-- <h1 class="page-header">
+                    All Services
+                </h1> -->
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Requested Services
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Requested Services </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" dt-options="dtOptions" datatable="ng" dt-column-defs="dtColumnDefs" class="stripe" width="100%">
+                        <thead>
+                            <th>Request Id</th>
+                            <th>Society Details</th>
+                            <th>Flat Id</th>
+                            <th>Resident Name</th>
+                            <th>Service Name</th>
+                            <th>Request Date</th>
+                            <th>Resident's Message</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in services">
+                                <td>{{facility.id}}</td>
+                                <td>{{facility.society_name}}-{{facility.block_name}}</td>
+                                <td>{{facility.flat_number}}</td>
+                                <td>{{facility.resident_name}}</td>
+                                <td>{{facility.service_name}}</td>
+                                <td>{{facility.reqired_date | date: 'dd MMM, yyyy'}}</td>
+                                <td>{{facility.resident_comment}}</td>
+                                <td>{{facility.status}}</td>
+                                <td><span ng-show="facility.status=='Requested'"><a title="Update Status to Under Surveillance" href="javascript:void(0)" ng-click="UpdateStatus(facility.id, 1)"><i class="fa fa-arrow-right" style="margin:5% !important"></i></a>|</span><span ng-hide="facility.status=='Done'"><a title="Update Status to Resolved" ng-click="setId(facility.id)" data-toggle="modal" data-target="#myModal1" href="#"><i class="fa fa-check" style="margin:5% !important"></i></a>|</span><span><a href="#/resident-service-info-details/{{facility.resident_id}}" target="_blank" title="Know More"><i class="fa fa-question-circle" aria-hidden="true"></i></a></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Comment</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Add Comment</h4>
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea placeholder="Add Comment Here" class="form-control" name="desc" ng-model="updateData.comment" required></textarea>
+                                <p ng-show="updateFaciilityDetail.desc.$invalid && !updateFaciilityDetail.desc.$pristine" class="help-block red-text">Please enter Comment</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="UpdateStatus(updateData.id, 2)" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+<!-- <script>
+    $(document).ready(function(){
+
+    $('#entry-grid').DataTable( {
+        "order": [[ 6, "desc" ]]
+    } );
+    });
+</script> -->

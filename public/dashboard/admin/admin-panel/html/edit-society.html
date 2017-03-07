@@ -1,0 +1,191 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"><!-- Edit Block --></h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="#/dashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Edit Society Detail's
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-6 addBlockForm">
+                <form role="form" name="addBlockForm" ng-submit="editSociety()" novalidate>
+                    <div class="form">
+                        <h3>Edit Society Details:</h3>
+                         <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Society Name</label>
+                                    <input type="text" class="form-control" name="societynm"  ng-model="societyDetails.name" required>
+                                    <p ng-show="addBlockForm.societynm.$invalid && !addBlockForm.societynm.$pristine" class="help-block red-text">Please enter society name</p>
+                                </div> 
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Established Date</label>
+                                    <input type="text" class="form-control" name="estdate"  ng-model="societyDetails.established_date" datetimepicker required>
+                                    <p ng-show="addBlockForm.estdate.$invalid && !addBlockForm.estdate.$pristine" class="help-block red-text">Enter the established date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Owner</label>
+                                    <input type="text" class="form-control" name="societyName" placeholder="Enter Name" ng-model="societyDetails.owner" required>
+                                    <p ng-show="addBlockForm.societyName.$invalid && !addBlockForm.societyName.$pristine" class="help-block red-text">Please enter owner name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number</label>
+                                    <input type="text" class="form-control" name="ownercontactno" placeholder="Enter Name" ng-model="societyDetails.contact_number" required>
+                                    <p ng-show="addBlockForm.ownercontactno.$invalid && !addBlockForm.ownercontactno.$pristine" class="help-block red-text">Please enter owner contact number</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Block Manager</label>
+                                    <select class="form-control" ng-model="societyDetails.block_manager" name="blockManager">
+                                        <option value="">{{ managerDetails.manager_name }}</option>
+                                        <option ng-repeat="societyManagers in ActiveManagers" value="{{ societyManagers.id }}">{{ societyManagers.manager_name }}</option>
+                                    </select>
+                                    <p ng-show="addBlockForm.blockManager.$invalid && !addBlockForm.blockManager.$pristine" class="help-block red-text">Please select block manager</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Chairman</label>
+                                    <input type="text" class="form-control" name="storeys" placeholder="Enter Name" ng-model="societyDetails.chair_person" required>
+                                    <p ng-show="addBlockForm.storeys.$invalid && !addBlockForm.storeys.$pristine" class="help-block red-text">Please enter chairman name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Chairman Contact Number</label>
+                                    <input type="text" class="form-control" name="chair_person_contact" placeholder="Enter Name" ng-model="societyDetails.chair_person_contact" required>
+                                    <p ng-show="addBlockForm.chair_person_contact.$invalid && !addBlockForm.chair_person_contact.$pristine" class="help-block red-text">Please enter chairman's contact number</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Secretary</label>
+                                    <input type="text" class="form-control" name="flats" placeholder="Please enter Secretary Name" ng-model="societyDetails.secretary" required>
+                                    <p ng-show="addBlockForm.flats.$invalid && !addBlockForm.flats.$pristine" class="help-block red-text">Please enter Secretary Name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Secretary Contact Number</label>
+                                    <input type="text" class="form-control" name="secretary" placeholder="Please enter Secretary contact number" ng-model="societyDetails.secretary_contact" required>
+                                    <p ng-show="addBlockForm.secretary.$invalid && !addBlockForm.secretary.$pristine" class="help-block red-text">Please enter Secretary contact number</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Treasure</label>
+                                    <input type="text" class="form-control" name="treasurers" placeholder="Please enter Treasure Name" ng-model="societyDetails.treasurer" required>
+                                    <p ng-show="addBlockForm.treasurers.$invalid && !addBlockForm.treasurers.$pristine" class="help-block red-text">Please enter Treasure Name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Treasure Contact Number</label>
+                                    <input type="text" class="form-control" name="treasurer" placeholder="Please enter Treasure contact number" ng-model="societyDetails.treasurer_contact" required>
+                                    <p ng-show="addBlockForm.treasurer.$invalid && !addBlockForm.treasurer.$pristine" class="help-block red-text">Please enter Treasure Name</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                             <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Society-Logo</label>
+                                    <input type="file" class="form-control" ngf-select ng-model="logoFile" data-toggle="modal" name="logoImg" data-target="#myModal1" accept="image/*">
+                                    <p ng-show="addBlockForm.logoImg.$invalid && !addBlockForm.logoImg.$pristine" class="help-block red-text">Please select logo image</p>
+                                </div>
+                            </div> 
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Id</label>
+                                    <input type="text" class="form-control" name="merchant_id" placeholder="Enter merchant_id" ng-model="societyDetails.merchant_id" required>
+                                    <p ng-show="addBlockForm.merchant_id.$invalid && !addBlockForm.merchant_id.$pristine" class="help-block red-text">Enter Merchant Id</p>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Key</label>
+                                    <input type="text" class="form-control" name="merchant_key" placeholder="Enter merchant key" ng-model="societyDetails.marchant_key" required>
+                                    <p ng-show="addBlockForm.merchant_key.$invalid && !addBlockForm.merchant_key.$pristine" class="help-block red-text">Enter Merchant Key</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Merchant Salt</label>
+                                    <input type="text" class="form-control" name="merchant_salt" placeholder="Enter Merchant Salt" ng-model="societyDetails.marchant_salt" required>
+                                    <p ng-show="addBlockForm.merchant_salt.$invalid && !addBlockForm.merchant_salt.$pristine" class="help-block red-text">Enter Merchant Salt</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Update Details</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Crop Image</h4>
+                        <p>Uncroped image will not save.</p>
+                    </div>
+                    <div class="modal-body">
+                        <div ngf-drop ng-model="logoFile" ngf-pattern="image/*" class="cropArea">
+                            <img-crop image="logoFile  | ngfDataUrl" area-min-size="50" result-image="croppedDataUrl1" ng-init="croppedDataUrl1=''" ng-hide="cropedImg"></img-crop>
+                            <div class="crop-image-container">
+                                <img ng-src="{{croppedDataUrl1}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span ng-show="result">Croped Successfully</span>
+                        <span class="progress" ng-show="progress >= 0">
+                                <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                            </span>
+                        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                        <button type="button" class="btn btn-default" ng-click="upload_logo(croppedDataUrl1, logoFile.name, 'logo')" ng-hide="crop">Crop</button>
+                        <button type="button" class="btn btn-danger" ng-hide="close" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<footer></footer>

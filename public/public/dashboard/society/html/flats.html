@@ -1,0 +1,63 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Manage Flats
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-building"></i> Manage Flats 
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="container-fluid">
+      <h4>Manage {{block.name}} <small>| Total({{flat.numberOfFlats}} Flats)</small></h4>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+        	<div class="alert alert-danger" ng-show="Error">{{ errorMsg }}<i class="fa fa-times close-flat-error" ng-click="closeErrorBox()"></i></div>
+            <button class="btn btn-primary" ng-model="msStruct" ng-click="msStructfunc()">Use Same Structure</button>
+        	<form name="Flats" ng-submit="addFlats()">
+        		<div class="row storeyFlatsRow" ng-repeat="storey in blockStorey">
+                    <div class="col-md-2">
+                        <h5>Storey {{storey.storeyNo}}</h5>
+                    </div>
+                    <div class="col-md-2">
+                    	<select class="form-control flatNumber" ng-init="flat.noOfFlats=''" ng-model="flat.noOfFlats[$index]" ng-change="openDetailedForm(flat.noOfFlats[$index], $index)" required style="padding: 0.5em 1em !important">
+                    		<option value="">Select No. of Flat</option>
+                    		<option value="1">1</option>
+                    		<option value="2">2</option>
+                    		<option value="3">3</option>
+                    		<option value="4">4</option>
+                    		<option value="5">5</option>
+                    		<option value="6">6</option>
+                    		<option value="7">7</option>
+                    		<option value="8">8</option>
+                    		<option value="9">9</option>
+                    		<option value="10">10</option>
+                    	</select>
+                    </div>
+                    <div class="col-md-8" id="flatElements{{storey.storeyNo}}">
+                    	
+                    </div>
+                </div>
+                <button ng-disabled="Flats.$invalid" type="submit" class="btn btn-success pull-right">Add</button>
+        	</form>
+        </div>
+      </div>
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

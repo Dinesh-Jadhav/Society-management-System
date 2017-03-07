@@ -1,0 +1,61 @@
+<div ng-show = "status == '0'" class="sticky">
+    <div class="row chat-header">
+        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+            <h4>Chat Room</h4>
+        </div>
+        <div class="col-sm-8 col-lg-8 col-md-12 col-xs-12" ng-model="status">
+            <a href="javascript:void(0)" ng-click="addandremove()"><i class="fa fa-minus pull-right"></i></a>
+        </div>
+    </div>
+    
+    <div class="auto" schroll-bottom="messages" scroll-glue>
+        <div ng-repeat="rec in messages | orderBy: 'datetime'">
+            <div>
+                <p ng-class="{sender: rec.sender_id == currentUserId && message_by==rec.message_from, receiver: rec.sender_id != currentUserId && message_by!=rec.message_from}"><span ng-show="{sender: rec.sender_id == currentUserId && message_by==rec.message_from}"><b>{{rec.message_from}}</b></span><span ng-hide="{sender: rec.sender_id == currentUserId && message_by==rec.message_from}"><b>{{rec.message_from}}:</b></span><br>{{rec.datetime | date:'dd MMM, yy hh:mm:ss'}} <br>{{rec.message}}</p>
+            </div>
+        </div>
+    </div>
+    <form name="chatForm">
+        <div class="row">
+            <div class="col-sm-11 col-lg-11 col-md-11 col-xs-11">
+                <input type="text" class="text1" placeholder="Enter Your Message..." ng-model="chat.message" required>
+            </div>
+            <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                <div class="send-icon">
+                    <button type="submit" ng-click="send()" ng-disabled="chatForm.$invalid"><i class="fa fa-play-circle" aria-hidden="true" ></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div ng-show = "status =='1'" class="sticky chat_minimize">
+    <div class="row chat-header">
+        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+            <h4>Chat Room</h4>
+        </div>
+        <div class="col-sm-8 col-lg-8 col-md-12 col-xs-12" style="margin-top: 2%" ng-model="status">
+            <a href="javascript:void(0)" ng-click="addandremove()"><i class="fa fa-plus pull-right"></i></a>
+        </div>
+    </div>
+    
+    <div class="auto" schroll-bottom="messages">
+        <div ng-repeat="rec in messages | orderBy: 'datetime'">
+            <div>
+                <p ng-class="{sender: rec.sender_id == currentUserId && message_by==rec.message_from, receiver: rec.sender_id != currentUserId && message_by!=rec.message_from}"><span ng-show="{sender: rec.sender_id == currentUserId && message_by==rec.message_from}"><b>{{rec.message_from}}</b></span><span ng-hide="{sender: rec.sender_id == currentUserId && message_by==rec.message_from}"><b>{{rec.message_from}}:</b></span><br>{{rec.datetime | date:'dd MMM, yy hh:mm:ss'}} <br>{{rec.message}}</p>
+            </div>
+        </div>
+    </div>
+    <form name="chatForm">
+        <div class="row">
+            <div class="col-sm-11 col-lg-11 col-md-11 col-xs-11">
+                <input type="text" class="text1" placeholder="Enter Your Message..." ng-model="chat.message" required>
+            </div>
+            <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                <div class="send-icon">
+                    <button type="submit" ng-click="send()" ng-disabled="chatForm.$invalid"><i class="fa fa-play-circle" aria-hidden="true" ></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

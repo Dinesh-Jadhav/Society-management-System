@@ -1,0 +1,122 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Incomes In Block
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-inr"></i> Incomes In Block
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Incomes In Block</h2>
+                <form name="incomeAdddFrm" style="margin-top: 1em">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12" style="margin-top: 1em">
+                            <h4>Add Manually</h4>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control" name="resident" ng-model="income.id" required>
+                                    <option value="">Select Resident</option>
+                                    <option ng-repeat="res in residents" value="{{res.id}}">{{res.flat_number}} - {{res.first_name+' '+res.last_name}}</option>
+                                </select>
+                                <p ng-show="incomeAdddFrm.resident.$invalid && !incomeAdddFrm.resident.$pristine" class="help-block red-text">Select the Resident</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="income.amount" name="amount" ng-readonly="income.productinfo=='1'" required>
+                            </div>
+                            <p ng-show="incomeAdddFrm.amount.$invalid && !incomeAdddFrm.amount.$pristine" class="help-block red-text">Enter Amount</p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control" name="pay_mode" ng-model="income.mode" required>
+                                    <option value="">Payment Mode</option>
+                                    <option value="1">Cash</option>
+                                    <option value="2">Cheque</option>
+                                </select>
+                                <p ng-show="incomeAdddFrm.pay_mode.$invalid && !incomeAdddFrm.pay_mode.$pristine" class="help-block red-text">Select the payment mode</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control" ng-model="income.productinfo" name="pay_for" ng-change="clear()" required>
+                                    <option value="">Payment For</option>
+                                    <option value="1">Maintenance</option>
+                                    <option value="2">Contribution</option>
+                                </select>
+                                <p ng-show="incomeAdddFrm.pay_for.$invalid && !incomeAdddFrm.pay_for.$pristine" class="help-block red-text">Select the payment mode</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control" name="list" ng-model="income.maintainance_id" ng-change="changeMainainance()" required>
+                                    <option value="">Select</option>
+                                    <option ng-show="income.productinfo==1" ng-repeat="societyMana in maintain" value="{{societyMana.id}}">{{societyMana.month | date : 'dd MMM,yyyy'}} To {{societyMana.year | date : 'dd MMM,yyyy'}}</option>
+                                    <option ng-show="income.productinfo==2" ng-repeat="contribute in contri" value="{{contribute.id}}">{{contribute.title}}</option>
+                                </select>
+                                <p ng-show="incomeAdddFrm.list.$invalid && !incomeAdddFrm.list.$pristine" class="help-block red-text">Select the payment mode</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <button class="btn btn-success pull-right" ng-disabled="incomeAdddFrm.$invalid" ng-click="incomeAddFrm()">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" width="100%">
+                        <thead>
+                            <th>Payment ID</th>
+                            <th>Payment Mode</th>
+                            <th>Amount</th>
+                            <th>Additional Charges</th>
+                            <th>Added On</th>
+                            <!-- <th>Product Info</th> -->
+                            <th>E-mail</th>
+                            <th>Phone Number</th>
+                            <th>Net Amount Credited</th>
+                            <th>Discount</th>
+                            <th>Transaction Status</th>
+                            <th>Payment For</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="req in transaction">
+                                <td>{{req.id}}</td>
+                                <td>{{req.mode}}</td>
+                                <td>{{req.amount}}</td>
+                                <td>{{req.additionalCharges}}</td>
+                                <td>{{req.addedon | date:'dd MMM, yyyy'}}</td>
+                                <!-- <td>{{req.productinfo}}</td> -->
+                                <td>{{req.email}}</td>
+                                <td>{{req.phone}}</td>
+                                <td>{{req.net_amount_debit}}</td>
+                                <td>{{req.discount}}</td>
+                                <td>{{req.transaction_status}}</td>
+                                <td>{{req.productinfo}}</td>
+                                <td><a href="javascript:void(0)" ng-show="req.mode=='CC'" ng-click="printReceipt(req.id)"><i class="fa fa-print"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

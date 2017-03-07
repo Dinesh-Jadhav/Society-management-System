@@ -1,0 +1,185 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                Payment Dues
+            </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Payment Dues
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Due for Job Card</h4>
+                        <div class="table-responsive">
+                            <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                                <thead>
+                                    <th>Job Card ID</th>
+                                    <th>Vendor Name </th>
+                                    <th>Job Card Type</th>
+                                    <th>Maintainance Category</th>
+                                    <th>Contract Type</th>
+                                    <th>Starting Date</th>
+                                    <th>Charge</th>
+                                    <th>Pay</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr ng-show="noData">
+                        <td colspan="9" align="center">No Due</td>
+                      </tr> -->
+                                    <tr ng-repeat="req in VendorDues">
+                                        <td>{{req.id}}</td>
+                                        <td>{{req.vendor_name}}</td>
+                                        <td>{{req.job_card_type}}</td>
+                                        <td>{{req.category}}</td>
+                                        <td>{{req.contract_type}}</td>
+                                        <td>{{req.start_date | date:'dd MMM, yyyy hh:mm a'}}</td>
+                                        <td>{{req.charge}}</td>
+                                        <td>
+                                            <select name="type" class="form-control" ng-init="type=''" ng-model="type">
+                                                <option value="">--select-- </option>
+                                                <option value="1" ng-show="req.payuavailable==1">Pay Using PayUMoney </option>
+                                                <option value="2">Pay By Cash </option>
+                                                <option value="3">Pay By Cheque </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button type="button" ng-disabled="type==''" class="btn btn-success" ng-hide="type==1" data-toggle="modal" data-target="#myModal" ng-click="payCash(req.id, type)">Submit
+                                            </button>
+                                            <button type="button" ng-hide="type!=1" class="btn btn-success" ng-click="pay(req.id,$event)">Submit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<form id="paymentFrm" action="https://test.payu.in/_payment" method="post">
+    <div>
+        <input type="hidden" name="key" value="{{paymentDetails.key}}" />
+        <input type="hidden" name="hash" value="{{paymentDetails.hash}}" />
+        <input type="hidden" name="txnid" value="{{paymentDetails.txnid}}" />
+        <input type="hidden" name="amount" value="{{paymentDetails.totalPayable}}" />
+        <input type="hidden" name="firstname" value="{{paymentDetails.firstname}}" />
+        <input type="hidden" name="email" value="{{paymentDetails.email}}" />
+        <input type="hidden" name="phone" value="{{paymentDetails.phone}}" />
+        <input type="hidden" name="productinfo" value="{{paymentDetails.productinfo}}">
+        <input type="hidden" name="surl" value="{{paymentDetails.surl}}">
+        <input type="hidden" name="furl" value="{{paymentDetails.furl}}">
+        <input type="hidden" name="udf1" value="{{paymentDetails.udf1}}">
+        <input type="hidden" name="udf2" value="{{paymentDetails.udf2}}">
+        <input type="hidden" name="udf3" value="{{paymentDetails.udf3}}">
+        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+</form>
+<!--  -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cash Payment Details</h4>
+            </div>
+            <div class="modal-body">
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Vendor Name </label>
+                                <input class="form-control" type="text" placeholder="Enter Vendor Name" name="vandorName" ng-model="cashDetail.vendor_name" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Job Card Type </label>
+                                <input class="form-control" type="text" placeholder="Enter Job Card Type" name="jobtype" ng-model="cashDetail.job_card_type" readonly>
+                            </div>
+                            <input type="hidden" name="jobcard_id" ng-model="cashDetail.jobcard_id">
+                            <input type="hidden" name="vendor_id" ng-model="cashDetail.vendor_id">
+                            <input type="hidden" name="paymenttype" ng-model="cashDetail.type">
+                            <!--  <input type="text " name="paytype" ng-model="cashDetail.type"> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Maintainance Category</label>
+                                <input class="form-control" type="text" placeholder="Enter maintainance Category" name="maintainanceCat" ng-model="cashDetail.category" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Payment Date</label>
+                                <input class="form-control" type="text" datetimepicker placeholder="Select Date" name="date" ng-model="cashDetail.paydate" required>
+                                <p ng-show="updateFaciilityDetail.date.$invalid && !updateFaciilityDetail.date.$pristine" class="help-block red-text">Please enter Payment date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Contract Type</label>
+                                <input class="form-control" type="text" placeholder="Enter Contract Type" name="contracttype" ng-model="cashDetail.contract_type" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Charge</label>
+                                <input class="form-control" min="0" type="number" placeholder="Enter Charge" name="chargev" ng-model="cashDetail.charge" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-show="cashDetail.payment_type==3">
+                                <label class="pull-left">Cheque Number</label>
+                                <input class="form-control" type="text" placeholder="Enter Cheque number" name="chequenumber" ng-model="cashDetail.chequeno" ng-required="cashDetail.payment_type==3">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-show="cashDetail.payment_type==3">
+                                <label class="pull-left">IFSC Code</label>
+                                <input class="form-control" type="text" placeholder="Enter IFSC Code" name="ifsc" ng-model="cashDetail.ifsc" ng-required="cashDetail.payment_type==3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-show="cashDetail.payment_type==3">
+                                <label class="pull-left">Cheque Date</label>
+                                <input class="form-control" type="text" datepicker placeholder="Enter cheque date" name="chequedate" ng-model="cashDetail.chequedate" data-mindate="{{today}}" ng-required="cashDetail.payment_type==3">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="submitPayDetails()" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<society-footer></society-footer>

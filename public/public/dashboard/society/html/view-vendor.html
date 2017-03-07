@@ -1,0 +1,136 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">View Vendors</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> All Vendor
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> All Vendors </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" width="100%">
+                        <thead>
+                            <th>ID</th>
+                            <th>Vendor Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Description</th>
+                            <th>Id File</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in vendors">
+                                <td>{{facility.id}}</td>
+                                <td>{{facility.vendor_name}}</td>
+                                <td>{{facility.email}}</td>
+                                <td>{{facility.contact}}</td>
+                                <td>{{facility.description}}</td>
+                                <td><a href="uploads/{{facility.id_poof}}" target="_blank">Click To View File</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal" ng-click="updateId(facility.id, facility.vendor_name, facility.email, facility.contact,facility.description,facility.payuavailable, facility.merchant_id,facility.merchant_key,facility.merchant_salt)"><i class="fa fa-edit"></i></a> | <a href="javascript:void(0)" ng-click="deleteVendor(facility.id)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Vendor Details</h4>
+            </div>
+            <div class="modal-body">
+                <form name="flatUpdateForm">
+                    <div class="alert alert-danger" ng-show="Error">{{ErrorMsg}}</div>
+                    <div class="alert alert-success" ng-show="success">{{successMsg}}</div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="name" ng-model="updateData.vendor_name">
+                                <p ng-show="flatUpdateForm.name.$invalid && !flatUpdateForm.name.$pristine" class="help-block red-text">Please enter vendor's name</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" ng-model="updateData.email">
+                                <p ng-show="flatUpdateForm.email.$invalid && !flatUpdateForm.email.$pristine" class="help-block red-text">Please enter vendor's email</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input type="text" maxlength="10" minlength="10" class="form-control" name="first_name" ng-model="updateData.contact" placeholder="Enter contact number" required>
+                                <p ng-show="flatUpdateForm.first_name.$invalid && !flatUpdateForm.first_name.$pristine" class="help-block red-text">Please enter contact numbers</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea type="text" name="description" class="form-control" ng-model="updateData.description"></textarea>
+                                <p ng-show="flatUpdateForm.description.$invalid && !flatUpdateForm.description.$pristine" class="help-block red-text">Please enter vendor's description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <input type="checkbox" ng-model="updateData.payuavailable" ng-true-value="1" ng-false-value="0">
+                                <span><b>Pay U Availabe</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="updateData.payuavailable==1">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Merchant Id</label>
+                                <input type="text" class="form-control" ng-model="updateData.merchant_id" name="Merchant_Id" ng-required="updateData.payuavailable==1">
+                                <p ng-show="flatUpdateForm.Merchant_Id.$invalid && !flatUpdateForm.Merchant_Id.$pristine" class="help-block red-text">Please enter merchant id.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Merchant Key</label>
+                                <input type="text" class="form-control" ng-model="updateData.merchant_key" name="merchant_Key" ng-required="updateData.payuavailable==1">
+                                <p ng-show="flatUpdateForm.merchant_Key.$invalid && !flatUpdateForm.merchant_Key.$pristine" class="help-block red-text">Please enter merchant key.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="updateData.payuavailable==1">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Merchant Salt</label>
+                                <input type="text" class="form-control" ng-model="updateData.merchant_salt" name="Merchant_Salt" ng-required="updateData.payuavailable==1">
+                                <p ng-show="flatUpdateForm.Merchant_Salt.$invalid && !flatUpdateForm.Merchant_Salt.$pristine" class="help-block red-text">Please enter merchant id.</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="flatUpdateForm.$invalid" ng-click="updateDetails()" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<society-footer></society-footer>

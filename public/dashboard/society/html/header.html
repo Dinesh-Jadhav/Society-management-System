@@ -1,0 +1,250 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!--<span class="man2help-logo-container">
+<img ng-src="images/man2help.png">
+</span>
+        <span class="management-logo-container">
+<img ng-src="images/Society-Management_logo.png">-->
+        </span>
+        <!--  <a class="navbar-brand" href="#/society-dashboard/{{id}}">Welcome {{userDetail.manager_name}} !</a> -->
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+        <li>
+            <a href="javascript:void(0)">
+                <span class="society-logo-container">
+<img style="margin: -3% 10px 0% 5px;" ng-src="uploads/{{societyLogo}}">
+</span> {{manageDetail}}
+            </a>
+        </li>
+        <li>
+            <a href="#/select-block">Switch Block <i class="fa fa-exchange"></i></a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" ng-click="openModel()"><i class="fa fa-user"></i> {{userDetail.manager_name}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <!-- <li>
+<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+</li> -->
+                <li>
+                    <a href="#/manager-change-password/{{id}}"><i class="fa fa-fw fa-key"></i> Change Password</a>
+                </li>
+                <!-- <li>
+<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+</li> -->
+                <li class="divider"></li>
+                <li>
+                    <a href="javascript:void(0)" ng-click="logOut()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li style="background-color: #fff;background-color: #fff;text-align: center"><img style="width: 85%;padding: 0.3em 0.4em 0.4em;margin: 0 auto" ng-src="images/man2help.png"></li>
+            <li><img ng-src="images/Society-Management_logo.png" style="width: 100%; background: #48352a; padding: 0px 25px;"></li>
+            <li>
+                <a href="#/society-dashboard/{{id}}" ng-class="{active: activetab == 'societyDashboard'}"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
+            </li>
+            <li ng-show="isSocietyManager">
+                <a href="#/manage-society/{{id}}/{{parent_id}}" ng-class="{active: activetab == 'manageSociety'}"><i class="fa fa-globe"></i>Manage Society</a>
+            </li>
+            <li ng-show="parkingAvail">
+                <a href="#/manage-parking/{{id}}" ng-class="{active: activetab == 'manageParking'}"><i class="fa fa-car"></i>Manage Parking</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" data-toggle="collapse" data-target="#demo" ng-class="{active: activetab == 'residentList'}"><i class="fa fa-users"></i>Residents <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse" ng-class="{in: activetab == 'residentList'}">
+                    <!-- <li>
+<a href="#/resident-list/{{id}}"> <i class="fa fa-circle-o"></i> All</a>
+</li> -->
+                    <li>
+                        <a href="#/resident-list/{{id}}"><i class="fa fa-circle-o"></i>Owners</a>
+                    </li>
+                    <li>
+                        <a href="#/tenants-list/{{id}}"><i class="fa fa-circle-o"></i>Tenants</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Complaints'}" data-toggle="collapse" data-target="#demo1"><i class="fa fa-file"></i>Complaints <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo1" class="collapse" ng-class="{in: activetab == 'Complaints'}">
+                    <li>
+                        <a href="#/pending-complaint-list/{{id}}"> <i class="fa fa-circle-o"></i>Pending</a>
+                    </li>
+                    <li>
+                        <a href="#/underS-complaint-list/{{id}}"><i class="fa fa-circle-o"></i>Under Surveillance</a>
+                    </li>
+                    <li>
+                        <a href="#/resolved-complaint-list/{{id}}"><i class="fa fa-circle-o"></i>Resolved</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target="#demo3" ng-class="{active: activetab == 'MoneyManager'}"><i class="fa fa-inr"></i>Money Manager <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo3" class="collapse" ng-class="{in: activetab == 'MoneyManager'}">
+                    <!-- <li>
+<a href="javascript:void(0);"> <i class="fa fa-circle-o"></i> Due</a>
+</li> -->
+                    <li>
+                        <a href="#/vendor-due/{{id}}"><i class="fa fa-circle-o"></i>Dues</a>
+                    </li>
+                    <li>
+                        <a href="#/resident-transactions/{{id}}"><i class="fa fa-circle-o"></i>Incomes</a>
+                    </li>
+                    <li>
+                        <a href="#/adhoc-expense/{{id}}"><i class="fa fa-circle-o"></i>Adhoc Expense</a>
+                    </li>
+                    <li>
+                        <a href="#/expense/{{id}}"><i class="fa fa-circle-o"></i>Expense</a>
+                    </li>
+                    <li>
+                        <a href="#/maintainance/{{id}}"><i class="fa fa-circle-o"></i>Maintainance</a>
+                    </li>
+                    <!-- <li>
+<a href="javascript:void(0);"><i class="fa fa-circle-o"></i> Maintain Bill</a>
+</li> -->
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Contribution'}" data-toggle="collapse" data-target="#con2"><i class="fa fa-users"></i>Contribution<i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="con2" class="collapse" ng-class="{in: activetab == 'Contribution'}">
+                    <li>
+                        <a href="#/add-new-contribution/{{id}}"><i class="fa fa-circle-o"></i>Add New</a>
+                    </li>
+                    <li>
+                        <a href="#/contribution-list/{{id}}"><i class="fa fa-circle-o"></i>All</a>
+                    </li>
+                    <!-- <li>
+                                <a href="#/staff-request-list/{{id}}"><i class="fa fa-circle-o"></i>Request</a>
+                            </li> -->
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'JobCard'}" data-toggle="collapse" data-target="#demo4"><i class="fa fa-files-o"></i>JobCard <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo4" class="collapse" ng-class="{in: activetab == 'JobCard'}">
+                    <li>
+                        <a href="#/maintainance_category/{{id}}"><i class="fa fa-circle-o"></i>Maintainance Category</a>
+                    </li>
+                    <li>
+                        <a href="#/create-job-card/{{id}}"><i class="fa fa-circle-o"></i>Add New Job Card</a>
+                    </li>
+                    <li>
+                        <a href="#/job-card-display/{{id}}"><i class="fa fa-circle-o"></i>View All</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Vendors'}" data-toggle="collapse" data-target="#demos"><i class="fa fa-users"></i>Vendors  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demos" class="collapse" ng-class="{in: activetab == 'Vendors'}">
+                    <li>
+                        <a href="#/add-vendor/{{id}}"><i class="fa fa-circle-o"></i>Add</a>
+                    </li>
+                    <li>
+                        <a href="#/view-vendor/{{id}}"><i class="fa fa-circle-o"></i>View</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Facility'}" data-toggle="collapse" data-target="#demsso4"><i class="fa fa-users"></i>Facilites  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demsso4" class="collapse" ng-class="{in: activetab == 'Facility'}">
+                    <li>
+                        <a href="#/facility-add/{{id}}"><i class="fa fa-circle-o"></i>Add New</a>
+                    </li>
+                    <li>
+                        <a href="#/facility-list/{{id}}"><i class="fa fa-circle-o"></i>View All</a>
+                    </li>
+                    <li>
+                        <a href="#/facility-requests/{{id}}"><i class="fa fa-circle-o"></i>Requests</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Amelity'}" data-toggle="collapse" data-target="#demsso47"><i class="fa fa-users"></i>Amenities  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demsso47" class="collapse" ng-class="{in: activetab == 'Amelity'}">
+                    <li>
+                        <a href="#/eminity-add/{{id}}"><i class="fa fa-circle-o"></i>Add New</a>
+                    </li>
+                    <li>
+                        <a href="#/eminity-list/{{id}}"><i class="fa fa-circle-o"></i>View All</a>
+                    </li>
+                    <li>
+                        <a href="#/eminity-requests/{{id}}"><i class="fa fa-circle-o"></i>Requests</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Notice'}" data-toggle="collapse" data-target="#de4"><i class="fa fa-files-o"></i>Notice  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="de4" class="collapse" ng-class="{in: activetab == 'Notice'}">
+                    <li>
+                        <a href="#/add-notice/{{id}}"><i class="fa fa-circle-o"></i>Add Notice</a>
+                    </li>
+                    <li>
+                        <a href="#/view-notice/{{id}}"><i class="fa fa-circle-o"></i>View All Notices</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Servent'}" data-toggle="collapse" data-target="#demfsdfsdsso4"><i class="fa fa-child"></i>Service Request <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demfsdfsdsso4" class="collapse" ng-class="{in: activetab == 'Servent'}">
+                    <li>
+                        <a href="#/request-for-service/{{id}}"><i class="fa fa-circle-o"></i>Request New</a>
+                    </li>
+                    <li>
+                        <a href="#/view-services/{{id}}"><i class="fa fa-circle-o"></i>View Your Request</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Staff'}" data-toggle="collapse" data-target="#demo2"><i class="fa fa-users"></i>Staff Member<i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo2" class="collapse" ng-class="{in: activetab == 'Staff'}">
+                    <li>
+                        <a href="#/add_staff_for/{{id}}"><i class="fa fa-circle-o"></i>Add Staff For</a>
+                    </li>
+                    <li>
+                        <a href="#/add-new-staff/{{id}}"><i class="fa fa-circle-o"></i>Add New</a>
+                    </li>
+                    <li>
+                        <a href="#/staff-list/{{id}}"><i class="fa fa-circle-o"></i>All</a>
+                    </li>
+                    <!-- <li>
+<a href="#/staff-request-list/{{id}}"><i class="fa fa-circle-o"></i>Request</a>
+</li> -->
+                </ul>
+            </li>
+            
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'Visitor'}" data-toggle="collapse" data-target="#demo5"><i class="fa fa-users"></i>View Entries  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo5" class="collapse" ng-class="{in: activetab == 'Visitor'}">
+                    <li>
+                        <a href="#/view-staff-entry/{{id}}"><i class="fa fa-circle-o"></i>Staff Members</a>
+                    </li>
+                    <li>
+                        <a href="#/external-visitors/{{id}}"><i class="fa fa-circle-o"></i>External Visitors</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'game'}" data-toggle="collapse" data-target="#demo6"><i class="fa fa-music"></i> Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo6" class="collapse" ng-class="{in: activetab == 'game'}">
+                    <li>
+                        <a href="#/manager_games/{{id}}"><i class="fa fa-circle-o"></i>Games</a>
+                    </li>
+                    <li>
+                        <!--  <a href="#"><i class="fa fa-circle-o"></i>Stories</a> -->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

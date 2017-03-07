@@ -1,0 +1,49 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:50px; ">
+                <!-- <h1 class="page-header">
+                    All Services
+                </h1> -->
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> All Services
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> All Services </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" class="stripe" datatable="ng" width="100%">
+                        <thead>
+                            <th>Service Id</th>
+                            <th>Service Name</th>
+                            <th>Service Description</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in services">
+                                <td>{{facility.id}}</td>
+                                <td>{{facility.service_name}}</td>
+                                <td>{{facility.description}}</td>
+                                <td><a href="javascript:void(0)" ng-click="deleteService(facility.id)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<footer></footer>

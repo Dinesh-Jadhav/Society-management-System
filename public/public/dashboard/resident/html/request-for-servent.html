@@ -1,0 +1,73 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                	Request For Service
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> <a href="javascript:void(0)">Request For Service</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Request For Service</h2>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-8">
+        		<div class="row" style="margin-top: 2%;">
+                    <!-- <p>Here is the list of all servents availiable for your block</p> -->
+                    <div class="col-md-12" >
+                    <!--     <a href="#/resident-staff-request"><button class="btn btn-success">View Your Requests</button></a> -->
+                        <form name="ServiceRequestForm" ng-submit="RequestForService()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Select Service</label>
+                                        <select class="form-control" name="service" ng-model="RequestDetails.service_id" required>
+                                            <option value="">Select Service</option>
+                                            <option ng-repeat="ser in services" value="{{ser.id}}">{{ser.service_name}}</option>
+                                        </select>
+                                        <p ng-show="ServiceRequestForm.service.$invalid && !ServiceRequestForm.service.$pristine" class="help-block red-text">Please select service</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Select Date</label>
+                                        <input type="text" name="dateTime" datetimepicker class="form-control" placeholder="Select Date.."  ng-model="RequestDetails.req_date" required/>
+                                        <p ng-show="ServiceRequestForm.dateTime.$invalid && !ServiceRequestForm.dateTime.$pristine" class="help-block red-text">Please select date and time</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Your Comment</label>
+                                        <textarea class="form-control" name="Comment" ng-model="RequestDetails.resident_comment" placeholder="Ente Your Comment"></textarea>
+                                        <p ng-show="ServiceRequestForm.Comment.$invalid && !ServiceRequestForm.Comment.$pristine" class="help-block red-text">Please enter Comment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" ng-disabled="ServiceRequestForm.$invalid" class="btn btn-success pull-right">Send Request</button>
+                                </div>
+                            </div>
+                        </form>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>

@@ -1,0 +1,79 @@
+<header></header>
+	<div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><!-- Edit Block --></h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="#/dashboard">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-edit"></i> Edit Manager Details
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-lg-6 addBlockForm">
+                    <form role="form" name="addBlockForm" ng-submit="editManager()" novalidate>
+                        <div class="form">
+                		    <h3>Edit Manager Details:</h3>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+        	                	    <div class="form-group">
+        	                            <label>Name</label>
+                                        <input type="text" class="form-control" name="societyName" placeholder="Enter Name" ng-model="manager.manager_name" required>
+        	                            <p ng-show="addBlockForm.societyName.$invalid && !addBlockForm.societyName.$pristine" class="help-block red-text">Please enter society name</p>
+        	                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>E-Mail</label>
+                                        <input type="email" class="form-control" name="storeys" placeholder="Number of Storeys" ng-model="manager.email" min='1' required>
+                                        <p ng-show="addBlockForm.storeys.$invalid && !addBlockForm.storeys.$pristine" class="help-block red-text">Please enter number of storeys</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Select Id Proof(Optional)</label>
+                                        <select class="form-control" ng-model="manager.idType">
+                                            <option value="">Select ID Type</option>
+                                            <option value="VoterId Card">VoterId Card</option>
+                                            <option value="Adhar Card">Adhar Card</option>
+                                            <option value="Driving Lisence">Driving Lisence</option>
+                                            <option value="Pan Card">Pan Card</option>
+                                            <option value="Passport">Passport</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ID Number(Optional)</label>
+                                            <input type="text" class="form-control" ng-model="manager.idNumber" name="contact" placeholder="Enter ID Number">
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ID Proof File</label>
+                                        <input type="file" accept="image/*" class="form-control" name="idFile" placeholder="Enter Name" file-model="idFile" ng-blur="upload_idImage()" ng-readonly="hasNoBlocks">
+                                    </div>
+                                </div>
+                            </div>          
+                        <button ng-disabled="addBlockForm.$invalid" type="submit" class="btn btn-success pull-right">Update Manager</button>
+				    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+<footer></footer>  

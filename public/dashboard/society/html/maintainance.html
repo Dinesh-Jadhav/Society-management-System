@@ -1,0 +1,120 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Eminity
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Maintainance
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Maintainace </h2>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form name="amenityAdd" ng-submit="addMaintainance()">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <input type="text" datepicker placeholder="From Date" class="form-control" name="fromdate" ng-model="maintainance.month" data-mindate="{{today}}" required>
+                                        <p ng-show="amenityAdd.fromdate.$invalid && !amenityAdd.fromdate.$pristine" class="help-block red-text">Please select the month</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="text" datepicker placeholder="To Date" class="form-control" name="todate" ng-model="maintainance.year" data-mindate="{{maintainance.month}}" required>
+                                        <p ng-show="amenityAdd.todate.$invalid && !amenityAdd.todate.$pristine" class="help-block red-text">Please enter year</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="number" min="0" placeholder="Enter Amount of maintainance" class="form-control" name="payment" ng-model="maintainance.amount" required>
+                                        <p ng-show="amenityAdd.payment.$invalid && !amenityAdd.payment.$pristine" class="help-block red-text">Please enter amount </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Last Date</label>
+                                        <input type="text" datepicker placeholder="Enter Last Date" class="form-control" name="payment" ng-model="maintainance.last_payment_date" data-mindate="{{today}}" required>
+                                        <p ng-show="amenityAdd.payment.$invalid && !amenityAdd.payment.$pristine" class="help-block red-text">Please enter last date</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Penalty Fees(Per Month)</label>
+                                        <input type="number" min="0" placeholder="Enter Penalty Amount of maintainance" class="form-control" name="penalty" ng-model="maintainance.penalty" required>
+                                        <p ng-show="amenityAdd.penalty.$invalid && !amenityAdd.penalty.$pristine" class="help-block red-text">Penalty Amount is not empty </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button ng-disabled="amenityAdd.$invalid" class="btn btn-success pull-right">Generate</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Maintainance List</h2>
+                        <div class="table-responsive">
+                            <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                                <thead>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>Amount</th>
+                                    <th>Penalty</th>
+                                    <th>Last Payment Date</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr ng-show="noData">
+                        <td colspan="9" align="center">No Due</td>
+                      </tr> -->
+                                    <tr ng-repeat="req in main">
+                                        <td>{{req.month | date: 'dd MMM,yyyy'}}</td>
+                                        <td>{{req.year | date: 'dd MMM,yyyy'}}</td>
+                                        <td>{{req.amount}}</td>
+                                        <td>{{req.penalty}}</td>
+                                        <td>{{req.last_payment_date | date: 'dd MMM,yyyy'}}</td>
+                                        <td>
+                                            <!-- <a href="#/all-resident/{{id}}/{{req.enID}}" title="All Resident's"><i class="fa fa-list"></i></a> |  --><a href="#/paid-resident/{{id}}/{{req.enID}}" title="Paid Resident"><i class="fa fa-user-plus"></i></a> | <a href="#/unpaid-resident/{{id}}/{{req.enID}}" title="Unpaid Resident"><i class="fa fa-user-times"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

@@ -1,0 +1,63 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+       <!--  <span class="man2help-logo-container">
+            <img ng-src="images/man2help.png">
+        </span>
+        <span class="management-logo-container">
+            <img ng-src="images/Society-Management_logo.png">
+        </span> -->
+        <!-- <a class="navbar-brand" href="#/resident-dashboard">Welcome {{userDetail.fullName}} !</a> -->
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+            <a href="javascript:void(0)" ng-click="logOut()"> Log Out <i class="fa fa-fw fa-power-off"></i></a>
+        </li>
+    </ul>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav resident-nav">
+            <li style="background-color: #fff;background-color: #fff;text-align: center"><img style="width: 85%;padding: 0.3em 0.4em 0.4em;margin: 0 auto" ng-src="images/man2help.png"></li>
+            <li><img ng-src="images/Society-Management_logo.png" style="width: 100%; background: #48352a; padding: 0px 25px;"></li>
+            <li>
+                <a href="#/visitors-for-staff" ng-class="{active: activetab == 'Visitors'}"><i class="fa fa-fw fa-users"></i>External Visitors</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'VendorEntry'}" data-toggle="collapse" data-target="#defsdfsdmos"><i class="fa fa-users"></i>Vendors Entry  <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="defsdfsdmos" class="collapse" ng-class="{in: activetab == 'VendorEntry'}">
+                    <li>
+                        <a href="#/vendors-entry"><i class="fa fa-circle-o"></i>New Entry</a>
+                    </li>
+                    <li>
+                        <a href="#/vendors-in-view"><i class="fa fa-circle-o"></i>In Vendors</a>
+                    </li>
+                    <li>
+                        <a href="#/vendors-entry-view"><i class="fa fa-circle-o"></i>View Entries</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#/staff-entry" ng-class="{active: activetab == 'StaffEntry'}"><i class="fa fa-users"></i>Staff Attandance</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-class="{active: activetab == 'game'}" data-toggle="collapse" data-target="#demo6"><i class="fa fa-music"></i> Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo6" class="collapse" ng-class="{in: activetab == 'game'}">
+                    <li>
+                        <a href="#/games"><i class="fa fa-circle-o"></i>Games</a>
+                    </li>
+                    <li>
+                        <!-- <a href="javascript:void(0);"><i class="fa fa-circle-o"></i>Stories</a> -->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

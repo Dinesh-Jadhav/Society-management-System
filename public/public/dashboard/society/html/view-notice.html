@@ -1,0 +1,81 @@
+<div class="societyHeader"></div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">All Notices</h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-users"></i> All Notices
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <h2> All Notices </h2>
+                    <div class="table-responsive">
+                        <table id="entry-grid" datatable="ng" width="100%">
+                            <thead>
+                                <th>ID</th>
+                                <th>Notice Reciever's ID(s)</th>
+                                <th>Notice Subject</th>
+                                <th>Content</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="facility in notices">
+                                    <td>{{facility.id}}</td>
+                                    <td>{{facility.notice_to}}</td>
+                                    <td>{{facility.notice_subject}}</td>
+                                    <td ng-bind-html="facility.notice_content">{{}}</td>
+                                    <td><a href="#"  data-toggle="modal" data-target="#myModal"  title="Resend Notice"  ng-click="AssginId(facility.id, facility.notice_to)"><i class="fa fa-paper-plane"></i></a></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="modal-title">Add Note</h4>
+      </div>
+      <div class="modal-body">
+        <form name="flatUpdateForm">
+            <div class="alert alert-danger" ng-show="Error">{{ErrorMsg}}</div>
+            <div class="alert alert-success" ng-show="success">{{successMsg}}</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Note</label>
+                        <textarea type="text" class="form-control" name="name" ng-model="data.new_content" placeholder="Please add a note" required></textarea>
+                        <p ng-show="flatUpdateForm.name.$invalid && !flatUpdateForm.name.$pristine" class="help-block red-text">Please add a note</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-disabled="flatUpdateForm.$invalid" ng-click="ResendNotification()" class="btn btn-success" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
+<society-footer></society-footer>

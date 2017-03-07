@@ -1,0 +1,112 @@
+<div class="societyHeader"></div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <h1 class="page-header">
+                        Resident's Detail
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-residentDashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-users"></i> Residents
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-user"></i> Resident's Detail
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <h2>Resident's Details</h2>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <br>
+                            <h3>Personal Details</h3>
+                            <div class="row">
+                                <div class="col-sm-4">Name</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.first_name}} {{residentDetail.last_name}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Email</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.email}}</span></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">Contact Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.contact_no}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">User Name</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.user_name}}</span></div>
+                            </div>
+                            <br>
+                            <h3>Flat Details</h3>
+                            <div class="row">
+                                <div class="col-sm-4">Society Name</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.society_name}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Block Name</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.block_name}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Storey Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.storey_number}}</span></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">Flat Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.flat_number}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Type</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.type_of_flat}} BHK</span></div>
+                            </div>
+                            <br>
+                            <h3>Other Details</h3>
+                            <div class="row">
+                                <div class="col-sm-4">Area</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.area}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Location</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.location}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Registry Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.registory_no}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Ownership</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.ownership}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Loanee</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.loan}}</span></div>
+                            </div>
+                             <div class="row">
+                                <div class="col-sm-4">Resident Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{residentDetail.resident_no}}</span></div>
+                            </div>
+                            <br>
+                            <a href="#/resident-list/{{id}}"><button class="btn btn-primary">Back To List</button></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+        <!-- /#page-wrapper -->
+<society-footer></society-footer>

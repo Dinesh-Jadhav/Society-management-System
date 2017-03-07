@@ -1,0 +1,54 @@
+<staffmember></staffmember>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        Vendors
+                    </h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <i class="fa fa-users"></i> Vendors
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Vendors List</h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>Vendor Visitor ID</th>
+                            <th>Vendor Name</th>
+                            <th>For Job Card</th>
+                            <th>In Date Time</th>
+                            <th>In Entry Security</th>
+                            <th>Out Date Time</th>
+                            <th>Out Entry Security</th>
+                            <th>Out Security Comment</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Visitor in vendors">
+                                <td>{{Visitor.id}}</td>
+                                <td>{{Visitor.vendor_name}}</td>
+                                <td>{{Visitor.job_card_id}}</td>
+                                <td>{{Visitor.in_date_time | date:'dd MMM, yyyy HH:mm:ss'}}</td>
+                                <td>{{Visitor.in_staff_name}}</td>
+                                <td>{{Visitor.out_date_time | date:'dd MMM, yyyy HH:mm:ss'}}</td>
+                                <td>{{Visitor.out_staff_name}}</td>
+                                <td>{{Visitor.staff_comment}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<society-footer></society-footer>
+<!-- /#page-wrapper -->

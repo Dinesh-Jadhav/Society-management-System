@@ -1,0 +1,71 @@
+    <div>
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <!-- <div class="row">
+                <div class="col-lg-12 ">
+                    <h1 class="page-header">
+                        Resident's Detail
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-residentDashboard"></i>  <a href="#/residentDashboard">Dashboard</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-users"></i> Residents
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-user"></i> Resident's Detail
+                        </li>
+                    </ol>
+                </div>
+            </div> -->
+            <!-- /.row -->
+            <div class="row" style="margin-bottom: 10%">
+                <div class="col-lg-12 col-sm-12">
+                    <h2>Manager's Details</h2>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <br>
+                            <h3>Personal Details</h3>
+                            <div class="row">
+                                <div class="col-sm-4">Name</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.manager_name}} </span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Email</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.email}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Added On</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.added_date | date: 'dd MMM,yyyy'}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">ID Proof</div>
+                                <div class="col-sm-8"><span class="pull-right"><a href="uploads/{{managerDetail.idImage}}" target="_blank">Click To View</a></span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">ID Proof Scanned File</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.idType}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">ID Number</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.idNumber}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">Description</div>
+                                <div class="col-sm-8"><span class="pull-right">{{managerDetail.description}}</span></div>
+                            </div>
+                            <div class="row">
+                                <a onclick="window.print()" style="cursor: pointer;"><button class="btn btn-primary"><i class="fa fa-print"></i>Print</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>

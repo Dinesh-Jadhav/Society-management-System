@@ -1,0 +1,119 @@
+
+<div>
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <!-- <div class="row">
+            <div class="col-lg-12 ">
+                <h1 class="page-header">
+                    Tenant's Details
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="#/resident-dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-users"></i> Tenants
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Tenants's Detail
+                    </li>
+                </ol>
+            </div>
+        </div> -->
+        <!-- /.row -->
+        <div class="row" style="margin-bottom: 10%">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Tenants's Details</h2>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <br>
+                        <h3>Tenant's Details</h3>
+                        <div class="row">
+                            <div class="col-sm-4">Flat Number</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.flat_number}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Name</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.name}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Email</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.email}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Type</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.type}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Contact Number</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.contact_no}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Id Proof</div>
+                            <div class="col-sm-8"><span class="pull-right"><!-- <img ng-src="uploads/{{tenantDetail.id_proof}}"> -->
+                            <a href="uploads/{{tenantDetail.id_proof}}" target="_blank">View Id Image</a></span></div>
+                        </div>
+                        <br>
+                        <h3>Owner's Details</h3>
+                        <div class="row">
+                            <div class="col-sm-4">Name</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.owner_name}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Contact Number</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.owner_contact}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Email</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.owner_email}}</span></div>
+                        </div>
+                        <br>
+                        <h3>Other Details</h3>
+                        <div class="row">
+                            <div class="col-sm-4">Advance</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.advance}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Advance Description</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.advance_description}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Brokerage</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.brokerage}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Rent(Per Month)</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.rent}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Rent Date</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.start_date}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Rent Due Days</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.due_days}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Move In Date</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.move_in_date}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Move Out Date</div>
+                            <div class="col-sm-8"><span class="pull-right">{{tenantDetail.move_out_date}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Agreement</div>
+                            <div class="col-sm-8"><span class="pull-right"><!-- <img ng-src="uploads/{{tenantDetail.agreement}}"> --><a href="uploads/{{tenantDetail.agreement}}" target="_blank">View Agreement File</a></span></div>
+                        </div>
+                        <br>
+                        <a onclick="window.print()" style="cursor: pointer;"><button class="btn btn-primary"><i class="fa fa-print"></i>Print</button></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

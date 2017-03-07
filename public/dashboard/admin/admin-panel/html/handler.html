@@ -1,0 +1,106 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:50px; ">
+                <!-- <h1 class="page-header">Add Society</h1> -->
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="#/dashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Add Handler
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row" style="margin-top: 10px ">
+            <div class="col-lg-8">
+                <form role="form" name="handlerAddForm" ng-submit="addHandler()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter User Name" ng-model="handler_add.userName" required>
+                                <p ng-show="handlerAddForm.username.$invalid && !handlerAddForm.username.$pristine" class="help-block red-text">Please enter handler user-name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password </label>
+                                <input type="password" class="form-control" name="password" placeholder="Enter password here" ng-model="handler_add.password" required>
+                                <p ng-show="handlerAddForm.password.$invalid && !handlerAddForm.password.$pristine" class="help-block red-text">Please enter Service name</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button ng-disabled="handlerAddForm.$invalid" type="submit" class="btn btn-success pull-right">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Handler List </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" class="stripe" width="100%">
+                        <thead>
+                            <th>Handler User-Name</th>
+                            <th>Handler Add Date</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in handler_display">
+                                <td>{{facility.username}}</td>
+                                <td>{{facility.cretedtime | date:'dd,MMM yyyy hh:mm a'}}</td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal1" ng-click="updateId(facility.id)"><i class="fa fa-edit"></i></a> | <a href="javascript:void(0)" ng-click="deletedHandler(facility.id)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Update Details</h4>
+        </div>
+        <div class="modal-body">
+            <form name="updateHandlerDetail">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label  class="pull-left">Username</label>
+                            <input class="form-control" type="text" placeholder="Enter User Name" name="username" ng-model="handlerDetail.username" required>
+                            <p ng-show="updateHandlerDetail.username.$invalid && !updateHandlerDetail.username.$pristine" class="help-block red-text">Please enter user name</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label  class="pull-left">Password</label>
+                            <input type="password" placeholder="Enter password" name="password" ng-model="handlerDetail.password" required>
+                            <p ng-show="updateHandlerDetail.password.$invalid && !updateHandlerDetail.password.$pristine" class="help-block red-text">Please enter password</p>
+                        </div>
+                    </div>
+                </div>
+                            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-disabled="updateHandlerDetail.$invalid" ng-click="updateHandlersDetails()" class="btn btn-success" data-dismiss="modal">Update</button>
+            <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+        <!-- /#page-wrapper -->
+        <footer></footer>

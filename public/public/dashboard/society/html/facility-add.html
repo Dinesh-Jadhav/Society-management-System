@@ -1,0 +1,83 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Facility
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Add New Facility
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Add New Facility </h2><br>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form name="facilityAdd" ng-submit="AddFacility()">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Facility Name</label>
+                                        <input type="text" placeholder="Enter Facility Name" class="form-control" name="name" ng-model="facility.facility_name" required>
+                                        <p ng-show="facilityAdd.name.$invalid && !facilityAdd.name.$pristine" class="help-block red-text">Please enter facility name</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Facility Charge(In INR)</label>
+                                        <input type="number" min="0" placeholder="Enter Facility Charge" class="form-control" name="charge" ng-model="facility.charges" required>
+                                        <p ng-show="facilityAdd.charge.$invalid && !facilityAdd.charge.$pristine" class="help-block red-text">Please enter charge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea placeholder="Enter Description" class="form-control" name="desc" ng-model="facility.description" required></textarea>
+                                        <p ng-show="facilityAdd.desc.$invalid && !facilityAdd.desc.$pristine" class="help-block red-text">Please enter facility description</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Recurring Period</label>
+                                        <select name="recurring_peroid" class="form-control" ng-model="facility.recurring_peroid" required>
+                                            <option value="">--Select Period--</option>
+                                            <option value="30">Monthly</option>
+                                            <option value="60">Quarterly</option>
+                                            <option value="183">Half Yearly</option>
+                                            <option value="365">Yearly</option>
+                                        </select>
+                                        <p ng-show="facilityAdd.recurring_peroid.$invalid && !facilityAdd.recurring_peroid.$pristine" class="help-block red-text">Please select recurring period</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6">
+                                    <button ng-disabled="facilityAdd.$invalid" class="btn btn-success pull-right">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

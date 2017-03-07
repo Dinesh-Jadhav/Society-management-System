@@ -1,0 +1,103 @@
+<staffmember></staffmember>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    Visitor
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Add New Visitor's Details
+                    </li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <form name="profileUpdateForm" ng-submit="addVisitor()">
+          <h4>Please provide visitor's details:</h4>
+          <div class="alert alert-danger" ng-show="errorBlock">{{error}}<a href="javascript:void(0)"><i class="fa fa-times" style="float: right;" ng-click="closeError()"></i></a></div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Full Name(*)</label>
+                <input type="text" class="form-control" placeholder="Enter Full Name" name="first_name" ng-model="visitor.name" required>
+                <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please enter full name</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Select Resident(*)</label>
+                <select name="selectResident" class="form-control" ng-model="visitor.resident_id" required>
+                  <option value="">-Select Resident-</option>
+                  <option ng-repeat="res in residents" value="{{res.id}}">Flat {{res.flat_number}} - {{res.first_name}} {{res.last_name}}</option>
+                </select>
+                <p ng-show="profileUpdateForm.selectResident.$invalid && !profileUpdateForm.selectResident.$pristine" class="help-block red-text">Please select resident</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Contact No.(*)</label>
+                <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter Contact Number" name="contact_no" ng-model="visitor.contact_no" required>
+                <p ng-show="profileUpdateForm.contact_no.$invalid && !profileUpdateForm.contact_no.$pristine" class="help-block red-text">Please enter 10 digit contact number</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Email(*)</label>
+                <input type="email" class="form-control" name="reg_no" placeholder="Enter Email" ng-model="visitor.email" required>
+                <p ng-show="profileUpdateForm.reg_no.$invalid && !profileUpdateForm.reg_no.$pristine" class="help-block red-text">Please enter valid email</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Visitor Type(*)</label>
+                <select ng-model="visitor.type" name="coverImg" class="form-control" required>
+                  <option value="">Select Visitor Type</option>
+                  <option value="Bachelor">Bachelor</option>
+                  <option value="Family">Family</option>
+                </select>
+                <p ng-show="profileUpdateForm.coverImg.$invalid && !profileUpdateForm.coverImg.$pristine" class="help-block red-text">Please select Visitor type</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Total Number Of Persons(*)(Max 10)</label>
+                <input type="number" name="no_of_person" class="form-control" ng-model="visitor.no_of_person" placeholder="Enter Number of Person" min="1" max="10" maxlength="2" required>
+                <p ng-show="profileUpdateForm.no_of_person.$invalid && !profileUpdateForm.no_of_person.$pristine" class="help-block red-text">Please ente number of person</p>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label >Arrival Date(*)</label>
+                  <input datepicker class="form-control" placeholder="Select Date" name="arr_date" ng-model="visitor.arrival_date" data-mindate="{{today}}" required readonly>
+                  <p ng-show="profileUpdateForm.arr_date.$invalid && !profileUpdateForm.arr_date.$pristine" class="help-block red-text">Please select date</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Arrival Time(*)</label>
+                <input timepicker class="form-control"  placeholder="Select Time" name="arr_time" ng-model="visitor.arrivaltime" required readonly>
+                <p ng-show="profileUpdateForm.arr_time.$invalid && !profileUpdateForm.arr_time.$pristine" class="help-block red-text">Please select time</p>
+              </div>
+            </div>
+            </div>
+          <button ng-disabled="profileUpdateForm.$invalid" type="submit" class="btn btn-success pull-right">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

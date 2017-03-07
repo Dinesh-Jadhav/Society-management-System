@@ -1,0 +1,100 @@
+@media (max-width:1820px) {
+.hgroup { width: 100%; left: 0; right: 0; width: 100%; }
+	ul.find-box li{
+		width: 12%;
+	}
+}
+@media (max-width:1400px) {
+.banner-main img { width: auto; max-width: none; max-height: 500px; }
+	ul.find-box li{
+		width: 12%;
+	}
+}
+ @media (max-width: 1169px) {
+.container { width: 100%; padding: 0 20px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; }
+.hd-right-section { width: 62%; }
+.adds-top { width: 62%; }
+.addsone { display: block; height: auto; margin-top: 15%; }
+.left-col { margin-right: 2%; width: 68%; }
+.right-col { width: 30%; }
+.left-col ul.links li { line-height: 25px; }
+.newslatter input[type="text"] { width: 60%; }
+.content-box { width: 79%; }
+.location-info { float: right; width: 75%; }
+.garden-data-right { width: 54%; }
+.garden-thumb-left { width: 42%; }
+ul.thumb-images li { margin: 2%;  width: 29%;height: auto; }
+ul.find-box li{
+	width: 12%;
+}
+}
+ @media (max-width:980px) {
+.hd-right-section h2 { font-size: 34px !important; }
+.content-box { width: 70%; }
+.location-info { float: right; width: 64%; }
+ul.thumb-images li {    margin: 6%; width: 37%;}
+.booking-section-out{
+	margin: -80px 30px auto !important;
+}
+}
+ @media (max-width:800px) {
+.left-col, .right-col { width: 100%; float: left; padding: 0; }
+.right-col { margin: 20px 0; }
+.left-col:before { display: none; }
+.bottom-cnt { padding-right: 0; }
+.content-box { width: 68%; }
+.map-pic { width: 100%; }
+.map-pic img {/*width:100%;*/ }
+.location-info { width: 100%; padding: 10px; }
+}
+ @media (max-width:767px) {
+.banner-main img { height: 550px; max-height: 550px; }
+.booking-section-out { margin: -140px 0 0; }
+#header .brand { text-align: center; width: 100%; left: 0; right: 0; }
+#header .brand img{height:150px;}
+.hd-right-section { margin: 0px auto; padding: 0; width: 100%; }
+.separate-bx { margin-top: 190px; }
+.hd-right-section p { line-height: 20px; }
+.hd-right-section h2 { font-size: 24px; }
+.booking-section p { width: auto; padding-left: 20px; padding-right: 20px; line-height: 20px; }
+ul.find-box { padding: 20px 20px 10px; }
+ul.find-box li { width: 100%; margin: 0 0 10px 0; }
+.left-col ul.links, .left-col .quick-links, .left-col .sort-by { text-align: center; }
+.left-col ul.links li:first-child { padding-left: 20px; }
+.left-col .sort-by span, .left-col .quick-links span { float: none; }
+.left-col ul.links li { display: inline-block; float: none; }
+.adds-top { width: 100%; }
+.addsone { margin-top: 24px; }
+.sidebar, .content-box, .garden-data-right, .garden-thumb-left { width: 100%; }
+ul.thumb-images li img { width: 100%; }
+.garden-data-right { margin-top: 20px; }
+.heading-big h2 { font-size: 24px; }
+}
+ @media (max-width:640px) {
+.left-col ul.links li:after { left: 8px; }
+.left-col ul.links li { padding-left: 20px; }
+.footer .copy, ul.share { float: none; }
+.newslatter input[type="text"] { width: 70%; }
+.footer .copy { line-height: 20px; padding-top: 20px; }
+.heading-big h2 { font-size: 18px; }
+}
+ @media print {
+* { text-shadow: none !important; color: #000 !important; background: transparent !important; box-shadow: none !important; }
+a, a:visited { text-decoration: underline; }
+a[href]:after { content: " (" attr(href) ")"; }
+abbr[title]:after { content: " (" attr(title) ")"; }
+a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+thead { display: table-header-group; }
+tr, img { page-break-inside: avoid; }
+img { max-width: 100% !important; }
+p, h2, h3 { orphans: 3; widows: 3; }
+h2, h3 { page-break-after: avoid; }
+select { background: #fff !important; }
+.navbar { display: none; }
+.table td, .table th { background-color: #fff !important; }
+.btn > .caret, .dropup > .btn > .caret { border-top-color: #000 !important; }
+.label { border: 1px solid #000; }
+.table { border-collapse: collapse !important; }
+.table-bordered th, .table-bordered td { border: 1px solid #ddd !important; }
+}

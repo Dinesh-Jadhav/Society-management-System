@@ -1,0 +1,104 @@
+<!-- Man 2 Help Form Start -->
+<div class="modal popup" ng-show="man2help">
+	<div class="booking_room">
+		<div class="form-close" ng-click="man2helpFormClose()"><i class="fa fa-times"></i></div>
+		<div class="reservation">
+			<div class="row">
+				<div class="col col-md-12 col-sm-12">
+					<h3>Need Help, Just let us know and we will call you back!</h3>
+				</div>
+				<div class="col-md-12 col-sm-12">
+					<div class="col col-md-4 col-sm-4 no-right-padding">
+						<div class="man2help-heading">
+						<i class="fa fa-book"></i>
+						<p>You Book</p>
+						</div>
+					</div>
+					<div class="col col-md-4 col-sm-4 no-right-padding">
+						<div class="man2help-heading">
+						<i class="fa fa-file"></i>
+						<p>We Serve</p>
+						</div>
+					</div>
+					<div class="col col-md-4 col-sm-4 no-right-padding">
+						<div class="man2help-heading">
+						<i class="fa fa-check"></i>
+						<p>Get Fixed</p>
+						</div>
+					</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<form action="http://man2help.com/anyuser.php" method="POST" target="_blank">
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Your Good Name" name="name" maxlength="20" required="true">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<input datepicker placeholder="Select Date" class="form-control" name="date" required="true">
+						</div>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<select class="form-control" name="service" required="true">
+								<option value="Architech">Architect</option>
+								<option value="Carpenter">Carpenter</option>
+								<option value="The Cook">Cook</option>
+								<option value="computer service">Computer Service</option>
+								<option value="Cleaning Service">Cleaning Service</option>
+								<option value="Document Parcel/Transfer">Document Parcel/Transfer</option>
+								<option value="Doctor">Doctor</option>
+								<option value="Health Expert">Health Expert</option>
+								<option value="Electrician">Electrician</option>
+								<option value="Architech">Interior Decorator</option>
+								<option value="Maind/Helper">Maid/Helper</option>
+								<option value="Pest Control" >	Pest Control</option>
+								<option value="Painter" >Painter</option>
+								<option value="Pandit/Maulvis/Father" >Pandit/Maulvis/Father</option>
+								<option value="PhotoGrapher" >PhotoGrapher</option>
+								<option value="Plumber" >Plumber</option>
+								<option value="Software Product/Service" >Software Product/Service</option>
+								<option value="Social Marketing Expert" >Social Marketing Expert</option>
+								<option value="Tv/Ac Repair" >Tv/Ac Repair</option>
+								<option value="Website Designer " >Website Designer </option>
+								<option value="Welder" >Welder</option>
+								<option value="Other Service" >Other Service</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter City/Pin/Address" name="city" maxlength="30" required="true">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<select class="form-control" name="time" id="country">
+								<option disabled="">Schedule Time</option>
+								<option value="9am-12pm" >9am-12pm</option>
+								<option value="12pm-3pm">12pm-3pm</option>
+								<option value="3pm-6pm">3pm-6pm</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Mobile Number" name="mobile" pattern="[0-9]{10}" required="true">
+						</div>
+					</div>
+				</div>
+				<button name="submit" class="btn btn-success" type="submit">Book My Service</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Man2Help Form End -->

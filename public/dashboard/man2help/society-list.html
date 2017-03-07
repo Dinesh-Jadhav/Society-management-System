@@ -1,0 +1,137 @@
+<div class="man2helpHeader"></div>
+<div id="header" class="header-in">
+  <div class="container">
+    <div class="one-col-head">
+      <aside class="pull-left brand">
+        <h1>
+          <a href="#/">
+            <img src="images/logo.png" alt="Man 2 Help" />
+          </a>
+        </h1>
+      </aside>
+    </div>
+    <div class="booking-section">
+      <h2>Book your Service</h2>
+      <ul class="find-box">
+        <li>
+          <input type="text" class="textfield" placeholder="Name">
+          <a class="icon" href="javascript:void(0)"><i class="fa fa-user"></i></a>
+        </li>
+        <li>
+          <input type="text" class="textfield" placeholder="Mobile">
+          <a class="icon" href="javascript:void(0)"><i class="fa fa-mobile"></i></a>
+        </li>
+        <li>
+          <div class="select-field">
+            <select class="select" tabindex="1">
+            <option value="">Select Service</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <input type="text" class="textfield" placeholder="Date">
+          <a class="icon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
+        </li>
+        <li>
+          <div class="select-field">
+            <select class="select" tabindex="1">
+              <option value="">Select Time</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <input type="text" class="textfield" placeholder="Address">
+          <a class="icon" href="javascript:void(0)"> <i class="fa fa-map-marker"></i></a>
+        </li>
+        <li>
+          <button class="btn"><i class="fa fa-search"></i></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<section class="container">
+  <div class="MainContent">
+    <aside class="ads-full">
+      <a href="#">
+        <img src="man2help/images/adds2.jpg" alt="" />
+      </a>
+    </aside>
+    <div class="separate-main">
+      <aside class="pull-left sidebar">
+        <!-- <div class="heading">
+          <h2>Categories</h2>
+        </div> -->
+        <div class="sd-separate">
+          <!-- <p class="sd-title">Price<span><a href="#"> Clear</a></span></p>
+          <ul class="check-list">
+            <li>
+              <input type="checkbox" name="ex2_a" >
+              <span>1,50,000 - 2,00,000</span>
+            </li>
+          </ul> -->
+        </div>
+        <div class="sd-separate">
+          <p class="sd-title">City<span><!-- <a href="#"> Clear</a> --></span></p>
+          <div class="select-field">
+            <select class="select" tabindex="1">
+              <option value="">Seclet City</option>
+              <option value="1">Indore</option>
+              <option value="2">Bhopal</option>
+              <option value="3">Ujjain </option>
+              <option value="4">Jabalpur</option>
+              <option value="5">Rewa</option>
+              <option value="6">Satna</option>
+            </select>
+          </div>
+        </div>
+        <div class="sd-separate adds-side">
+          <p></p>
+         
+        </div>
+      </aside>
+      <aside class="pull-right content-box">
+        <div class="heading">
+          <div class="row">
+            <div class="col-sm-4">
+              <h2>All Societies</h2>
+            </div>
+            <div class="col-sm-4">
+              
+            </div>
+            <div class="col-sm-4 find-box">
+              <input type="text" placeholder="Search By Society Name" class="search-by-society-name" ng-model="name">
+            </div>
+          </div>
+          
+        </div>
+        <div class="location-bx" ng-repeat="society in societies | filter : name">
+          <aside class="map-pic">
+            <a href="#"><img src="uploads/{{ society.general_img }}" alt="{{society.name}}" /></a>
+          </aside>
+          <aside class="location-info">
+            <h4><a href="#">{{ society.name }}</a></h4>
+            <ul class="review-bx">
+              <li>
+                <i class="fa fa-map-marker"></i>{{ society.address }}
+              </li>
+            </ul>
+            <p>{{ society.owner }}(Owner) | {{ society.chair_person }}(Chairmen)</p>
+            <div class="contact-no"><i class="fa fa-phone"></i> +91 7898221000, +91 9926621000</div>
+          </aside>
+        </div>
+        <!-- <div class="pagination">
+          <ul class="links">
+            <li><a class="active" href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+          </ul>
+        </div> -->
+      </aside>
+    </div>
+  </div>
+</section>
+<div class="man2helpFooter"></div>

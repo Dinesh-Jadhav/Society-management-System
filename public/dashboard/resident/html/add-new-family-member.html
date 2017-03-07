@@ -1,0 +1,105 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    Visitor
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Add New Member's Details
+                    </li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <form name="profileUpdateForm" ng-submit="addMember()">
+          <h4>Please provide member's details:</h4>
+          <div class="alert alert-danger" ng-show="errorBlock">{{error}}<a href="javascript:void(0)"><i class="fa fa-times" style="float: right;" ng-click="closeError()"></i></a></div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Full Name(*)</label>
+                <input type="text" class="form-control" placeholder="Enter Full Name" name="first_name" ng-model="member.name" required>
+                <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please enter full name</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Date Of Birth(*)</label>
+                <input datepicker data-maxdate="{{today}}" class="form-control" placeholder="Select Date" name="last_name" ng-model="member.dob" required>
+                <p ng-show="profileUpdateForm.last_name.$invalid && !profileUpdateForm.last_name.$pristine" class="help-block red-text">Please select date</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Contact No.</label>
+                <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter Contact Number" name="contact_no" ng-model="member.contact_no">
+                <p ng-show="profileUpdateForm.contact_no.$invalid && !profileUpdateForm.contact_no.$pristine" class="help-block red-text">Please enter 10 digit contact number</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Email</label>
+                <input type="email" class="form-control" name="reg_no" placeholder="Enter Email" ng-model="member.email">
+                <p ng-show="profileUpdateForm.reg_no.$invalid && !profileUpdateForm.reg_no.$pristine" class="help-block red-text">Please enter valid email</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Gender(*)</label>
+                <select ng-model="member.gender" name="coverImg" class="form-control" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <p ng-show="profileUpdateForm.coverImg.$invalid && !profileUpdateForm.coverImg.$pristine" class="help-block red-text">Please select gender</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Relation With Owner(*)</label>
+                <input type="text" name="no_of_person" class="form-control" ng-model="member.relation" placeholder="Enter Relation" required>
+                <p ng-show="profileUpdateForm.no_of_person.$invalid && !profileUpdateForm.no_of_person.$pristine" class="help-block red-text">Please enter relation</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Marital Status(*)</label>
+                <select ng-model="member.marital_status" name="marital_status" class="form-control" required>
+                  <option value="">Select Marital Status</option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+                <p ng-show="profileUpdateForm.marital_status.$invalid && !profileUpdateForm.marital_status.$pristine" class="help-block red-text">Please select marital status</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Occupation(*)</label>
+                <input type="text" placeholder="Enter Occupation" ng-model="member.occupation" name="Occupation" class="form-control" required>
+                <p ng-show="profileUpdateForm.Occupation.$invalid && !profileUpdateForm.Occupation.$pristine" class="help-block red-text">Please enter occupation</p>
+              </div>
+            </div>
+          </div>
+          <button ng-disabled="profileUpdateForm.$invalid" type="submit" class="btn btn-success pull-right">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+
+<div class="profile-form-container">
+  <div class="profile-update-form">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+
+        <form class="profile-detail-form" name="profileUpdateForm" ng-submit="updateProfile()">
+         <!--  <p><b>Note: </b>You are able to set your details only once, you can't update your details once you submit the form, please make sure that provided details are right.</p> -->
+          <div class="alert alert-danger" ng-show="errorBlock">{{error}}<a href="javascript:void(0)"><i class="fa fa-times" style="float: right;" ng-click="closeError()"></i></a></div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" name="first_name" ng-model="user.first_name" required>
+                <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please enter first name</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">Last Name</label>
+                <input type="text" class="form-control" name="last_name" ng-model="user.last_name" placeholder="Enter Last Name" required>
+                <p ng-show="profileUpdateForm.last_name.$invalid && !profileUpdateForm.last_name.$pristine" class="help-block red-text">Please enter last name</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">Contact No.</label>
+                <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Enter Contact Number" name="contact_no" ng-model="user.contact_no" required>
+                <p ng-show="profileUpdateForm.contact_no.$invalid && !profileUpdateForm.contact_no.$pristine" class="help-block red-text">Please enter contact number</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">Registry No.</label>
+                <input type="text" class="form-control" name="reg_no" placeholder="Enter Registry Number" ng-model="user.registory_no" required>
+                <p ng-show="profileUpdateForm.reg_no.$invalid && !profileUpdateForm.reg_no.$pristine" class="help-block red-text">Please enter registry number</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">Resident Type</label>
+                <select class="form-control" name="ownership" ng-model="user.ownership" required>
+                  <option value="">Select Option</option>
+                  <option value="owner">Self</option>
+                  <option value="tenant">Tenant</option>
+                </select>
+                <p ng-show="profileUpdateForm.ownership.$invalid && !profileUpdateForm.ownership.$pristine" class="help-block red-text">Please select ownership</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="profile-form-label">Loanee</label>
+                <select class="form-control" name="loan" ng-model="user.loan" required>
+                  <option value="">Select Option</option>
+                  <option value="Y">Yes</option>
+                  <option value="N">No</option>
+                </select>
+                <p ng-show="profileUpdateForm.loan.$invalid && !profileUpdateForm.loan.$pristine" class="help-block red-text">Please specify loan mode</p>
+              </div>
+            </div>
+          </div>
+          <button ng-disabled="profileUpdateForm.$invalid" type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

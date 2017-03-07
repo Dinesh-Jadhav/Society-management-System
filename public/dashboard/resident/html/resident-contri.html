@@ -1,0 +1,62 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Contributions</h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-inr"></i> Contributions
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <form name="contributionForm">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="outer-cover1" style="background-image: url(uploads/{{contribute.image}}); ">
+                        <div class="cover-overlay">
+                            <div class="title">{{contribute.title}}</div>
+                            <div class="title description">{{contribute.description}}</div>
+                            <div class="title charge ">Desired Amount: <i class="fa fa-inr"></i> {{contribute.amount}}</div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-12"></div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" name="contribution" style="text-align: center;" class="form-control" ng-model="amount" placeholder="Enter Contribution Amount" required>
+                                    <p ng-show="contributionForm.contribution.$invalid && !contributionForm.contribution.$pristine" class="help-block red-text">Enter your contribution</p>
+                                    <button type="submit" ng-click="pay()" class="btn btn-success payment">Contribute</button>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<form name="paymentFrm" action="https://test.payu.in/_payment" method="post">
+    <div>
+        <input type="hidden" name="key" value="{{paymentDetails.key}}" />
+        <input type="hidden" name="hash" value="{{paymentDetails.hash}}" />
+        <input type="hidden" name="txnid" value="{{paymentDetails.txnid}}" />
+        <input type="hidden" name="amount" value="{{paymentDetails.totalPayable}}" />
+        <input type="hidden" name="firstname" value="{{paymentDetails.firstname}}" />
+        <input type="hidden" name="email" value="{{paymentDetails.email}}" />
+        <input type="hidden" name="phone" value="{{paymentDetails.phone}}" />
+        </td>
+        <input type="hidden" name="productinfo" value="{{paymentDetails.productinfo}}">
+        <input type="hidden" name="surl" value="{{paymentDetails.surl}}">
+        <input type="hidden" name="furl" value="{{paymentDetails.furl}}">
+        <input type="hidden" name="udf1" value="{{paymentDetails.udf1}}">
+        <input type="hidden" name="udf2" value="{{paymentDetails.udf2}}">
+        <input type="hidden" name="udf3" value="{{paymentDetails.udf3}}">
+        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+    </div>
+</form>
+<footer></footer>

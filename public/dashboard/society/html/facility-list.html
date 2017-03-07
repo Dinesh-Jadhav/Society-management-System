@@ -1,0 +1,97 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    All Facilities
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> All Facilities
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> All Facilities </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>ID</th>
+                            <th>Facility Name</th>
+                            <th>Charge</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in facilities">
+                                <td>{{facility.id}}</td>
+                                <td>{{facility.facility_name}}</td>
+                                <td>{{facility.charges}}</td>
+                                <td>{{facility.description}}</td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal1" ng-click="updateId(facility.id)"><i class="fa fa-edit"></i></a> | <a href="javascript:void(0)" ng-click="deleteFacility(facility.id)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Facility Details</h4>
+                <form name="updateFaciilityDetail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Facility Name</label>
+                                <input class="form-control" type="text" placeholder="Enter Facility Name" name="facilityName" ng-model="facilityDetail.facility_name" required>
+                                <p ng-show="updateFaciilityDetail.facilityName.$invalid && !updateFaciilityDetail.facilityName.$pristine" class="help-block red-text">Please enter facility name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Charge</label>
+                                <input class="form-control" min="0" type="number" placeholder="Enter Facility Charge" name="facilityCharge" ng-model="facilityDetail.charges" required>
+                                <p ng-show="updateFaciilityDetail.facilityCharge.$invalid && !updateFaciilityDetail.facilityCharge.$pristine" class="help-block red-text">Please enter facility charge</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea placeholder="Enter Description" class="form-control" name="desc" ng-model="facilityDetail.description" required></textarea>
+                                <p ng-show="updateFaciilityDetail.desc.$invalid && !updateFaciilityDetail.desc.$pristine" class="help-block red-text">Please enter facility description</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="updateFacilityDetails()" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<society-footer></society-footer>

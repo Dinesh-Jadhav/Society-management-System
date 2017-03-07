@@ -1,0 +1,89 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Eminity
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Add New Amenity
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Add New Amenity </h2>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form name="amenityAdd" ng-submit="AddAmenity()">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Amenity Name</label>
+                                        <input type="text" placeholder="Enter Amenity Name" class="form-control" name="name" ng-model="amenity.aminity_name" required>
+                                        <p ng-show="amenityAdd.name.$invalid && !amenityAdd.name.$pristine" class="help-block red-text">Please enter amenity name</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Amenity Charge(In INR)(Per Day)</label>
+                                        <input type="number" min="0" placeholder="Enter Amenity Charge" class="form-control" name="charge" ng-model="amenity.charges" required>
+                                        <p ng-show="amenityAdd.charge.$invalid && !amenityAdd.charge.$pristine" class="help-block red-text">Please enter charge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Amenity Images</label>
+                                        <input type="file" class="form-control" name="imageID" accept="image/*" ng-blur="upload_Image()" file-model="imageID" ng-readonly="hasNoBlocks" required>
+                                        <p ng-show="amenityAdd.imageID.$invalid && !amenityAdd.imageID.$pristine" class="help-block red-text">Please select image for amenity </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Time For Payment(In Hours)</label>
+                                        <input type="number" min="0" placeholder="Enter Time For Payment" class="form-control" name="payment" ng-model="amenity.time_for_pay" required>
+                                        </textarea>
+                                        <p ng-show="amenityAdd.payment.$invalid && !amenityAdd.payment.$pristine" class="help-block red-text">Please enter time for amenity</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea placeholder="Enter Description" class="form-control" name="desc" ng-model="amenity.description" required></textarea>
+                                        <p ng-show="amenityAdd.desc.$invalid && !amenityAdd.desc.$pristine" class="help-block red-text">Please enter Amenity description</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <button ng-disabled="amenityAdd.$invalid" class="btn btn-success pull-right">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

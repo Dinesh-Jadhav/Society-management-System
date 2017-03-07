@@ -1,0 +1,64 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add New Notice</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i>Add New Notice
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h3>Add Notice</h3>
+        </div>
+        <div class="row" style="margin-top: 10px ">
+            <div class="col-lg-8 col-sm-8">
+                <form role="form" name="noticeAddForm" ng-submit="sendNotice()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-danger" ng-show="errorShow">{{error}}</div>
+                            <div class="form-group">
+                                <label>Notice For</label>
+                                <input type="text" class="form-control" name="noticeName" placeholder="Enter Notice For" ng-model="notice.notice_for" required>
+                                <p ng-show="noticeAddForm.noticeName.$invalid && !noticeAddForm.noticeName.$pristine" class="help-block red-text">Please enter notice for</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Notice to</label>
+                                <select name="staff_for" multiple="true" class="form-control" ng-model="notice.notice_recipt" select2 required>
+                                    <option value="">-Select-</option>
+                                    <option value="All">All</option>
+                                    <option ng-repeat="staffType in Residents" style="text-transform: capitalize;" value="{{staffType.id}}">{{staffType.flat_number}} - {{staffType.first_name}} {{staffType.last_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Write Notice</label>
+                                <textarea class="form-control" ckeditor name="noticeWrite" placeholder="Enter notice" ng-model="notice.notice_content"></textarea>
+                                <p ng-show="noticeAddForm.noticeWrite.$invalid && !noticeAddForm.noticeWrite.$pristine" class="help-block red-text">Please enter notice</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button ng-disabled="noticeAddForm.$invalid" type="submit" class="btn btn-success pull-right">
+                            Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<society-footer></society-footer>

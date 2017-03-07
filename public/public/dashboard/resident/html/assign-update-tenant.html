@@ -1,0 +1,152 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    <!-- Dashboard -->
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Assign/Update Tenant Details
+                    </li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="alert alert-danger" ng-hide="noTenant">You can not assign a new tenant untill last tenant not left. If already left please update first then try assigning again</div>
+        <form name="profileUpdateForm" ng-submit="updateTenant()" ng-show="noTenant">
+          <h4>Please provide tenant's details:</h4>
+          <div class="alert alert-danger" ng-show="errorBlock">{{error}}<a href="javascript:void(0)"><i class="fa fa-times" style="float: right;" ng-click="closeError()"></i></a></div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Full Name(*)</label>
+                <input type="text" class="form-control" placeholder="Enter Full Name" name="first_name" ng-model="tenant.name" required>
+                <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please enter full name</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Move In Date(*)</label>
+                <input type="text" datepicker data-mindate="{{today}}" placeholder="Select Date" class="form-control" name="last_name" ng-model="tenant.move_in_date" required>
+                <p ng-show="profileUpdateForm.last_name.$invalid && !profileUpdateForm.last_name.$pristine" class="help-block red-text">Please enter last name</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Contact No.(*)</label>
+                <input type="text" class="form-control" placeholder="Enter Contact Number" name="contact_no" ng-model="tenant.contact_no" required>
+                <p ng-show="profileUpdateForm.contact_no.$invalid && !profileUpdateForm.contact_no.$pristine" class="help-block red-text">Please enter contact number</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Email(*)</label>
+                <input type="email" class="form-control" name="reg_no" placeholder="Enter Email" ng-model="tenant.email" required>
+                <p ng-show="profileUpdateForm.reg_no.$invalid && !profileUpdateForm.reg_no.$pristine" class="help-block red-text">Please enter valid email</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Agreement Scanned File(*)</label>
+                  <input type="file" class="form-control" name="logoImg" accept="image/*, application/pdf" ng-blur="upload_logo()" file-model = "myFile" required>
+                  <p ng-show="societyAddForm.logoImg.$invalid && !societyAddForm.logoImg.$pristine" class="help-block red-text">Please select agreement image</p>
+              </div>
+            </div>
+        	  <div class="col-md-6">
+        		  <div class="form-group">
+                	<label>Id Proof(*)</label>
+                	<input type="file" class="form-control" name="coverImg" ngf-select ng-model="picFile" data-toggle="modal" data-target="#myModal" accept="image/*" required>
+                	<p ng-show="societyAddForm.coverImg.$invalid && !societyAddForm.coverImg.$pristine" class="help-block red-text">Please select id image</p>
+            	</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Select Tenant Type(*)</label>
+                <select ng-model="tenant.type" name="coverImg" class="form-control" required>
+                  <option value="">Select Tenant Type</option>
+                  <option value="1">Bachelor</option>
+                  <option value="2">Family</option>
+                </select>
+                <p ng-show="societyAddForm.coverImg.$invalid && !societyAddForm.coverImg.$pristine" class="help-block red-text">Please select tenant type</p>
+              </div>
+            </div>
+          </div>
+          <button ng-disabled="profileUpdateForm.$invalid" type="submit" class="btn btn-success pull-right">Next</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+	  <!-- Modal content-->
+	  	<div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Crop Image</h4>
+	          <p>Uncroped image will not save.</p>
+	        </div>
+	        <div class="modal-body">
+	          <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+				<img-crop image="picFile  | ngfDataUrl" area-min-size="50"  area-type="square" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" ng-hide="cropedImg"></img-crop>
+				<div class="crop-image-container">
+					<img ng-src="{{croppedDataUrl}}" />
+				</div>
+			</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<span ng-show="result">Croped Successfully</span>
+	          	<span class="progress" ng-show="progress >= 0">
+					<div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+				</span>
+				
+				<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+	          	<button type="button" class="btn btn-default" ng-click="upload_cover(croppedDataUrl, picFile.name,'cover')" ng-hide="crop">Crop</button>
+	          	<button type="button" class="btn btn-danger" ng-hide="close" data-dismiss="modal">Close</button>
+	        </div>
+	  	</div>
+	</div>
+	</div>
+	<!-- .modal -->
+<div class="modal fade" id="myModal1" role="dialog">
+	<div class="modal-dialog">
+	  <!-- Modal content-->
+	  	<div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Crop Image</h4>
+	          <p>Uncroped image will not save.</p>
+	        </div>
+	        <div class="modal-body">
+	          <div ngf-drop ng-model="logoFile" ngf-pattern="image/*" class="cropArea">
+				<img-crop image="logoFile  | ngfDataUrl" area-min-size="50" area-type="square" result-image="croppedDataUrl1" ng-init="croppedDataUrl1=''" ng-hide="cropedImg"></img-crop>
+				<div class="crop-image-container">
+					<img ng-src="{{croppedDataUrl1}}" />
+				</div>
+			</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<span ng-show="result">Croped Successfully</span>
+	          	<span class="progress" ng-show="progress >= 0">
+					<div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+				</span>
+				
+				<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+	          	<button type="button" class="btn btn-default" ng-click="upload_logo(croppedDataUrl1, logoFile.name, 'logo')" ng-hide="crop">Crop</button>
+	          	<button type="button" class="btn btn-danger" ng-hide="close" data-dismiss="modal">Close</button>
+	        </div>
+	  	</div>
+	</div>
+</div>

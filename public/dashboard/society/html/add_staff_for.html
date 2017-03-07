@@ -1,0 +1,45 @@
+<div class="societyHeader"></div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Staff For</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i>Add Staff For
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h3>Add Staff For</h3>
+        </div>
+        <div class="row" style="margin-top: 10px ">
+            <div class="col-lg-8 col-sm-8">
+                <form role="form" name="staffAddForm" ng-submit="addStaffFor()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Staff For</label>
+                                <input type="text" class="form-control" name="categoryName" placeholder="Enter Staff For" ng-model="staffMemberFor.staff_for" required>
+                                <p ng-show="staffAddForm.categoryName.$invalid && !staffAddForm.categoryName.$pristine" class="help-block red-text">Please enter Staff For</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button ng-disabled="staffAddForm.$invalid" type="submit" class="btn btn-success pull-right">
+                            Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<society-footer></society-footer>

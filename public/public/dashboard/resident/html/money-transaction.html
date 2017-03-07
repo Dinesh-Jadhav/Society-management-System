@@ -1,0 +1,67 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Money Transaction Detail's
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-residentDashboard"></i> <a href="#/residentDashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Money Transaction Detail's
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Money Transaction Detail's</h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>Payment ID</th>
+                            <th>Payment Mode</th>
+                            <th>Amount</th>
+                            <th>Additional Charges</th>
+                            <th>Added On</th>
+                            <!-- <th>Product Info</th> -->
+                            <th>E-mail</th>
+                            <th>Phone Number</th>
+                            <th>Net Amount Debit</th>
+                            <th>Discount</th>
+                            <th>Payment For</th>
+                            <th>Transaction Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="req in transaction | orderBy: '-id'">
+                                <td>{{req.id}}</td>
+                                <td>{{req.mode}}</td>
+                                <td>{{req.amount}}</td>
+                                <td>{{req.additionalCharges}}</td>
+                                <td>{{req.addedon | date:'dd MMM, yyyy'}}</td>
+                                <!-- <td>{{req.productinfo}}</td> -->
+                                <td>{{req.email}}</td>
+                                <td>{{req.phone}}</td>
+                                <td>{{req.net_amount_debit}}</td>
+                                <td>{{req.discount}}</td>
+                                <td>{{req.productinfo}}</td>
+                                <td>{{req.transaction_status}}</td>
+                                <td><a href="javascript:void(0)" ng-click="printReceipt(req.id)"><i class="fa fa-print"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<society-footer></society-footer>

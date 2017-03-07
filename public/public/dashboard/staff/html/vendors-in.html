@@ -1,0 +1,82 @@
+<staffmember></staffmember>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        Vendors
+                    </h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <i class="fa fa-users"></i> Vendors
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2>Vendors List</h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>Vendor Visitor ID</th>
+                            <th>Vendor Name</th>
+                            <th>For Job Card</th>
+                            <th>In Date Time</th>
+                            <th>In Entry Security</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Visitor in vendors">
+                                <td>{{Visitor.id}}</td>
+                                <td>{{Visitor.vendor_name}}</td>
+                                <td>{{Visitor.job_card_id}}</td>
+                                <td>{{Visitor.in_date_time | date:'dd MMM, yyyy HH:mm:ss'}}</td>
+                                <td>{{Visitor.in_staff_name}}</td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal1" title="Leaving" ng-click="upadteId(Visitor.id)"><i class="fa fa-sign-out"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Visitor Leaving Details</h4>
+            </div>
+            <form name="flatUpdateForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Time</label>
+                            <input timepicker name="leaving_time" placeholder="Select Time" class="form-control" ng-model="visitorDetails.time" readonly required>
+                            <p ng-show="flatUpdateForm.leaving_time.$invalid && !flatUpdateForm.leaving_time.$pristine" class="help-block red-text">Please enter leaving time</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Visitor's Behaviour</label>
+                            <textarea class="form-control" name="comment" ng-model="visitorDetails.comment" placeholder="Describe Behaviour Of Visitor" required></textarea>
+                            <p ng-show="flatUpdateForm.comment.$invalid && !flatUpdateForm.comment.$pristine" class="help-block red-text">Please Describe Behaviour Of Visitor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" data-dismiss="modal" ng-disabled="flatUpdateForm.$invalid" ng-click="updateVisiterLeavingDetails()" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+                </div>
+                <form>
+        </div>
+    </div>
+</div>
+<society-footer></society-footer>
+<!-- /#page-wrapper -->

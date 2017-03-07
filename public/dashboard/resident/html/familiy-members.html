@@ -1,0 +1,141 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Family Members
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> Family Members
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Family Members <small>| <a href="#/add-new-family-member">Add New</a></small></h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" class="stripe" width="100%">
+                        <thead>
+                       <!--      <th>Member ID</th> -->
+                            <th>Name</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Date Of Birth</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Relation With Owner</th>
+                            <th>Occupation</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Member in Members">
+                                <!-- <td>{{Member.id}}</td> -->
+                                <td>{{Member.name}}</td>
+                                <td>{{Member.contact_number}}</td>
+                                <td>{{Member.email}}</td>
+                                <td>{{Member.date_of_birth | date: 'dd MMM, yyyy'}}</td>
+                                <td>{{Member.age}}</td>
+                                <td>{{Member.gender}}</td>
+                                <td>{{Member.relation}}</td>
+                                <td>{{Member.occupation}}</td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal1" ng-click="updateId(Member.id)"><i class="fa fa-edit"></i></a> | <a href="javascript:void(0)" ng-click="deleteFamilymember(Member.id)"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Family Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Update Family Details</h4>
+                <form name="updateFamilyMemberDetail">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Name</label>
+                                <input class="form-control" type="text" placeholder="Enter Name Of family member" name="memberName" ng-model="familyDetail.name" required>
+                                <p ng-show="updateFamilyMemberDetail.memberName.$invalid && !updateFamilyMemberDetail.memberName.$pristine" class="help-block red-text">Enter name</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Contact Number</label>
+                                <input class="form-control" type="text" placeholder="Enter Contact Number" name="mobno" ng-model="familyDetail.contact_number" minlength="10" maxlength="10" required>
+                                <p ng-show="updateFamilyMemberDetail.mobno.$invalid && !updateFamilyMemberDetail.mobno.$pristine" class="help-block red-text">Enter Contact Number</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">E - Mail</label>
+                                <input class="form-control" type="text" placeholder="Enter E-mail" name="email" ng-model="familyDetail.email" required>
+                                <p ng-show="updateFamilyMemberDetail.email.$invalid && !updateFamilyMemberDetail.email.$pristine" class="help-block red-text">Enter e-mail</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Date of Birth</label>
+                                <input class="form-control" type="text" placeholder="Enter D.O.B" name="dateofbirth" ng-model="familyDetail.date_of_birth" datepicker required>
+                                <p ng-show="updateFamilyMemberDetail.dateofbirth.$invalid && !updateFamilyMemberDetail.dateofbirth.$pristine" class="help-block red-text">Enter Date of birth</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Gender</label>
+                                <select ng-model="familyDetail.gender" name="coverImg" class="form-control" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <p ng-show="updateFamilyMemberDetail.coverImg.$invalid && !updateFamilyMemberDetail.coverImg.$pristine" class="help-block red-text">Enter Gender</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Relation With Owner</label>
+                                <input class="form-control" type="text" placeholder="Enter Relation With Owner" name="relation" ng-model="familyDetail.relation" required>
+                                <p ng-show="updateFamilyMemberDetail.relation.$invalid && !updateFamilyMemberDetail.relation.$pristine" class="help-block red-text">Enter Relation with owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="pull-left">Occupation</label>
+                                <input class="form-control" type="text" placeholder="Enter Occupation" name="occupation" ng-model="familyDetail.occupation" required>
+                                <p ng-show="updateFamilyMemberDetail.occupation.$invalid && !updateFamilyMemberDetail.occupation.$pristine" class="help-block red-text">Enter Occupation</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateFaciilityDetail.$invalid" ng-click="updateFamilyDetails()" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<society-footer></society-footer>

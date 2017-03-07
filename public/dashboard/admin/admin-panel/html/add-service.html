@@ -1,0 +1,47 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:50px; ">
+                <!-- <h1 class="page-header">Add Society</h1> -->
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i> <a href="#/dashboard">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Add Service
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row" style="margin-top: 10px ">
+            <div class="col-lg-8">
+                <form role="form" name="serviceAddForm" ng-submit="addService()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Service Name(*)</label>
+                                <input type="text" class="form-control" name="servicename" placeholder="Enter Name" ng-model="service_name.name" required>
+                                <p ng-show="serviceAddForm.servicename.$invalid && !serviceAddForm.servicename.$pristine" class="help-block red-text">Please enter Service name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Description </label>
+                                <textarea class="form-control" name="description" placeholder="Enter description here " ng-model="service_name.description" required></textarea>
+                                <p ng-show="serviceAddForm.description.$invalid && !serviceAddForm.description.$pristine" class="help-block red-text">Please enter description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button ng-disabled="serviceAddForm.$invalid" type="submit" class="btn btn-success pull-right">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+        <footer></footer>

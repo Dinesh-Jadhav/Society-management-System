@@ -1,0 +1,91 @@
+<residentheader></residentheader>
+<div id="page-wrapper" class="first_name">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    <!-- Dashboard -->
+                </h3>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Assign/Update Tenant Details
+                    </li>
+                </ol>
+            </div>
+        </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <form name="profileUpdateForm" ng-submit="updateTenant()">
+          <h4>Please provide other details :</h4>
+          <div class="alert alert-danger" ng-show="errorBlock">{{error}}<a href="javascript:void(0)"><i class="fa fa-times" style="float: right;" ng-click="closeError()"></i></a></div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Advance(*)</label>
+                <input type="number" class="form-control" min="0" placeholder="Enter Advance" name="first_name" ng-model="tenant.advance" required>
+                <p ng-show="profileUpdateForm.first_name.$invalid && !profileUpdateForm.first_name.$pristine" class="help-block red-text">Please enter advance</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Brokerage(*)</label>
+                <input type="number" class="form-control" min="0" placeholder="Enter Brokerage" name="contact_no" ng-model="tenant.brokerage" required>
+                <p ng-show="profileUpdateForm.contact_no.$invalid && !profileUpdateForm.contact_no.$pristine" class="help-block red-text">Please enter brokerage</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label >Description(*)</label>
+                <textarea class="form-control" name="last_name" ng-model="tenant.advance_des" placeholder="Enter Description" required></textarea>
+                <p ng-show="profileUpdateForm.last_name.$invalid && !profileUpdateForm.last_name.$pristine" class="help-block red-text">Please enter last name</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label >Rent(Per Month)(*)</label>
+                <input type="number" class="form-control" min="0" name="reg_no" placeholder="Enter Rent" ng-model="tenant.rent" required>
+                <p ng-show="profileUpdateForm.reg_no.$invalid && !profileUpdateForm.reg_no.$pristine" class="help-block red-text">Please enter rent</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Rent Date(*)</label>
+                <select ng-model="tenant.date" name="coverImg" class="form-control" required>
+                  <option value="">Select Date</option>
+                  <option ng-repeat="d in days" value="{{d.day}}">{{d.day}}</option>
+                </select>
+                <p ng-show="societyAddForm.coverImg.$invalid && !societyAddForm.coverImg.$pristine" class="help-block red-text">Please select rent date</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+        	  <div class="col-md-6">
+        		  <div class="form-group">
+                <label>Rent Due Days(*)</label>
+                <input type="number" name="logoImg" min="0" class="form-control" placeholder="Rent Due Days" ng-model="tenant.due_days" max="30" required>
+                <p ng-show="societyAddForm.logoImg.$invalid && !societyAddForm.logoImg.$pristine" class="help-block red-text">Please enter rent due days</p>
+            	</div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Enter Electricity Reading(*)</label>
+                <input type="number" name="electricity" min="0" ng-model="tenant.ele_red" class="form-control" placeholder="Electricity Reading" required>
+                <p ng-show="societyAddForm.electricity.$invalid && !societyAddForm.electricity.$pristine" class="help-block red-text">Please enter rent due days</p>
+              </div>
+            </div>
+        </div>
+          <button ng-disabled="profileUpdateForm.$invalid" type="submit" class="btn btn-success pull-right">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -57,6 +57,23 @@ exports.ActiveManagersList = function(pool) {
     }
 };
 
+exports.ActiveManagersListCount = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var result = {};
+        var query = "select count(id) as M_count from  `society_manager` where status=1 order by id desc";
+
+        pool.query(query, function(err, rows, fields) {
+            if (err) {
+                console.log(err);
+            } else {
+                result.success = rows[0];
+                res.send(JSON.stringify(result));
+                return;
+            }
+        });
+    }
+};
 
 exports.addManager = function(pool, randomstring, crypto, transporter) {
     return function(req, res) {

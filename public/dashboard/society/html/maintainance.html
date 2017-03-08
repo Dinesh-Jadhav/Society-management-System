@@ -21,7 +21,8 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <h2> Maintainace </h2>
-                <span>{{errMessage}}</span>
+                 <div class="alert alert-danger" ng-show="errShow">{{errMessage}}</div>
+                <!-- <span class="bg-danger">{{errMessage}}</span> -->
                 <br>
                 <div class="row">
                     <div class="col-sm-8">

@@ -6,7 +6,42 @@ socialApp.controller('AdminDashboard', ['$scope', '$http', '$timeout', function(
     chart1.data = [
         ['Component', 'Complaints'],
     ];
+    
+         $scope.R_count = 0;
+    $http.post('/requestedServicesListToAdminCount').success(function(response) {
+         if (response.hasOwnProperty('success')) {
+            $scope.R_count = response.data.R_count;
+            }
+        $scope.$emit('UNLOAD');
+    });
+    
+    $scope.M_count = 0;
+    $http.post('/ActiveManagersListCount').success(function(response) {
+           if (response.hasOwnProperty('success')) {
+            $scope.M_count = response.success.M_count;
+            }
+        $scope.$emit('UNLOAD');
+    });
 
+    
+    $scope.H_count = 0;
+    $http.post('/homePageRequestListCount').success(function(response) {
+            if (response.hasOwnProperty('success')) {
+            $scope.H_count = response.success.H_count;
+            }
+        $scope.$emit('UNLOAD');
+    });
+
+
+    $scope.S_count = 0;
+    $http.post('/getsocietyListCount').success(function(response) {
+          if (response.hasOwnProperty('success')) {
+            $scope.S_count = response.success.S_count;
+            }
+        $scope.$emit('UNLOAD');
+    });
+
+    
     $http.post('/getComplaintsStatusForAdmin').success(function(res) {
         if (res.hasOwnProperty('success')) {
             angular.forEach(res.success, function(data, key) {

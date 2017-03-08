@@ -646,3 +646,39 @@ exports.homePageRequestList = function(pool) {
         });
     }
 }
+
+exports.getsocietyListCount = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var result = {};
+        var query = "select count(id) as S_count from society_master";
+
+        pool.query(query, function(err, rows, fields) {
+            if (err) {
+                console.log(err);
+            } else {
+                result.success = rows[0];
+                res.send(JSON.stringify(result));
+                return;
+            }
+        });
+    }
+};
+
+exports.homePageRequestListCount = function(pool) {
+    return function(req, res) {
+        var data = {};
+        //var vendor_id = req.body.vendor_id;
+        var query = 'SELECT count(id) as H_count FROM help_master';
+        res.setHeader('Content-Type', 'application/json');
+        pool.query(query, function(err, rows, fields) {
+            if (err) {
+                console.log(err);
+                data.error = err;
+            } else {
+                data.success = rows[0];
+                res.send(JSON.stringify(data));
+            }
+        });
+    }
+}

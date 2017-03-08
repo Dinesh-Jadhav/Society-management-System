@@ -391,6 +391,7 @@
     app.post('/updateServiceRequestStatus', services.updateServiceRequestStatus(pool));
     app.post('/listOfRequestedServicesToResident', services.listOfRequestedServicesToResident(pool));
     app.post('/listOfRequestedServicesManager', services.listOfRequestedServicesManager(pool));
+    app.post('/requestedServicesListToAdminCount', services.requestedServicesListToAdminCount(pool));
 
     /*Notice*/
     app.post('/insertNotice', notice.insertNotice(pool, transporter));

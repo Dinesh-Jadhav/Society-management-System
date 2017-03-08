@@ -220,3 +220,24 @@ exports.listOfRequestedServicesManager = function(pool) {
         });
     }
 }
+
+exports.requestedServicesListToAdminCount = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        /*       var queryString = 'select sr.*, r.id as resident_id, concat(r.first_name," ",r.last_name) as resident_name,fm.flat_number as flat_number ,sm.service_name as service_name, sr.date as reqired_date, (case sr.status when 0 then "Requested" when 1 then "Under Servigillance" when 2 then "Done" end) as status, sm.description from service_request sr INNER JOIN service_master sm ON sm.id = sr.service_type INNER JOIN residents r ON r.id = sr.resident_id INNER JOIN flat_master fm ON fm.id = r.flat_id';
+         */
+        var queryString = 'select count(sr.id)as R_count from service_request sr INNER JOIN service_master sm ON sm.id = sr.service_type INNER JOIN residents r ON r.id = sr.resident_id INNER JOIN flat_master fm ON fm.id = r.flat_id left JOIN block_master bm on bm.id = fm.block_id left join society_master som on som.id = bm.parent_id';
+        var result = {};
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows[0];
+                result.success = "List request displayed successfully";
+                res.send(JSON.stringify(result));
+            }
+
+        });
+    };
+};

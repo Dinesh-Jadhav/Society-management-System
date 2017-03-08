@@ -394,6 +394,8 @@
     app.post('/insertNotice', notice.insertNotice(pool, transporter));
     app.post('/listOfNoticeToManager', notice.listOfNoticeToManager(pool));
     app.post('/sentNoticeToResidents', notice.sentNoticeToResidents(pool, transporter));
+    app.post('/listOfNoticeToResidents', notice.listOfNoticeToResidents(pool));
+    app.post('/listOfNoticeToResidentsCount', notice.listOfNoticeToResidentsCount(pool));
 
     /*Amenities*/
     app.post('/addAmenities', amenities.addAmenities(pool));

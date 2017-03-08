@@ -250,20 +250,19 @@ socialApp.controller('addHandler', ['$scope', '$http', '$location', '$timeout', 
 socialApp.controller('homeserviceList', ['$scope','$http','$timeout','DTOptionsBuilder','DTColumnDefBuilder', function($scope,$http,$timeout,DTOptionsBuilder,DTColumnDefBuilder){
     $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('order', [4, 'desc'])
-         .withButtons([
+        .withButtons([
             'print',
             'excel',
             'pdf'
         ]);
 
-         $scope.dtColumnDefs = [
+        $scope.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef([4])
                               .withTitle('Date')
                               .withOption('type', 'date')
         ];
 
-    $scope.homeRequests = [];
-    
+    $scope.homeRequests = [];    
     $scope.$emit('LOAD');
     $http.post('/homePageRequestList').success(function(response){
         console.log(response);

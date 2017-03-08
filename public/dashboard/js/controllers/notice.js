@@ -80,4 +80,36 @@ socialApp.controller('listOfNoticeToManager', ['$scope', '$http', '$routeParams'
             }
         });
     }
-}])
+}]);
+
+socialApp.controller('resNotice', ['$scope','$http','$sce','DTOptionsBuilder','DTColumnDefBuilder', function($scope,$http,$sce,DTOptionsBuilder,DTColumnDefBuilder){
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [1, 'desc'])
+        .withButtons([
+            'print',
+            'excel',
+            'pdf'
+        ]);
+
+        /*$scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([4])
+                              .withTitle('Date')
+                              .withOption('type', 'date')
+        ];*/
+  $scope.$emit('LOAD');
+  var userDetails = JSON.parse(window.localStorage.getItem('userDetails'));
+  var id=userDetails.id;
+  $scope.notices=[];
+  $http.post('/listOfNoticeToResidents',{id: id}).success(function(response){
+    if (response.hasOwnProperty('success')) {
+            var data = response.data;
+            var log = [];
+            angular.forEach(data, function(item, key) {
+                item.notice_content = $sce.trustAsHtml(item.notice_content);
+                log.push(item);
+            });
+            $scope.notices = log;
+        }
+    $scope.$emit('UNLOAD');
+  });
+}]);

@@ -107,3 +107,41 @@ exports.sentNoticeToResidents = function(pool, transporter) {
         }
     }
 }
+
+exports.listOfNoticeToResidents = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var resident_id = req.body.id;
+        var queryString = 'SELECT r.*,nm.* FROM `notice_master` nm INNER JOIN flat_master fm on fm.block_id = nm.block_id INNER JOIN residents r on r.flat_id = fm.id where find_in_set("'+resident_id+'",nm.notice_to) and r.id="'+resident_id+'"';
+        var result = {};
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.success = "Notices displayed successfully";
+                res.send(JSON.stringify(result));
+            }
+        });
+    };
+};
+
+exports.listOfNoticeToResidentsCount = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var resident_id = req.body.id;
+        var queryString = 'SELECT count(r.id) as ncount FROM notice_master nm INNER JOIN flat_master fm on fm.block_id = nm.block_id INNER JOIN residents r on r.flat_id = fm.id where find_in_set("'+resident_id+'",nm.notice_to) and r.id="'+resident_id+'"';
+        var result = {};
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows[0];
+                result.success = "Notices count successfully";
+                res.send(JSON.stringify(result));
+            }
+        });
+    };
+};

@@ -766,13 +766,16 @@ socialApp.controller('maintainanceManager', ['$scope', '$route', '$routeParams',
         block_id: block_id
     };
 
+    $scope.errMessage = '';
     $scope.today = new Date();
-    $scope.fromdt = new Date($scope.maintainance.month);
-    console.log($scope.fromdt);
     $scope.addMaintainance = function() {
         console.log($scope.maintainance);
         $scope.$emit('LOAD');
         $http.post('/maintainance', $scope.maintainance).success(function(response) {
+            if($scope.maintainance.month < $scope.maintainance.year){
+              $scope.errMessage = 'End Date should be greate than start date';
+              return false;
+            }
             $timeout(function() {
                 $scope.$emit('UNLOAD');
                 $location.path('/maintainance/' + $routeParams.blockID)
@@ -781,7 +784,7 @@ socialApp.controller('maintainanceManager', ['$scope', '$route', '$routeParams',
         });
 
     }
-
+ 
     $scope.main = [];
     $scope.$emit('LOAD');
     $http.post('/maintananceListToManager', { block_id: block_id }).success(function(response) {

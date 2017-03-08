@@ -376,6 +376,13 @@ socialApp.controller('residentDashboard', ['$scope', '$http', '$timeout', '$rout
          console.log($scope.status);
     }
     
+    $scope.total=0;
+  $http.post('/listOfNoticeToResidentsCount',{id: id}).success(function(res){
+    console.log(res);
+    if(res.hasOwnProperty('success')){
+        $scope.total=res.data.ncount;
+    }
+  })  
 }]);
 
 /*Staff Dashboard*/

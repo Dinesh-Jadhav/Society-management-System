@@ -1,0 +1,50 @@
+<residentheader></residentheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Your Requests
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="javascript:void(0)">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-users"></i> View Notices
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> View Notices </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" dt-Options="dtOptions" datatable="ng"  class="stripe" width="100%">
+                        <thead>
+                            <th>Notice ID</th>
+                            <th>Notice For</th>
+                            <th>Content</th>
+                            <th>Date</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="notify in notices">
+                                <td>{{notify.id}}</td>
+                                <td>{{notify.notice_subject}}</td>
+                                <td ng-bind-html="notify.notice_content">{{}}</td>
+                                <td>{{notify.notice_date | date: 'dd MMM, yyyy hh:mm a'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+<society-footer></society-footer>

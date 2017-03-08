@@ -649,6 +649,10 @@ socialApp.config(function($routeProvider, $crypthmacProvider, $httpProvider) {
         templateUrl: 'resident/html/transaction.html',
         activetab: 'MoneyManager',
         title: "Maintainance | Manager"
+    }).when('/view-notice', {
+        controller: 'resNotice',
+        templateUrl: 'resident/html/view_notice.html',
+        title: "View Notices | Resident"
     });
 
 

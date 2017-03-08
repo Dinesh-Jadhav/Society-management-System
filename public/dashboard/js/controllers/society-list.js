@@ -242,3 +242,50 @@ socialApp.controller('societyReport',['$scope','$http','DTOptionsBuilder', funct
         }
     });
 }]);
+
+socialApp.controller('adminchangePassword',['$scope', '$http', '$location', '$compile','$timeout','$route', function ($scope, $http,$location, $compile,$timeout,$route) {
+        
+        $scope.noError = true;
+        $scope.noSuccess = true;
+
+        $scope.updatePassword = function(){
+            $scope.$emit('LOAD');
+            var pass = $scope.user.newPassword;
+            var confirmPass = $scope.user.confirmNewPassword;
+            
+            if(pass==''){
+                
+                $scope.noError = false;
+                $scope.ErrorMessage = 'Please Enter New  Password';
+                $scope.$emit('UNLOAD');
+            }else if(pass != confirmPass){
+                
+                $scope.noError = false;
+                $scope.ErrorMessage = 'Please Enter Same Password';
+                $scope.$emit('UNLOAD');
+            }else{
+                
+                $http.post('/updatePassword', {pass:pass}).success(function(response,status,headers,config){
+                    if (response.error) 
+                    {
+                        $scope.noError = false;
+                        $scope.noSuccess = true;
+                        $scope.ErrorMessage = response.error;
+                        $scope.$emit('UNLOAD');
+                    }
+                    else if(response.hasOwnProperty('succes'))
+                    {
+                        $scope.noSuccess = false;
+                        $scope.noError = true;
+                        $scope.successMessage = "Password Changed Successfully.";
+                        $scope.$emit('UNLOAD');
+                        $timeout(function() {
+                            $route.reload();
+                        }, 2000);
+                        
+                    }
+                    $scope.$emit('UNLOAD');
+                });
+            }
+        };
+}]);

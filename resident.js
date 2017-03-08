@@ -1,4 +1,78 @@
+
 exports.addResident = function(pool, randomstring, crypto, transporter) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var email = req.body.email;
+        var id = req.body.id;
+
+        var result = {};
+        var queryString = 'select * from residents where email ="' + email + '"';
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                res.send(JSON.stringify(result));
+                return;
+            } else {
+                if (rows.length > 0) {
+                    result.error = "Email Already Exist";
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(result));
+                    return;
+                } else {
+
+                    var query = "SELECT LCASE(concat(sm.slug, '-', bm.slug, '-', fm.flat_number)) as user_name FROM society_master as sm INNER JOIN block_master as bm on sm.id=bm.parent_id INNER JOIN flat_master as fm on bm.id=fm.block_id WHERE fm.id=" + id;
+
+                    pool.query(query, function(err, rows, fields) {
+                        if (err) {
+                            console.log(err);
+                            result.error = err;
+                            res.send(JSON.stringify(result));
+                            return;
+                        } else {
+                            var user_name = rows[0].user_name;
+                            var text = "";
+                            var randS = randomstring.generate();
+                            for (var i = 0; i < 10; i++) {
+                                text += randS.charAt(Math.floor(Math.random() * randS.length));
+                            }
+
+                            transporter.sendMail({
+                                from: 'man2helpsm@gmail.com',
+                                to: email,
+                                subject: 'Welcome to Man2Help',
+                                html: 'Hello Resident !<br/>Your username is: ' + user_name + '<br/>Your password is: ' + text + ' '
+
+                            }, function(error, response) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    var query = "INSERT INTO residents (`flat_id`,`user_name`,`password`,`email`, `resident_no`,`status`) VALUES(" + id + ",'" + user_name + "','" + text + "','" + email + "','1', '1') ON DUPLICATE KEY UPDATE email='" + email + "', password='" + text + "', resident_no=resident_no+1,first_name='', last_name='', ownership='', contact_no='', registory_no='', loan=''";
+                                    pool.query(query, function(err, rows, fields) {
+                                        if (err) {
+                                            console.log(err);
+                                            result.error = err;
+                                            res.send(JSON.stringify(result));
+                                        } else {
+                                            var queryString = "update flat_master set is_updated=1 where id='" + id + "'";
+                                            pool.query(queryString, function(err, rows, fields) {});
+
+                                            result.success = "Resident Registered Successfully";
+                                            res.send(JSON.stringify(result));
+                                            return;
+                                        }
+                                    });
+                                };
+                            });
+                        };
+                    });
+                };
+            };
+        });
+    };
+};
+
+
+/*exports.addResident = function(pool, randomstring, crypto, transporter) {
     return function(req, res) {
         res.setHeader('Content-Type', 'application/json');
         var email = req.body.email;
@@ -17,7 +91,7 @@ exports.addResident = function(pool, randomstring, crypto, transporter) {
                     res.setHeader('Content-Type', 'application/json');
                     res.send(JSON.stringify(result));
                     return;
-                } else {*/
+                } else {
 
                     var query = "SELECT LCASE(concat(sm.slug, '-', bm.slug, '-', fm.flat_number)) as user_name FROM society_master as sm INNER JOIN block_master as bm on sm.id=bm.parent_id INNER JOIN flat_master as fm on bm.id=fm.block_id WHERE fm.id=" + id;
 
@@ -66,10 +140,10 @@ exports.addResident = function(pool, randomstring, crypto, transporter) {
                     });
                 /*};
             };
-        });*/
+        });
     };
 };
-
+*/
 
 exports.login = function(crypto, pool) {
     return function(req, res) {
@@ -111,7 +185,6 @@ exports.login = function(crypto, pool) {
 
 exports.resetPasswordProcess = function(transporter, randomstring, pool) {
     return function(req, res) {
-
         var email = req.body.email;
         var result = {};
         var host = req.protocol + '://' + req.headers.host + '/';
@@ -125,17 +198,30 @@ exports.resetPasswordProcess = function(transporter, randomstring, pool) {
                     result.error = "Email Not Exist";
                     res.send(JSON.stringify(result));
                 } else {
+                    var text = "";
                     var randS = randomstring.generate();
+                    for (var i = 0; i < 10; i++) {
+                      text += randS.charAt(Math.floor(Math.random() * randS.length));
+                            }
+                    var emailid = "dinesh.jadhav@deltabee.com";
                     transporter.sendMail({
                         from: 'man2helpsm@gmail.com',
-                        to: email,
+                        to: emailid,
                         subject: 'Reset Password',
-                        html: 'Hey ' + rows[0].first_name + ' ' + rows[0].last_name + '!<br/> Your Login Details For Man2Help Resident Login are: <br>Username: <b>' + rows[0].user_name + '</b> <br> Passsword: <b>' + rows[0].password + '</b>'
+                        html: 'Hey Resident!<br/> Your Login Details For Man2Help Resident Login are: <br>Username: <b>' + rows[0].user_name + '</b> <br> Passsword: <b>' + text + '</b>'
                     }, function(error, response) {
                         if (error) {
                             console.log(error);
                         } else {
-                            console.log('Message sent');
+                            var q = 'update residents set password = "'+text+'" where email ="' + email + '"';
+                            pool.query(q,function(err,rows){
+                                if(err){
+                                    console.log(err);
+                                      }else{
+                                       console.log('Message sent');            
+                                      }
+                            })
+                            
                         }
                     });
                 }
@@ -145,7 +231,7 @@ exports.resetPasswordProcess = function(transporter, randomstring, pool) {
         });
     };
 };
-
+    
 exports.confirmToken = function(pool) {
     return function(req, res) {
         var token = req.body.token;

@@ -139,6 +139,10 @@ socialApp.config(function($routeProvider, $crypthmacProvider, $httpProvider) {
         templateUrl: 'admin/admin-panel/html/home-service.html',
         activetab: 'Service',
         title: 'Home Services Request |  Admin'
+    }).when('/admin-change-password', {
+        controller: 'adminchangePassword',
+        templateUrl: 'admin/admin-panel/html/changePassword.html',
+        title: 'Update Password | Admin'
     });
 
     /*Routes for service-admin*/

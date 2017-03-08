@@ -143,8 +143,8 @@ exports.confirmToken = function(pool) {
 
 exports.updatePassword = function(crypto, pool) {
     return function(req, res) {
-
-        var id = req.body.id;
+             res.setHeader('Content-Type', 'application/json');
+         var id = req.body.id;
         var newpass = req.body.pass;
         var passwordn = crypto.createHash('md5').update(newpass).digest("hex");
         var result = {};
@@ -154,16 +154,12 @@ exports.updatePassword = function(crypto, pool) {
         pool.query(queryString, function(err, rows, fields) {
             if (err) {
                 result.error = err;
-                res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(result));
             } else {
                 result.succes = "Your Password has been changed successfully.";
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(result));
+                    res.send(JSON.stringify(result));
             }
         });
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(result));
     };
 };
 

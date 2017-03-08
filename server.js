@@ -273,7 +273,7 @@
     app.post('/homePageRequestList', society.homePageRequestList(pool));
     app.post('/getsocietyListCount', society.getsocietyListCount(pool));
     app.post('/homePageRequestListCount', society.homePageRequestListCount(pool));
-
+    app.post('/societyDetails', society.societyDetails(pool));
     app.post('/getResidentsForAdminByBlockId', society.getResidentsForAdminByBlockId(pool));
     app.post('/getTenatsForAdminByBlockId', society.getTenatsForAdminByBlockId(pool));
 
@@ -304,6 +304,10 @@
     app.post('/updateManager', societymanager.updateManager(pool));
     app.post('/viewManagerDetails', societymanager.viewManagerDetails(pool));
     app.post('/ActiveManagersListCount', societymanager.ActiveManagersListCount(pool));
+    app.post('/managerDetails', societymanager.managerDetails(pool));
+
+
+
     /*Flat Management*/
     app.post('/addFlat', flat.addFlat(pool));
     app.post('/getFlatList', flat.getFlatList(pool));

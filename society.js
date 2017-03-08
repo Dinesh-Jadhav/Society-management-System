@@ -682,3 +682,22 @@ exports.homePageRequestListCount = function(pool) {
         });
     }
 }
+
+exports.societyDetails = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var block_id = req.body.block_id;
+        var result = {};
+        var queryString = 'SELECT sm.*,sma.manager_name FROM society_master sm inner JOIN society_manager sma on sma.id = sm.society_manager';
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.succes = "Society List Displayed Successfully";
+                res.send(JSON.stringify(result));
+            }
+        });
+    };
+};

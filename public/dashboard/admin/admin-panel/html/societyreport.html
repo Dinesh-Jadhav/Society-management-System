@@ -1,0 +1,59 @@
+<header></header>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <h1 class="page-header">
+                    All Services
+                </h1> -->
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <i class="fa fa-users"></i>Society List 
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Society List </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
+                        <thead>
+                            <th>Society Logo</th>
+                            <th>Name</th>
+                            <th>Established Date</th>
+                            <th>Owner</th>
+                            <th>Chairman</th>
+                            <th>Secretary</th>
+                            <th>Treasurer</th>
+                            <th>Manager</th>
+                            <!-- <th>Action</th> -->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in report">
+                                <td><img ng-src="uploads/{{facility.general_img}}" width="50px"></td>
+                                <td>{{facility.name}}</td>                        
+                                <td>{{facility.established_date | date: 'dd MMM, yyyy hh:mm a'}}</td>
+                                <td>{{facility.owner}}</td>
+                                <td>{{facility.chair_person}}</td>
+                                <td>{{facility.secretary}}</td>
+                                <td>{{facility.treasurer}}</td>
+                                <td>{{facility.manager_name}}</td>
+                               <!--  <td><span ng-show="facility.status=='Requested'"><a title="Update Status to Under Surveillance" href="javascript:void(0)" ng-click="UpdateStatus(facility.id, 1)"><i class="fa fa-arrow-right" style="margin:5% !important"></i></a>|</span><span ng-hide="facility.status=='Done'"><a title="Update Status to Resolved" ng-click="setId(facility.id)" data-toggle="modal" data-target="#myModal1" href="#"><i class="fa fa-check" style="margin:5% !important"></i></a></span></td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+<footer></footer>

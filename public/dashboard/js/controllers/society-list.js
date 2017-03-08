@@ -223,3 +223,22 @@ socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$ht
         });
     }
 }]);
+
+
+socialApp.controller('societyReport',['$scope','$http','DTOptionsBuilder', function($scope,$http,DTOptionsBuilder){
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [1, 'desc'])
+        .withButtons([
+            'print',
+            'excel',
+            'pdf'
+        ]);
+    var userDetail=
+    $scope.report=[];
+    $http.post('/societyDetails').success(function(response){
+          if(response.hasOwnProperty('succes')){
+            $scope.report=response.data;
+            console.log($scope.report);
+        }
+    });
+}]);

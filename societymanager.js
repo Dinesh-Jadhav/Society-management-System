@@ -417,3 +417,23 @@ exports.updateManager = function(pool) {
             console.log(err);
             result.error = err;
             res.send(JSON.stringify(result));*/
+
+
+exports.managerDetails = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var block_id = req.body.block_id;
+        var result = {};
+        var queryString = 'select * from society_manager';
+        pool.query(queryString, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.succes = "Display Due data to manager successfully.";
+                res.send(JSON.stringify(result));
+            }
+        });
+    };
+};            

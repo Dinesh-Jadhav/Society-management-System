@@ -44,11 +44,21 @@ socialApp.config(function($routeProvider, $crypthmacProvider, $httpProvider) {
         templateUrl: 'admin/admin-panel/html/add-blocks.html',
         activetab: 'society',
         title: 'Add Blocks | Admin'
+    }).when('/managerreport', {
+        controller: 'managerReport',
+        templateUrl: 'admin/admin-panel/html/managerreport.html',
+        activetab: 'managers',
+        title: 'Managers | Admin'
     }).when('/edit-block/:blockId', {
         controller: 'editBlock',
         templateUrl: 'admin/admin-panel/html/edit-block.html',
         activetab: 'society',
         title: 'Edit Block | Admin'
+    }).when('/societyreport', {
+        controller: 'societyReport',
+        templateUrl: 'admin/admin-panel/html/societyreport.html',
+        activetab: 'society',
+        title: 'All Societies Report | Admin'
     }).when('/edit-manager/:id', {
         controller: 'editManager',
         templateUrl: 'admin/admin-panel/html/edit-manager.html',

@@ -174,3 +174,21 @@ socialApp.controller('viewManager',['$scope', '$http', '$location', '$compile','
                $scope.$emit('UNLOAD');
         });
 }]);
+
+socialApp.controller('managerReport',['$scope','$http','DTOptionsBuilder', function($scope,$http,DTOptionsBuilder){
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [1, 'desc'])
+        .withButtons([
+            'print',
+            'excel',
+            'pdf'
+        ]);
+    $scope.report=[];
+    $http.post('/managerDetails').success(function(response){
+        console.log(response);
+        if(response.hasOwnProperty('succes')){
+            $scope.report=response.data;
+            console.log($scope.report);
+        }
+    });
+}]);

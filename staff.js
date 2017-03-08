@@ -45,7 +45,7 @@ exports.addStaff = function(pool, transporter, randomstring) {
                     for (var i = 0; i < 10; i++) {
                         text += randS.charAt(Math.floor(Math.random() * randS.length));
                     }
-                    if (staff_type == 1) {
+                    if (staff_for == 1) {
                         transporter.sendMail({
                             from: 'man2helpsm@gmail.com',
                             to: email,

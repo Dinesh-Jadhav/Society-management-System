@@ -131,6 +131,7 @@ exports.updatePassword = function(crypto, pool) {
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(result));
             } else {
+                console.log("123");
                 result.succes = "Your Password has been changed successfully.";
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(result));

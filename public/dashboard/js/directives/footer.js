@@ -110,7 +110,7 @@ socialApp.directive('residentchat', ['$compile', 'socketUrl', '$routeParams', '$
             });
 
             $scope.currentUserId = res_id;
-            var flat_no = userDetails.flat_id;
+            var flat_no = userDetails.flat_number;
             var res_nm = userDetails.first_name + " " + userDetails.last_name;
             $scope.message_by = res_nm + ' ' + " - " + flat_no;
 

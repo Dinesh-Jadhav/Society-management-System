@@ -144,20 +144,19 @@ exports.confirmToken = function(pool) {
 exports.updatePassword = function(crypto, pool) {
     return function(req, res) {
              res.setHeader('Content-Type', 'application/json');
-         var id = req.body.id;
-        var newpass = req.body.pass;
+         var newpass = req.body.pass;
         var passwordn = crypto.createHash('md5').update(newpass).digest("hex");
         var result = {};
 
-        var queryString = 'UPDATE admin_master SET  password ="' + passwordn + '",forget_token=""  where id = "' + id + '"';
+        var queryString = 'UPDATE admin_master SET  password ="' + passwordn + '",forget_token=""';
 
         pool.query(queryString, function(err, rows, fields) {
             if (err) {
                 result.error = err;
                 res.send(JSON.stringify(result));
             } else {
-                result.succes = "Your Password has been changed successfully.";
-                    res.send(JSON.stringify(result));
+                   result.succes = "Your Password has been changed successfully.";
+                   res.send(JSON.stringify(result));
             }
         });
     };

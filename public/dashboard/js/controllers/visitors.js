@@ -1,4 +1,14 @@
-socialApp.controller('visitorsForStaff', ['$scope', '$http', '$filter', '$route', '$timeout', function($scope, $http, $filter, $route, $timeout) {
+/*socialApp.controller('visitorsForStaff', ['$scope', '$http', '$filter', '$route', '$timeout', function($scope, $http, $filter, $route, $timeout) {
+*/
+socialApp.controller('visitorsForStaff', ['$scope', '$http', '$filter','$route','$routeParams', 'DTOptionsBuilder', '$timeout', function($scope, $http,$filter, $route, $routeParams, DTOptionsBuilder, $timeout) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [8, 'desc'])
+        .withButtons([
+            'print',
+            'excel',
+            'pdf'
+        ]);
+
     $scope.AllVisitors = [];
     var userData = JSON.parse(window.localStorage.getItem('userDetails'));
     var block_id = userData.block_id;
@@ -185,7 +195,7 @@ socialApp.controller('DetailVisitor', ['$scope', '$http', '$routeParams', '$time
 
 socialApp.controller('ExternalVisitorsForManager', ['$scope', '$http', '$routeParams', 'DTOptionsBuilder', '$timeout', function($scope, $http, $routeParams, DTOptionsBuilder, $timeout) {
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withOption('order', [1, 'desc'])
+        .withOption('order', [8, 'asc'])
         .withButtons([
             'print',
             'excel',

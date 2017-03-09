@@ -37,7 +37,7 @@
                             <th>View Details</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="Visitor in AllVisitors">
+                            <tr ng-repeat="Visitor in AllVisitors | orderBy:'-arival_date_time'">
                                 <td>{{Visitor.id}}</td>
                                 <td>{{Visitor.flat_number}}</td>
                                 <td>{{Visitor.name}}</td>

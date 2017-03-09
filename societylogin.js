@@ -12,6 +12,8 @@ exports.login = function(crypto, pool) {
                 } else {
 
                     if (rows.length == 0) {
+
+                        
                         result.error = "Manager not Exist.";
                     } else {
                         if (rows[0].status == 1) { //Creating hash with received password value for comparison : DR

@@ -1,4 +1,4 @@
-<!-- Man 2 Help Form Start -->
+Man 2 Help Form Start -->
 <div class="modal popup" ng-show="man2help">
 	<div class="booking_room">
 		<div class="form-close" ng-click="man2helpFormClose()"><i class="fa fa-times"></i></div>
@@ -30,24 +30,25 @@
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-			<form action="http://man2help.com/anyuser.php" method="POST" target="_blank">
+			<form action="http://www.man2helpsm.com/#/" name="requests" target="_blank">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Your Good Name" name="name" maxlength="20" required="true">
+							<input type="text" class="form-control" placeholder="Your Good Name" value="{{help.name}}" name="name" maxlength="20" ng-model="name" required="true">
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<input datepicker placeholder="Select Date" class="form-control" name="date" required="true">
-						</div>
+							<input type="text" name="date" ng-model="help.date" placeholder="Schedule Date" class="stickyleft" data-mindate="{{today}}" datepicker required>
+                        </div>
 						
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<select class="form-control" name="service" required="true">
+							<!-- <select class="form-control" " ng-model="help.service" name="service" required="true">
+							<option class="open_categories" value="" class="alignleft> Select Service </option>
 								<option value="Architech">Architect</option>
 								<option value="Carpenter">Carpenter</option>
 								<option value="The Cook">Cook</option>
@@ -70,20 +71,24 @@
 								<option value="Website Designer " >Website Designer </option>
 								<option value="Welder" >Welder</option>
 								<option value="Other Service" >Other Service</option>
-							</select>
+							</select> -->
+							<select class="form-control" ng-model="help.service" required>
+                                    <option class="open_categories" value="" class="alignleft"> Select Service </option>
+                                    <option class="open_categories" ng-repeat="ser in services" value="{{ser.id}}">{{ser.service_name}}</option>
+                                </select>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter City/Pin/Address" name="city" maxlength="30" required="true">
+							<input type="text" class="form-control" placeholder="Enter City/Pin/Address" value="{{help.city}}" ng-model="help.city" name="city" maxlength="30" required="true">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<select class="form-control" name="time" id="country">
-								<option disabled="">Schedule Time</option>
+							<select class="form-control" ng-model="help.schedule_time" name="time" id="country">
+							<option class="open_categories" value="" class="alignleft"> Schedule Time </option>
 								<option value="9am-12pm" >9am-12pm</option>
 								<option value="12pm-3pm">12pm-3pm</option>
 								<option value="3pm-6pm">3pm-6pm</option>
@@ -92,13 +97,14 @@
 					</div>
 					<div class="col-md-6 col-sm-6">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Mobile Number" name="mobile" pattern="[0-9]{10}" required="true">
+							<input type="text" class="form-control" placeholder="Mobile Number" ng-model="help.number" value="help.mobile" name="mobile" pattern="[0-9]{10}" required="true">
 						</div>
 					</div>
 				</div>
-				<button name="submit" class="btn btn-success" type="submit">Book My Service</button>
-			</form>
+
+				<button type="submit" ng-disabled="requests.$invalid" ng-click="requestHelp()"  class="btn btn-success">Book My Service</button>
+				</form>
 		</div>
 	</div>
 </div>
-<!-- Man2Help Form End -->
+<!-- Man2Help Form End

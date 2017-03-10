@@ -183,13 +183,38 @@ socialApp.directive('societyHeader', ['$compile', '$http', '$location', '$routeP
     }
 }]);
 /*Society manager Header*/
-socialApp.directive('man2helpForm', ['$compile', '$http', '$location', function($compile, $http, $location) {
+socialApp.directive('man2helpForm', ['$compile', '$http', '$location','$route', function($compile, $http, $location,$route) {
     return {
         restrict: 'C',
         templateUrl: 'front/html/header.html',
         transclude: true,
         link: function(scope, element, attrs) {
+            scope.help1={};
             scope.man2help = true;
+            scope.activetab = $route.current.activetab;
+            scope.services = [];
+            $http.post('/ListServices').success(function(response) {
+            if (response.hasOwnProperty('success')) {
+              scope.services = response.data;
+            }});
+            if(scope.activetab=="residentDashboard"){
+             scope.userDetail = JSON.parse(window.localStorage.getItem('userDetails'));
+            }
+
+        scope.requestHelp = function() {
+        console.log(scope.help.city);
+scope.help1=
+       {
+        resident_id:scope.userDetail.id,
+        service_id:scope.help.service,
+        req_date:scope.help.date,
+        resident_commnet:scope.help.city,
+        };
+        console.log(scope.help1);
+        $http.post('/service_request',scope.help1).success(function(response) {
+            console.log("log request successfully")
+        })
+          }             
             scope.man2helpFormClose = function() {
                 scope.man2help = false;
             }

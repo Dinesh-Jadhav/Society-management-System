@@ -67,7 +67,7 @@ exports.getSocietyDetail = function(pool, slug) {
     }
 };
 
-exports.addSociety = function(formidable, fs, pool, step) {
+exports.addSociety = function(formidable, fs, pool,transporter, randomstring, step) {
     return function(req, res) {
         res.setHeader('Content-Type', 'application/json');
         $data = req.body;
@@ -85,6 +85,7 @@ exports.addSociety = function(formidable, fs, pool, step) {
         var treasurer = $data.treasurer;
         var treasurer_contact = $data.treasurer_contact;
         var manager = $data.manager;
+        var chair_person_email = $data.chair_person_email;
         var society_id = '';
         if ($data.has_blocks == 'Y') {
             var has_block = 1;
@@ -120,7 +121,7 @@ exports.addSociety = function(formidable, fs, pool, step) {
                     console.log('LogoImg');
                 } else {
                     logo_img = rows[0].imgName;
-                    var inQuery = "INSERT INTO society_master (`name`,`slug`, `address`, `lattitute`, `longtitute`, `owner`, `established_date`, `contact_number`,`chair_person`, `chair_person_contact`,`secretary`,`secretary_contact`,`treasurer`,`treasurer_contact`,`society_manager`, `cover_img`, `general_img`,`has_blocks`, `last_update_time` , `updated_by_ip` , `status`) VALUES ('" + name + "','" + slug + "','" + address + "','" + lat + "','" + long + "','" + owner + "','" + newDate + "','" + contact_number + "', '" + chair_person + "','" + chair_person_contact + "','" + secretary + "','" + secretary_contact + "','" + treasurer + "','" + treasurer_contact + "'," + manager + ",'" + cover_img + "', '" + logo_img + "' ," + has_block + ", '', '" + updated_by_ip + "' ,'1')";
+                    var inQuery = "INSERT INTO society_master (`name`,`slug`, `address`, `lattitute`, `longtitute`, `owner`, `established_date`, `contact_number`,`chair_person`, `chair_person_contact`,`secretary`,`secretary_contact`,`treasurer`,`treasurer_contact`,`society_manager`, `cover_img`, `general_img`,`has_blocks`, `last_update_time` , `updated_by_ip` , `status`,`chair_person_email`) VALUES ('" + name + "','" + slug + "','" + address + "','" + lat + "','" + long + "','" + owner + "','" + newDate + "','" + contact_number + "', '" + chair_person + "','" + chair_person_contact + "','" + secretary + "','" + secretary_contact + "','" + treasurer + "','" + treasurer_contact + "'," + manager + ",'" + cover_img + "', '" + logo_img + "' ," + has_block + ", '', '" + updated_by_ip + "' ,'1','"+chair_person_email+"')";
                     pool.query(inQuery, this);
                 }
             },
@@ -160,9 +161,36 @@ exports.addSociety = function(formidable, fs, pool, step) {
                                 console.log(err);
                                 result.error = err;
                             } else {
-                                result.success = "Society Registered Successfully";
-                                res.send(JSON.stringify(result));
-                                return;
+                                var text = "";
+                                var randS = randomstring.generate();
+                                for (var i = 0; i < 10; i++) {
+                                  text += randS.charAt(Math.floor(Math.random() * randS.length));
+                                }
+                                var q = 'INSERT INTO chair_person_master(`email`, `password`, `status`) VALUES ("'+chair_person_email+'","'+text+'","1")';
+
+                                pool.query(q,function(err,rows){
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+                                        console.log("chair person");
+                                        transporter.sendMail({
+                                        from: 'man2helpsm@gmail.com',
+                                        to: chair_person_email,
+                                        subject: 'About society rights',
+                                        html: 'Hello' + chair_person + ' !<br/> Your Login Details For Man2Help Chair Person Login are:<br/>Username:'+chair_person_email+'<br/>Passsword:'+text 
+
+                                }, function(error, response) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('email sent');
+                                        result.success = "Society Registered Successfully";
+                                        res.send(JSON.stringify(result));
+                                        return;
+                                           }
+                                     });
+                                    }
+                                });
                             }
                         });
 

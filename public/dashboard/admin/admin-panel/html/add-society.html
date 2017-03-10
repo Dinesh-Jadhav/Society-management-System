@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="hidden" name="lat" ng-model="society.latitude" class="form-control" placeholder="Latitude" readonly required>
+                                <input type="hidden" name="lat" ng-model="society.latitude" class="form-control" placeholder="Latitude" readonly >
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -89,6 +89,13 @@
                             <div class="form-group">
                                 <label>Chairmen's Contact Number(*)</label>
                                 <input type="text" class="form-control" ng-model="society.chair_person_contact" name="chair_person_contact" placeholder="Enter Chairmen's Contact Number" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
+                                <p ng-show="societyAddForm.chair_person_contact.$invalid && !societyAddForm.chair_person_contact.$pristine" class="help-block red-text">Please enter chairmen's valid 10 digit contact number</p>
+                            </div>
+                        </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Chairmen's Email(*)</label>
+                                <input type="email" class="form-control" ng-model="society.chair_person_email" name="chair_person_email" placeholder="Enter Chairmen's email" required>
                                 <p ng-show="societyAddForm.chair_person_contact.$invalid && !societyAddForm.chair_person_contact.$pristine" class="help-block red-text">Please enter chairmen's valid 10 digit contact number</p>
                             </div>
                         </div>

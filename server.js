@@ -251,7 +251,7 @@
     /* Slug Society and other functionality */
     app.post('/checkSlug', slugSociety.checkSlug(slug, moment, async, pool));
     app.post('/addSlug', slugSociety.addSlug(slug, moment, async, pool));
-    app.post('/addSociety', society.addSociety(formidable, fs, pool, step));
+    app.post('/addSociety', society.addSociety(formidable, fs, pool,transporter , randomstring, step));
     app.post('/uploadPhoto', photoUpload.uploadPhoto(formidable, fs, pool));
     app.post('/getSlug', society.getSlug(pool, slug));
 

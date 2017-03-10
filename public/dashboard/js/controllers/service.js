@@ -23,7 +23,6 @@ socialApp.controller('serviceList', ['$scope', '$http', '$routeParams', '$route'
 
          $scope.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef([6])
-                              .withTitle('Date')
                               .withOption('type', 'date')
         ];
 

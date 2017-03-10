@@ -672,6 +672,7 @@ exports.neighbourList = function(pool) {
 exports.updateresidentProfileAllDetails = function(pool) {
     return function(req, res) {
         var request = req.body;
+        //console.log(JSON.stringify(req.body));    
         var resident_id = request.resident_id;
         /*For Master*/
         var name = request.name;
@@ -683,6 +684,17 @@ exports.updateresidentProfileAllDetails = function(pool) {
         if (typeof(str[2]) != "undefined" && str[2] !== null) {
             last_name = last_name + " " + str[2];
         }
+        var vehicle_type
+        if(request.vehicle_type==true){
+            vehicle_type= 1;
+        }else if(request.vehicle_type1==true){
+            vehicle_type= 2;
+        }else if((request.vehicle_type1==true) && (request.vehicle_type==true)){
+            vehicle_type= 3;
+        }else{
+            vehicle_type= 0;
+        }
+
 
         /*For Meta*/
         var blood_group = request.blood_group;
@@ -692,7 +704,7 @@ exports.updateresidentProfileAllDetails = function(pool) {
         var pan_number = request.pan_number;
         var have_pet = request.have_pet;
         var have_vehicle = request.have_vehicle;
-        var vehicle_type = request.vehicle_type;
+         
         var no_of_vehicle = request.no_of_vehicle;
         var no_of_pets = request.no_of_pets;
         var contact_no = request.contact_no;

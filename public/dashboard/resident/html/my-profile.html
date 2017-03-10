@@ -148,34 +148,33 @@
                             <div class="form-group" ng-show="profileDetails.have_vehicle=='Y'">
                                 <label>Vehicle Type</label>
                                 <label class="radio-inline">
-                                    <input type="checkbox" ng-model="profileDetails.vehicle_type1" id="vehicletype" name="vehicletype2" value="2-Wheeler">2 - Wheelers
+                                    <input type="checkbox" ng-model="profileDetails.vehicle_type1" id="vehicletype" name="vehicletype2" value="1">2 - Wheelers
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="checkbox" ng-model="profileDetails.vehicle_type" id="vehicletype" name="vehicletype2" value="4-Wheeler">4 - Wheelers
+                                    <input type="checkbox" ng-model="profileDetails.vehicle_type" id="vehicletype" name="vehicletype" value="2">4 - Wheelers
                                 </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group" ng-show="profileDetails.vehicle_type1=='2-Wheeler' && profileDetails.have_vehicle=='Y'">
+                                <div class="form-group" ng-show="profileDetails.vehicle_type1==true &&
+                                profileDetails.vehicle_type==false && profileDetails.have_vehicle=='Y'">
                                     <label>Enter the number of 2-Wheelers</label>
                                     <input type="text" class="form-control" ng-model="profileDetails.no_of_vehicle" placeholder="Enter number of Vehicles">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" ng-show="profileDetails.vehicle_type2=='4-Wheeler' && profileDetails.have_vehicle=='Y'">
-                                    <label>Ent4-Wheelerer the number of 4-Wheelers</label>
+                                <div class="form-group" ng-show="profileDetails.vehicle_type==true && profileDetails.vehicle_type1==false && profileDetails.have_vehicle=='Y'">
+                                    <label>Enter the number of 4-Wheelers</label>
                                     <input type="text" class="form-control" ng-model="profileDetails.no_of_vehicle" placeholder="Enter number of Vehicles">
                                 </div>
                             </div>
-
                             <div class="col-md-6">
-                                <div class="form-group" ng-show="profileDetails.vehicle_type1=='4-Wheeler' && profileDetails.vehicle_type2=='2-Wheeler' && profileDetails.have_vehicle=='Y'">
+                                <div class="form-group" ng-show="profileDetails.vehicle_type==true && profileDetails.vehicle_type1==true && profileDetails.have_vehicle=='Y'">
                                     <label>Enter number of vehicles</label>
                                     <input type="text" class="form-control" ng-model="profileDetails.no_of_vehicle" placeholder="Enter number of Vehicles">
                                 </div>
                             </div>
-                            
                         </div>
                         <!-- <div class="col-sm-6">
     <div class="form-group" ng-show="profileDetails.vehicle_type=='4-Wheeler' && profileDetails.have_vehicle=='Y'">

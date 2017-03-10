@@ -1,6 +1,7 @@
 socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$window','$route', function($scope, $http, $interval, $timeout, $window,$route) {
     $scope.help = {
-       
+        /* time: '9am-12pm',
+         service: 'Architech'*/
     };
 
     /*$http.post('/ListServices').success(function(response){
@@ -12,6 +13,10 @@ socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$wind
     $scope.requestHelp = function() {
         $http.post('/helpDetails', $scope.help).success(function(response) {
             console.log(response);
+            /*if(response.hasOwnProperty('status') && response.status==200){
+                console.log('hssssssss');
+                alert('Your Service Logged Successfully'); 
+            }*/
             $scope.help={};
             $timeout(function() {
                $scope.$emit('UNLOAD');
@@ -40,7 +45,6 @@ socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$wind
         if (response.hasOwnProperty('success')) {
             $scope.services = response.data;
         }
-
         $timeout(function() {
             $scope.$emit('UNLOAD');
         }, 500);

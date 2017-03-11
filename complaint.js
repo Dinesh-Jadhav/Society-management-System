@@ -100,12 +100,12 @@ exports.complaintToManager = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var result = {};
 
-        var query = "select cm.id, r.*, fm.flat_number,cm.resident_id as r_name,cm.subject, cm.complaint, cm.suggestion, DATE_FORMAT(cm.date, '%d %M, %Y %H:%m:%s') as date,CASE cm.status WHEN '0' THEN 'Pending' WHEN '1' THEN 'Under Surveillance' WHEN '2' THEN 'Resolved' ELSE NULL END AS complaint_status from complaint_master cm INNER JOIN residents r ON r.id = cm.resident_id INNER JOIN flat_master fm ON fm.id = r.flat_id INNER JOIN block_master bm ON bm.id = fm.block_id INNER JOIN society_manager sm ON sm.id = bm.block_manager  where sm.id ='" + id + "' and bm.id = '" + block_id + "' and cm.status='" + status + "'";
+        var query = "select cm.id, cm.resident_id,cm.subject, cm.complaint, cm.suggestion,r.first_name,fm.flat_number, DATE_FORMAT(cm.date, '%d %M, %Y %H:%m:%s') as date,CASE cm.status WHEN '0' THEN 'Pending' WHEN '1' THEN 'Under Surveillance' WHEN '2' THEN 'Resolved' ELSE NULL END AS complaint_status from complaint_master cm INNER JOIN residents r ON r.id = cm.resident_id INNER JOIN flat_master fm ON fm.id = r.flat_id INNER JOIN block_master bm ON bm.id = fm.block_id INNER JOIN society_manager sm ON sm.id = bm.block_manager where sm.id ='" + id + "' and bm.id = '" + block_id + "' and cm.status='" + status + "'";
         if (search_key != '') {
             query += ' AND (resident_id like "%' + search_key + '%" or subject like  "%' + search_key + '%" or complaint like  "%' + search_key + '%" or suggestion like  "%' + search_key + '%" )';
         }
 
-        query += " order by cm.date desc";
+        query += " order by id desc";
         pool.query(query, function(err, rows, fields) {
             if (err) {
                 console.log(err);

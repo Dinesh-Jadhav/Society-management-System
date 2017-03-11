@@ -133,7 +133,7 @@ socialApp.controller('pendingComplaintList',['$scope', '$http', '$location', '$c
         var residentId = JSON.parse(window.localStorage.getItem('userDetails'));
         var id = residentId.id;
         var block_id = atob($routeParams.blockID);
-        $scope.dtColumns = [
+            $scope.dtColumns = [
             //here We will add .withOption('name','column_name') for send column name to the server 
             DTColumnBuilder.newColumn("id", "Complaint ID").notSortable(),
             DTColumnBuilder.newColumn("first_name","Resident Name").notSortable(),

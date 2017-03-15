@@ -183,7 +183,7 @@ exports.listOfRequestedServicesToResident = function(pool) {
 
         var resident_id = req.body.id;
         var result = {};
-        var Q = 'select sm.id, sm.service_name, sr.* from service_master sm INNER JOIN service_request sr ON sm.id = sr.service_type where sr.resident_id = "' + resident_id + '" ';
+        var Q = 'select sm.id, sm.service_name, sr.* from service_master sm INNER JOIN service_request sr ON sm.id = sr.service_type where sr.resident_id = "' + resident_id + '" order by date desc';
 
         pool.query(Q, function(err, rows, fields) {
 
@@ -205,7 +205,7 @@ exports.listOfRequestedServicesManager = function(pool) {
 
         var block_id = req.body.block_id;
         var result = {};
-        var Q = 'select sr.*,sm.* from service_request sr INNER join residents r on sr.resident_id = r.id Inner JOIN flat_master fm On fm.id = r.flat_id INNER JOIN service_master sm On sm.id = sr.service_type where fm.block_id = "' + block_id + '"';
+        var Q = 'select sr.*,sm.* from service_request sr INNER join residents r on sr.resident_id = r.id Inner JOIN flat_master fm On fm.id = r.flat_id INNER JOIN service_master sm On sm.id = sr.service_type where fm.block_id = "' + block_id + '" order by sr.date desc';
 
         pool.query(Q, function(err, rows, fields) {
 

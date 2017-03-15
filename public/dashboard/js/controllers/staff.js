@@ -277,7 +277,19 @@ socialApp.controller('RequestServent', ['$scope', '$http', '$location', '$route'
 
 }]);
 
-socialApp.controller('staffListForRessident', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+socialApp.controller('staffListForRessident', ['$scope', '$http', '$timeout','DTOptionsBuilder','DTColumnDefBuilder', function($scope, $http, $timeout,DTOptionsBuilder,DTColumnDefBuilder) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [3, 'desc'])
+        .withButtons([
+            'print',
+            'excel',
+            'pdf'
+        ]);
+
+        $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([3])
+                              .withOption('type', 'date')
+        ];
     var userDetails = JSON.parse(window.localStorage.getItem('userDetails'));
     var id = userDetails.id;
     $scope.AllRequests = [];

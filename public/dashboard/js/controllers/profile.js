@@ -71,13 +71,17 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
     var userDetail = JSON.parse(window.localStorage.getItem('userDetails'));
 
     $http.get('/getresidentInfo?id=' + userDetail.id).success(function(response) {
-
+          
         if (response.hasOwnProperty('success')) {
 
             $scope.profileDetails = JSON.parse(response.success);
-
+            console.log($scope.profileDetails);
             if ($scope.profileDetails.aadhar_number == null) {
                 $scope.profileDetails.aadhar_number = '';
+            }
+            
+            if ($scope.profileDetails.id_image == null) {
+                $scope.profileDetails.id_image = '';
             }
 
             if ($scope.profileDetails.blood_group == null) {
@@ -95,7 +99,9 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
 
             if ($scope.profileDetails.date_of_birth == null) {
                 $scope.profileDetails.date_of_birth = new Date();
-            } else {
+            } 
+
+           else {
                 $scope.profileDetails.date_of_birth = new Date($scope.profileDetails.date_of_birth);
             }
 
@@ -115,20 +121,76 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
             $scope.profileDetails.signature = response.photoId;
         });
     };
+
+    $scope.uploadId = function() {
+        var file = $scope.idFile;
+        if (angular.isUndefined(file)) {
+            return;
+        }
+        var uploadUrl = "/uploadPhoto";
+        var res = fileUpload.uploadFileToUrl(file, uploadUrl);
+        res.success(function(response) {
+            $scope.profileDetails.idProof = response.photoId;
+            //console.log($scope.profileDetails.idProof);
+        });
+    };
+   
+    $scope.checkbox1= function(){
+        if($scope.profileDetails.vehicle_type1=='true'){
+            //$scope.profileDetails.vehicle_type1.checked=false;
+            $scope.profileDetails.vehicle_type1=false;
+        }
+        if($scope.profileDetails.vehicle_type1=='false'){
+            //$scope.profileDetails.vehicle_type1.checked=false;
+            $scope.profileDetails.vehicle_type1=true;
+        }
+    }
+    $scope.checkbox2= function(){
+        if($scope.profileDetails.vehicle_type=='true'){
+           // $scope.profileDetails.vehicle_type.checked=false;
+            $scope.profileDetails.vehicle_type=false;
+        }
+        if($scope.profileDetails.vehicle_type=='false'){
+           // $scope.profileDetails.vehicle_type.checked=false;
+            $scope.profileDetails.vehicle_type=true;
+        }
+    }
+    
     $scope.updateProfileDetails = function() {
 
-        var url = '/updateresidentProfileAllDetails';
-        var data = $scope.profileDetails;
-        console.log($scope.profileDetails);
+        
+        
         if ($scope.profileDetails.have_pet == 'N') {
             $scope.profileDetails.no_of_pets = '';
         }
         if ($scope.profileDetails.have_vehicle == 'N') {
             $scope.profileDetails.vehicle_type = '';
             $scope.profileDetails.no_of_vehicle = '';
+             $scope.profileDetails.vehicle_type1 = '';
+            $scope.profileDetails.four_wc = '';
         }
-        $http.post(url, data).success(function(response) {
+          
+        if (($scope.profileDetails.have_vehicle == 'y') && ($scope.profileDetails.vehicle_type == '') && ($scope.profileDetails.vehicle_type1 == '')) {
+            $scope.profileDetails.vehicle_type = '';
+            $scope.profileDetails.no_of_vehicle = '';
+             $scope.profileDetails.vehicle_type1 = '';
+            $scope.profileDetails.four_wc = '';
+        } 
+          
+        if ($scope.profileDetails.vehicle_type ==false){
+           //$scope.profileDetails.vehicle_type = '';
+            $scope.profileDetails.four_wc = '';
+        }
 
+        if ($scope.profileDetails.vehicle_type1 ==false){
+           //$scope.profileDetails.vehicle_type1 = '';
+            $scope.profileDetails.no_of_vehicle = '';
+        }
+        //console.log($scope.profileDetails);
+        var url = '/updateresidentProfileAllDetails';
+        var data = $scope.profileDetails; 
+        console.log(data);
+         $http.post(url, data).success(function(response) {
             if (response.hasOwnProperty('success')) {
                 window.localStorage.setItem('userDetails', JSON.stringify(data));
                 $route.reload();
@@ -137,4 +199,4 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
             }
         });
     }
-}])
+}]);

@@ -130,7 +130,7 @@ socialApp.controller('RequestedFacilityListForResident', ['$scope', '$http', '$t
     var userDetails = JSON.parse(window.localStorage.getItem('userDetails'));
     var id = userDetails.id;
     $scope.Facilities = [];
-    $http.post('/listOfRequestedFacilitiesForResident', { resident_id: id }).success(function(response) {
+    $http.post('/listOfRequestedFacilitiesForResident1', { resident_id: id }).success(function(response) {
 
         if (response.hasOwnProperty('success')) {
             angular.forEach(response.data, function(item, key) {

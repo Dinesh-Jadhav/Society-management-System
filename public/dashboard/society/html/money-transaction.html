@@ -72,6 +72,12 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="income.chequeno" placeholder="Enter Cheque number" name="chkno" ng-show="income.mode=='2'" required>
+                            </div>
+                            <p ng-show="incomeAdddFrm.chkno.$invalid && !incomeAdddFrm.chkno.$pristine" class="help-block red-text">Enter Cheque number</p>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
                             <button class="btn btn-success pull-right" ng-disabled="incomeAdddFrm.$invalid" ng-click="incomeAddFrm()">Submit</button>
                         </div>
                     </div>

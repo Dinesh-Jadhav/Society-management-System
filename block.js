@@ -158,3 +158,7 @@ exports.getSingleBlock= function(pool,slug){
         });
     }
 };
+
+/*exports.block_chairman= function(pool){
+ 
+}*/

@@ -202,18 +202,16 @@ socialApp.directive('man2helpForm', ['$compile', '$http', '$location','$route', 
             }
 
         scope.requestHelp = function() {
-        console.log(scope.help.city);
-scope.help1=
+       scope.help1=
        {
         resident_id:scope.userDetail.id,
         service_id:scope.help.service,
         req_date:scope.help.date,
         resident_commnet:scope.help.city,
         };
-        console.log(scope.help1);
         $http.post('/service_request',scope.help1).success(function(response) {
-            console.log("log request successfully")
-        })
+            alert("service log successfully");
+            })
           }             
             scope.man2helpFormClose = function() {
                 scope.man2help = false;

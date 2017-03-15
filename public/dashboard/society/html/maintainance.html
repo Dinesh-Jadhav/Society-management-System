@@ -104,9 +104,7 @@
                                         <td>{{req.amount}}</td>
                                         <td>{{req.penalty}}</td>
                                         <td>{{req.last_payment_date | date: 'dd MMM,yyyy'}}</td>
-                                        <td>
-                                            <!-- <a href="#/all-resident/{{id}}/{{req.enID}}" title="All Resident's"><i class="fa fa-list"></i></a> |  --><a href="#/paid-resident/{{id}}/{{req.enID}}" title="Paid Resident"><i class="fa fa-user-plus"></i></a> | <a href="#/unpaid-resident/{{id}}/{{req.enID}}" title="Unpaid Resident"><i class="fa fa-user-times"></i></a>
-                                        </td>
+                                        <td><a href="#/paid-resident/{{id}}/{{req.enID}}" title="Paid Resident"><i class="fa fa-user-plus"></i></a> | <a href="#/unpaid-resident/{{id}}/{{req.enID}}" title="Unpaid Resident"><i class="fa fa-user-times"></i></a>|<a href="javascript:void(0)" ng-click="deletemaintanance(req.enID)" title="delete"><i class="fa fa-trash"></i></a>|<a href="#" data-toggle="modal" data-target="#myModal1" ng-click="updatemaintananceId(req.enID)"><i class="fa fa-edit"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -118,5 +116,71 @@
     </div>
     <!-- /.container-fluid -->
 </div>
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Details</h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="pull-left">Maintenance</h4>
+                <form name="updateContributionDetail">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">From Date </label>
+                                <input class="form-control" type="text" placeholder="Enter from date" name="last" ng-model="contriDetail.month"  datetimepicker required>
+                                    <p ng-show="updateContributionDetail.last.$invalid && !updateContributionDetail.last.$pristine" class="help-block red-text">Please select From Date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">To Date </label>
+                                <input class="form-control" type="text" placeholder="Enter to date" name="last" ng-model="contriDetail.year"  datetimepicker required>
+                                    <p ng-show="updateContributionDetail.last.$invalid && !updateContributionDetail.last.$pristine" class="help-block red-text">Please select To Date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="pull-left">Last Payment Date</label>
+                                <input class="form-control" type="text" placeholder="Enter last payment date" name="last" ng-model="contriDetail.last_payment_date" data-mindate="{{today}}" datetimepicker required>
+                                <p ng-show="updateContributionDetail.last.$invalid && !updateContributionDetail.last.$pristine" class="help-block red-text">Please select Last Payment Date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="text" placeholder="Enter amount" class="form-control" name="desc" ng-model="contriDetail.amount" required></input>
+                                <p ng-show="updateContributionDetail.desc.$invalid && !updateContributionDetail.desc.$pristine" class="help-block red-text">Please enter Amount</p>
+                            </div>
+                        </div>
+                         <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Penalty</label>
+                                <input type="text" placeholder="Enter penalty amount" class="form-control" name="desc" ng-model="contriDetail.penalty" required></input>
+                                <p ng-show="updateContributionDetail.desc.$invalid && !updateContributionDetail.desc.$pristine" class="help-block red-text">Please enter Amount penalty</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+            
+            <div class="modal-footer">
+                <button type="button" ng-disabled="updateContributionDetail.$invalid" ng-click="updatemaintanance()" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </form>
+            </div>
+
 <!-- /#page-wrapper -->
 <society-footer></society-footer>

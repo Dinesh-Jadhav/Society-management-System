@@ -104,6 +104,7 @@ exports.addManager = function(pool, randomstring, crypto, transporter) {
                 var merchant_key = $data.merchant_key;
                 var merchant_id = $data.merchant_id;
                 var merchant_salt = $data.merchant_salt;
+                var phoneNumber = $data.phonenumber;
                 var text = "";
                 var randS = randomstring.generate();
                 for (var i = 0; i < 8; i++) {
@@ -118,7 +119,7 @@ exports.addManager = function(pool, randomstring, crypto, transporter) {
                     }else{
             if(rows.length>0){
             var image1 = rows[0].imgName;
-            var query = "INSERT INTO society_manager (`idType`,`idNumber`, `manager_name`,  `email`,`password`,`description`,`status`,`merchant_key`,`merchant_id`,`merchant_salt`,`added_date`,`idImage`) VALUES ('" + idType + "','" + idNumber + "','" + manager_name + "','" + email + "','" + password + "','" + description + "','1','" + merchant_key + "','" + merchant_id + "','" + merchant_salt + "',now(),'"+image1+"')";
+            var query = "INSERT INTO society_manager (`idType`,`idNumber`, `manager_name`,  `email`,`password`,`description`,`status`,`added_date`,`idImage`,`Phone_Number`) VALUES ('" + idType + "','" + idNumber + "','" + manager_name + "','" + email + "','" + password + "','" + description + "','1',now(),'"+image1+"','"+phoneNumber+"')";
             pool.query(query, function(err, rows, fields) {
             if (err) {
             console.log(err);

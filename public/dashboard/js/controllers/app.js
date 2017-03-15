@@ -5,9 +5,6 @@ var socialApp = angular.module('socialApp', ['ngRoute', 'datatables', 'datatable
 socialApp.value('socketUrl', 'https://man2helpsm.herokuapp.com');
 socialApp.config(function($routeProvider, $crypthmacProvider, $httpProvider) {
 
-    /*$httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';*/
-
-    /*Routes for admin*/
     $routeProvider.when('/admin-login', {
         controller: 'login',
         templateUrl: 'admin/login/login.html',

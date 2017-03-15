@@ -67,6 +67,12 @@ socialApp.controller('serviceAll', ['$scope', '$http', '$route', 'DTOptionsBuild
             'pdf'
         ]);
 
+
+         $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([5])
+                              .withOption('type', 'date')
+        ];
+
     $scope.services = [];
     $scope.$emit('LOAD');
     $http.post('/ListServices').success(function(response) {
@@ -257,7 +263,6 @@ socialApp.controller('homeserviceList', ['$scope','$http','$timeout','DTOptionsB
 
         $scope.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef([4])
-                              .withTitle('Date')
                               .withOption('type', 'date')
         ];
 

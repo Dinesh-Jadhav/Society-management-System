@@ -161,7 +161,7 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
                                 console.log(err);
                                 result.error = err;
                             } else {
-                                var text = "";
+                                /*var text = "";
                                 var randS = randomstring.generate();
                                 for (var i = 0; i < 10; i++) {
                                   text += randS.charAt(Math.floor(Math.random() * randS.length));
@@ -190,7 +190,11 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
                                            }
                                      });
                                     }
-                                });
+                                });*/
+                              result.success = "Society Registered Successfully";
+                                        res.send(JSON.stringify(result));
+                                        return;
+                                          
                             }
                         });
 
@@ -661,7 +665,7 @@ exports.homePageRequestList = function(pool) {
     return function(req, res) {
         var data = {};
         //var vendor_id = req.body.vendor_id;
-        var query = 'SELECT * FROM help_master order by id desc';
+        var query = 'SELECT * FROM help_master order by date desc';
         res.setHeader('Content-Type', 'application/json');
         pool.query(query, function(err, rows, fields) {
             if (err) {

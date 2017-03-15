@@ -40,8 +40,18 @@
                             </div>
                         </div>
                     </div>
+
+                    
                     
                     <div class="row">
+                                      <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" name="societyEstDate" ng-model="manager.phonenumber" class="form-control" placeholder="Enter Phone Number" minlength="10" maxlength="10" required>
+                                <p ng-show="societyAddForm.societyEstDate.$invalid && !societyAddForm.societyEstDate.$pristine" class="help-block red-text">Please enter valid Phone Number</p>
+                            </div>
+                        </div>
+     
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Id Proof(Optional)</label>
@@ -55,14 +65,15 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>ID Number(Optional)</label>
                                 <input type="text" class="form-control" ng-model="manager.idNumber" name="contact" placeholder="Enter ID Number">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ID Proof File</label>

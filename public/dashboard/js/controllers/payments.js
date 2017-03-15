@@ -798,6 +798,53 @@ socialApp.controller('maintainanceManager', ['$scope', '$route', '$routeParams',
                 $scope.main.push(value);
             });
         }
+
+        $scope.deletemaintanance=function(id){
+        var returnVal = confirm('Are You Sure ?');
+        if (!returnVal) {
+            return;
+        }
+        $scope.$emit('LOAD');
+        var id = atob(id)
+        console.log(id)
+        $http.post('/deletemaintanance', { mid: id, block_id: block_id }).success(function(response) {
+            $scope.$emit('UNLOAD');
+            if (response.hasOwnProperty('success')) {
+                $route.reload();
+            }
+        });
+       }
+
+        $timeout(function() {
+            $scope.$emit('UNLOAD');
+        }, 1000);
+        $scope.contriDetail={};
+        $scope.updatemaintananceId = function(id){
+              var id = atob(id);
+              $scope.contriDetail.id = id;
+        $http.post('/singlemaintanance', { mid: id , block_id: block_id }).success(function(response) {
+             if (response.hasOwnProperty('success')) {
+                $scope.contriDetail.amount = response.data.amount;
+                $scope.contriDetail.last_payment_date = response.data.last_payment_date;
+                $scope.contriDetail.month = response.data.month;
+                $scope.contriDetail.penalty = response.data.penalty;
+                $scope.contriDetail.year = response.data.year;
+
+            }
+        });
+        }
+        $scope.updatemaintanance = function(){
+        
+        $http.post('/updatemaintanance', $scope.contriDetail).success(function(response) {
+              if (response.hasOwnProperty('success')) {
+                $timeout(function() {
+                    $scope.$emit('UNLOAD');
+                    $route.reload();
+                }, 500);
+            }
+            
+       });
+       }
         $timeout(function() {
             $scope.$emit('UNLOAD');
         }, 1000);
@@ -902,7 +949,7 @@ socialApp.controller('Due', ['$scope', '$http', '$location', '$routeParams', '$r
                 $scope.PayDues = response.data;
                 $scope.noData = true;
                 /*Define PayuCredentials*/
-                var SALT = salt; //"yIEkykqEH3";
+                var SALT = Salt; //"yIEkykqEH3";
 
                 var protocol = $location.protocol();
                 var host = $location.host();

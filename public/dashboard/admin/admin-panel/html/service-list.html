@@ -41,7 +41,7 @@
                                 <td>{{facility.flat_number}}</td>
                                 <td>{{facility.resident_name}}</td>
                                 <td>{{facility.service_name}}</td>
-                                <td>{{facility.reqired_date | date: 'dd MMM, yyyy'}}</td>
+                                <td>{{facility.reqired_date | date: 'dd MMM, yyyy hh:mm a'}}</td>
                                 <td>{{facility.resident_comment}}</td>
                                 <td>{{facility.status}}</td>
                                 <td><span ng-show="facility.status=='Requested'"><a title="Update Status to Under Surveillance" href="javascript:void(0)" ng-click="UpdateStatus(facility.id, 1)"><i class="fa fa-arrow-right" style="margin:5% !important"></i></a>|</span><span ng-hide="facility.status=='Done'"><a title="Update Status to Resolved" ng-click="setId(facility.id)" data-toggle="modal" data-target="#myModal1" href="#"><i class="fa fa-check" style="margin:5% !important"></i></a>|</span><span><a href="#/resident-service-info-details/{{facility.resident_id}}" target="_blank" title="Know More"><i class="fa fa-question-circle" aria-hidden="true"></i></a></span>

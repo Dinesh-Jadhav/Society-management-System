@@ -366,6 +366,7 @@
     app.post('/sendApproveDetailsToResidentAboutFacility', facility.sendApproveDetailsToResidentAboutFacility(pool, transporter));
     app.post('/listOfFacilitiesForResident', facility.listOfFacilitiesForResident(pool));
     app.post('/listOfRequestedFacilitiesForResident', facility.listOfRequestedFacilitiesForResident(pool));
+    app.post('/listOfRequestedFacilitiesForResident1', facility.listOfRequestedFacilitiesForResident1(pool));
     app.post('/facilityRequestesForManager', facility.facilityRequestesForManager(pool));
 
     /*vendor*/
@@ -469,6 +470,11 @@
     app.post('/getMaintainanceDetails', maintainance.getMaintainanceDetails(pool));
     app.post('/amoutForPerticularmaintainanance', maintainance.amoutForPerticularmaintainanance(pool));
     app.post('/updatePenaltyAmount', maintainance.updatePenaltyAmount(pool))
+    app.post('/deletemaintanance', maintainance.deletemaintanance(pool));
+    app.post('/singlemaintanance', maintainance.singlemaintanance(pool));
+    app.post('/updateMaintanance', maintainance.updateMaintanance(pool));
+
+    
 
     /*Contribution */
     app.post('/addContribution', contribution.addContribution(pool));

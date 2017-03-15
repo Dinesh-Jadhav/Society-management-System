@@ -3,7 +3,7 @@ exports.residentAllFacilityMaintainance = function(pool){
         res.setHeader('contentg-Type','application/json');
         var result = {};
         var resident_id = req.body.resident_id;
-        var Q= 'select fr.*, fr.id as req_id, fr.status as request_status, fm.* from facility_request fr inner join facility_master fm on fm.id = fr.facility_id where fr.resident_id="'+resident_id+'" and fr.status=1';
+        var Q= 'select fr.*, fr.id as req_id, fr.status as request_status, fm.* from facility_request fr inner join facility_master fm on fm.id = fr.facility_id where fr.resident_id="'+resident_id+'" and fr.status=1 and fm.charges!=0';
         pool.query(Q,function(err,rows){
             if(err){
                 console.log(err);

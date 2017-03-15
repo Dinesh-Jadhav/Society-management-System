@@ -343,3 +343,70 @@ exports.defaulterResidentList = function(pool) {
         });
     };
 }
+
+
+exports.deletemaintanance = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var block_id = req.body.block_id;
+        var mid= req.body.mid;
+        var result = {}
+        var querystring = 'delete from maintainance_master where id="'+mid +'" and block_id = "'+block_id+'"';
+        pool.query(querystring, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.success = "mantainance successfully displayed";
+                res.send(JSON.stringify(result));
+            };
+        });
+    };
+}
+
+exports.singlemaintanance = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var block_id = req.body.block_id;
+        var mid= req.body.mid;
+        var result = {}
+        var querystring = 'select * from maintainance_master where id="'+mid +'" and block_id = "'+block_id+'"';
+        pool.query(querystring, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows[0];
+                result.success = "mantainance successfully displayed";
+                res.send(JSON.stringify(result));
+            };
+        });
+    };
+}
+
+exports.updateMaintanance = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        console.log(JSON.stringify(req.body))
+        var month = req.body.month;
+        var year = req.body.year;
+        var amount = req.body.amount;
+        var last_payment_date = req.body.last_payment_date;
+        var penalty = req.body.penalty;
+        //var block_id = req.body.block_id;
+        var mid= req.body.id;
+        var result = {}
+        var querystring = 'UPDATE `maintainance_master` SET `month`="'+month+'",`year`="'+year+'",`amount`="'+amount+'",`last_payment_date`="'+last_payment_date+'",`penalty`="'+penalty+'" WHERE id="'+mid +'"';
+        pool.query(querystring, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.success = "mantainance successfully displayed";
+                res.send(JSON.stringify(result));
+            };
+        });
+    };
+}

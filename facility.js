@@ -258,6 +258,26 @@ exports.listOfRequestedFacilitiesForResident = function(pool) {
     }
 }
 
+exports.listOfRequestedFacilitiesForResident1 = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var resident_id = req.body.resident_id;
+        var result = {}
+        var querystring = 'select fr.*, fm.facility_name, fm.charges, fm.description from facility_request fr INNER JOIN  facility_master fm ON fm.id = fr.facility_id INNER JOIN residents r ON fr.resident_id = r.id INNER JOIN flat_master fl_m ON r.flat_id = fl_m.id where resident_id = "' + resident_id + '"';
+        pool.query(querystring, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err)
+            } else {
+                result.data = rows;
+                result.success = "facilities Displayed successfully";
+                res.send(JSON.stringify(result));
+            };
+        });
+    }
+}
+
+
 exports.facilityRequestesForManager = function(pool) {
     return function(req, res) {
         res.setHeader('Content-Type', 'application/json');

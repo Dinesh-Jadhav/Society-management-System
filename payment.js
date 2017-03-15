@@ -343,7 +343,8 @@ exports.paymentByResidentToManagerCashCheck = function(pool) {
         }
         var amount = data.amount;
         var maintainance_id = data.maintainance_id;
-        var Q = 'insert into transaction_history(`resident_id`,`pay_by`,`mode`,`addedon`,`productinfo`,`amount`,`block_id`,`net_amount_debit`) VALUES ("' + resident_id + '","0","' + mode + '",now(),"' + productinfo + '","' + amount + '","' + maintainance_id + '","' + amount + '")';
+        var chequeno = data.chequeno;
+        var Q = 'insert into transaction_history(`resident_id`,`pay_by`,`mode`,`addedon`,`productinfo`,`amount`,`block_id`,`net_amount_debit`,`chequno`) VALUES ("' + resident_id + '","0","' + mode + '",now(),"' + productinfo + '","' + amount + '","' + maintainance_id + '","' + amount + '","' + chequeno + '")';
 
         pool.query(Q, function(err, rows) {
             if (err) {

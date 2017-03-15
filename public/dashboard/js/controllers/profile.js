@@ -131,7 +131,7 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
         var res = fileUpload.uploadFileToUrl(file, uploadUrl);
         res.success(function(response) {
             $scope.profileDetails.idProof = response.photoId;
-            //console.log($scope.profileDetails.idProof);
+            console.log($scope.profileDetails.idProof);
         });
     };
    

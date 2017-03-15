@@ -138,7 +138,18 @@ socialApp.controller('residentInfo', ['$scope', '$routeParams', '$location', '$h
         console.log(response);
         if (response.hasOwnProperty('success')) {
             $scope.residentDetail = JSON.parse(response.success);
-            if($scope.residentDetail.have_pet==null){
+            if($scope.residentDetail.vehicle_type=='true'){
+              $scope.residentDetail.vehicle_type='Y';
+            }
+            if($scope.residentDetail.vehicle_type1=='true'){
+              $scope.residentDetail.vehicle_type1='Y';
+            }
+            if($scope.residentDetail.vehicle_type=='false'){
+              $scope.residentDetail.vehicle_type='N';
+            }
+            if($scope.residentDetail.vehicle_type1=='false'){
+              $scope.residentDetail.vehicle_type1='N';
+            }if($scope.residentDetail.have_pet==null){
               $scope.residentDetail.have_pet='N/A'; 
             }if($scope.residentDetail.parking_name==null){
                $scope.residentDetail.parking_name='N/A'; 

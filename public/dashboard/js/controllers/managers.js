@@ -146,8 +146,9 @@ socialApp.controller('editManager',['$scope', '$http', '$location', '$compile','
             res.success(function(response) {
                 console.log(response.photoId);
                 $scope.manager.image = response.photoId;
+                 $scope.$emit('UNLOAD');
                           });
-            $scope.$emit('UNLOAD');
+
         };        
         $scope.editManager = function(){   
             var value = $scope.manager;

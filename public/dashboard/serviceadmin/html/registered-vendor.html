@@ -1,0 +1,58 @@
+<serviceheader></serviceheader>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <h1 class="page-header">
+                    All Services
+                </h1> -->
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <i class="fa fa-users"></i>Registered Vendor List
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2> Registered Vendor List </h2>
+                <div class="table-responsive">
+                    <table id="entry-grid" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="stripe" width="100%">
+                        <thead>
+                            <th>Vendor Id</th>
+                            <th>Name</th>
+                            <th>Mobile Number</th>
+                            <th>E-Mail</th>
+                            <th>Request Date</th>
+                            <th>Service</th>
+                            <th>Prersonal Message</th>
+                           <!--  <th>Action</th> -->
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="vendor in registerVendor">
+                                <td>{{vendor.id}}</td>
+                                <td>{{vendor.name}}</td>                          
+                                <td>{{vendor.mobile_number}}</td>
+                                <td>{{vendor.email}}</td>
+                                <td>{{vendor.date | date: 'dd MMM, yyyy hh:mm a'}}</td>
+                                <td>{{vendor.service}}</td>
+                                <td>{{vendor.personal_message}}</td>
+                                <!-- <td><span ng-show="facility.status=='Requested'"><a title="Update Status to Under Surveillance" href="javascript:void(0)" ng-click="UpdateStatus(facility.id, 1)"><i class="fa fa-arrow-right" style="margin:5% !important"></i></a>|</span><span ng-hide="facility.status=='Done'"><a title="Update Status to Resolved" ng-click="setId(facility.id)" data-toggle="modal" data-target="#myModal1" href="#"><i class="fa fa-check" style="margin:5% !important"></i></a></span></td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+
+<servicefooter></servicefooter>

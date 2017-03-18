@@ -277,6 +277,8 @@
     app.post('/societyDetails', society.societyDetails(pool));
     app.post('/getResidentsForAdminByBlockId', society.getResidentsForAdminByBlockId(pool));
     app.post('/getTenatsForAdminByBlockId', society.getTenatsForAdminByBlockId(pool));
+    app.post('/vendorRegistration', society.vendorRegistration(pool ,transporter,sms));  
+    app.post('/vendorRegistrationList', society.vendorRegistrationList(pool));
 
     /*service admin*/
     app.post('/service_login', service_admin.service_login(crypto,pool));

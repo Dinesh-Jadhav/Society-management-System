@@ -283,3 +283,23 @@ socialApp.controller('homeserviceList', ['$scope','$http','$timeout','DTOptionsB
         }, 500);
     });
 }]);
+
+socialApp.controller('regVendor', ['$scope', '$http', '$timeout', 'DTOptionsBuilder', 'DTColumnDefBuilder', function($scope, $http, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('order', [4, 'desc'])
+        .withButtons(['print', 'excel', 'pdf']);
+    $scope.dtColumnDefs = [DTColumnDefBuilder.newColumnDef([4])
+        .withOption('type', 'date')
+    ];
+    $scope.registerVendor = [];
+    $scope.$emit('LOAD');
+    $http.post('/vendorRegistrationList').success(function(response) {
+        console.log(response);
+        if (response.hasOwnProperty('success')) {
+            $scope.registerVendor = response.data;
+        }
+        $timeout(function() {
+            $scope.$emit('UNLOAD');
+        }, 500);
+    });
+}]);

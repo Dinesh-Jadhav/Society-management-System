@@ -10,6 +10,11 @@ socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$wind
          $anchorScroll();
     }
 
+    $scope.scrollVendor = function(vid) {
+         $location.hash(vid);
+         $anchorScroll();
+    }
+
     $scope.scrollContact = function(cid) {
          $location.hash(cid);
          $anchorScroll();
@@ -79,4 +84,28 @@ socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$wind
             }, 1500);
         });
     }
+
+    $scope.vendorReg = {};
+    $scope.registerVendor = function() {
+        $http.post('/vendorRegistration', $scope.vendorReg).success(function(response) {
+            $scope.vendorReg = {};
+            $scope.registrationStatus = response.success;
+            setTimeout(function() {
+                $scope.registrationStatus = '';
+                $scope.$apply();
+            }, 1500);
+        });
+    }
+}]);
+
+socialApp.controller('society', ['$scope', '$http', function($scope, $http) {
+    //$scope.dtOptions = DTOptionsBuilder.newOptions().withOption('order', [1, 'desc']).withButtons(['print', 'excel', 'pdf']);
+    $scope.report = [];
+    $http.post('/societyDetails').success(function(response) {
+        console.log(response);
+        if (response.hasOwnProperty('succes')) {
+            $scope.report = response.data;
+            console.log($scope.report);
+        }
+    });
 }]);

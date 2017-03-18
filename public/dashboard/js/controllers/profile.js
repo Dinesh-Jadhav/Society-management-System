@@ -111,6 +111,7 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
     });
 
     $scope.uploadFile = function() {
+        $scope.$emit('LOAD');
         var file = $scope.myFile;
         if (angular.isUndefined(file)) {
             return;
@@ -119,10 +120,12 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
         var res = fileUpload.uploadFileToUrl(file, uploadUrl);
         res.success(function(response) {
             $scope.profileDetails.signature = response.photoId;
+            $scope.$emit('UNLOAD');
         });
     };
 
     $scope.uploadId = function() {
+        $scope.$emit('LOAD');
         var file = $scope.idFile;
         if (angular.isUndefined(file)) {
             return;
@@ -131,6 +134,7 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
         var res = fileUpload.uploadFileToUrl(file, uploadUrl);
         res.success(function(response) {
             $scope.profileDetails.idProof = response.photoId;
+            $scope.$emit('UNLOAD');
             console.log($scope.profileDetails.idProof);
         });
     };
@@ -158,9 +162,7 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
     
     $scope.updateProfileDetails = function() {
 
-        $scope.$apply();
-        
-        if ($scope.profileDetails.have_pet == 'N') {
+       if ($scope.profileDetails.have_pet == 'N') {
             $scope.profileDetails.no_of_pets = '';
         }
         if ($scope.profileDetails.have_vehicle == 'N') {

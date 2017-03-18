@@ -772,9 +772,9 @@ exports.updateresidentProfileAllDetails = function(pool) {
         var first_name = str[0];
         var last_name = str[1];
         if (typeof(str[2]) != "undefined" && str[2] !== null) {
-            last_name = last_name + " " + str[2];
+        last_name = last_name + " " + str[2];
         }
-       
+
         /*For Meta*/
         var blood_group = request.blood_group;
         var date_of_birth = request.date_of_birth;
@@ -804,75 +804,70 @@ exports.updateresidentProfileAllDetails = function(pool) {
         var query = "select imgName from image_temp where id='" + signatureId + "'";
 
         pool.query(query, function(err, rows) {
-            if (err) {
-                console.log(err);
-                result.err = err;
-                res.send(JSON.stringify(result));
-                return;
+        if (err) {
+            console.log(err);
+            result.err = err;
+            res.send(JSON.stringify(result));
+            return;
+        } else {
+            if (rows.length > 0) {
+                signatureImg = rows[0].imgName;
             } else {
-                if (rows.length > 0) {
-                    signatureImg = rows[0].imgName;
+                signatureImg = signature_file;
+            }
+            var UpdateMasterQuery = 'update residents set first_name="' + first_name + '", last_name="' + last_name + '", contact_no="' + contact_no + '", ownership="' + ownership + '" where id="' + resident_id + '"';
+            pool.query(UpdateMasterQuery, function(err, rows) {
+                if (err) {
+                    console.log(err);
+                    result.err = err;
+                    res.send(JSON.stringify(result));
+                    return;
                 } else {
-                    signatureImg = signature_file;
-                }
-
-                var UpdateMasterQuery = 'update residents set first_name="' + first_name + '", last_name="' + last_name + '", contact_no="' + contact_no + '", ownership="' + ownership + '" where id="' + resident_id + '"';
-
-                pool.query(UpdateMasterQuery, function(err, rows) {
-                    if (err) {
+                    var query1 = "select imgName from image_temp where id='" + profileId + "'";
+                    pool.query(query1, function(err, rows) {
+                        if (err) {
                         console.log(err);
                         result.err = err;
                         res.send(JSON.stringify(result));
                         return;
-                    } else {
-                        
-        var query1 = "select imgName from image_temp where id='" + profileId + "'";
-
-        pool.query(query1, function(err, rows) {
-            if (err) {
-                console.log(err);
-                result.err = err;
-                res.send(JSON.stringify(result));
-                return;
-            } else {
-                if (rows.length > 0) {
-                    profileImg = rows[0].imgName;
-                     var InsertOrUpdateMetaQuery = 'insert into resident_meta(resident_id, blood_group, date_of_birth, signature_file,id_image, aadhar_number, voter_id_number, pan_number, have_pet, have_vehicle, vehicle_type, no_of_vehicle, no_of_pets, status,vehicle_type1,four_wc) values("' + resident_id + '", "' + blood_group + '", "' + date_of_birth + '", "' + signatureImg + '","'+profileImg+'", "' + aadhar_number + '", "' + voter_id_number + '", "' + pan_number + '", "' + have_pet + '","' + have_vehicle + '", "' + vehicle_type + '", "' + no_of_vehicle + '", "' + no_of_pets + '","1","' + vehicle_type1 + '","' + four_wheeler + '") ON DUPLICATE KEY update blood_group="' + blood_group + '", date_of_birth="' + date_of_birth + '", signature_file="' + signatureImg + '",id_image="' + profileImg + '", aadhar_number="' + aadhar_number + '", voter_id_number="' + voter_id_number + '", pan_number="' + pan_number + '", have_pet="' + have_pet + '", have_vehicle="' + have_vehicle + '", vehicle_type="' + vehicle_type + '", no_of_vehicle="' + no_of_vehicle + '", no_of_pets="' + no_of_pets + '", vehicle_type1="' + vehicle_type1 + '",four_wc="' + four_wheeler + '"';
-                        pool.query(InsertOrUpdateMetaQuery, function(err, rows) {
-                            if (err) {
-                                console.log(err);
-                                result.err = err;
-                                res.send(JSON.stringify(result));
-                                return;
-                            }else{
-                                result.success='Result Displayed Successfully';
-                                res.send(JSON.stringify(result));
+                            } else {
+                            if (rows.length > 0) {
+                                profileImg = rows[0].imgName;
+                                var InsertOrUpdateMetaQuery = 'insert into resident_meta(resident_id, blood_group, date_of_birth, signature_file,id_image, aadhar_number, voter_id_number, pan_number, have_pet, have_vehicle, vehicle_type, no_of_vehicle, no_of_pets, status,vehicle_type1,four_wc) values("' + resident_id + '", "' + blood_group + '", "' + date_of_birth + '", "' + signatureImg + '","'+profileImg+'", "' + aadhar_number + '", "' + voter_id_number + '", "' + pan_number + '", "' + have_pet + '","' + have_vehicle + '", "' + vehicle_type + '", "' + no_of_vehicle + '", "' + no_of_pets + '","1","' + vehicle_type1 + '","' + four_wheeler + '") ON DUPLICATE KEY update blood_group="' + blood_group + '", date_of_birth="' + date_of_birth + '", signature_file="' + signatureImg + '",id_image="' + profileImg + '", aadhar_number="' + aadhar_number + '", voter_id_number="' + voter_id_number + '", pan_number="' + pan_number + '", have_pet="' + have_pet + '", have_vehicle="' + have_vehicle + '", vehicle_type="' + vehicle_type + '", no_of_vehicle="' + no_of_vehicle + '", no_of_pets="' + no_of_pets + '", vehicle_type1="' + vehicle_type1 + '",four_wc="' + four_wheeler + '"';
+                                pool.query(InsertOrUpdateMetaQuery, function(err, rows) {
+                                    if (err) {
+                                        console.log(err);
+                                        result.err = err;
+                                        res.send(JSON.stringify(result));
+                                        return;
+                                    }else{
+                                        result.success='Result Displayed Successfully';
+                                        res.send(JSON.stringify(result));
+                                    }
+                                }); 
+                            } 
+                            else {
+                                profileImg = id_image;
+                                var InsertOrUpdateMetaQuery = 'insert into resident_meta(resident_id, blood_group, date_of_birth, signature_file,id_image, aadhar_number, voter_id_number, pan_number, have_pet, have_vehicle, vehicle_type, no_of_vehicle, no_of_pets, status,vehicle_type1,four_wc) values("' + resident_id + '", "' + blood_group + '", "' + date_of_birth + '", "' + signatureImg + '","'+profileImg+'", "' + aadhar_number + '", "' + voter_id_number + '", "' + pan_number + '", "' + have_pet + '","' + have_vehicle + '", "' + vehicle_type + '", "' + no_of_vehicle + '", "' + no_of_pets + '","1","' + vehicle_type1 + '","' + four_wheeler + '") ON DUPLICATE KEY update blood_group="' + blood_group + '", date_of_birth="' + date_of_birth + '", signature_file="' + signatureImg + '",id_image="' + profileImg + '", aadhar_number="' + aadhar_number + '", voter_id_number="' + voter_id_number + '", pan_number="' + pan_number + '", have_pet="' + have_pet + '", have_vehicle="' + have_vehicle + '", vehicle_type="' + vehicle_type + '", no_of_vehicle="' + no_of_vehicle + '", no_of_pets="' + no_of_pets + '", vehicle_type1="' + vehicle_type1 + '",four_wc="' + four_wheeler + '"';
+                                pool.query(InsertOrUpdateMetaQuery, function(err, rows) {
+                                    if (err) {
+                                        console.log(err);
+                                        result.err = err;
+                                        res.send(JSON.stringify(result));
+                                        return;
+                                    }
+                                    else{
+                                        result.success='Result Displayed Successfully';
+                                        res.send(JSON.stringify(result));
+                                    }
+                                });
                             }
-                        });
-                } 
-                else {
-                    profileImg = id_image;
-                    var InsertOrUpdateMetaQuery = 'insert into resident_meta(resident_id, blood_group, date_of_birth, signature_file,id_image, aadhar_number, voter_id_number, pan_number, have_pet, have_vehicle, vehicle_type, no_of_vehicle, no_of_pets, status,vehicle_type1,four_wc) values("' + resident_id + '", "' + blood_group + '", "' + date_of_birth + '", "' + signatureImg + '","'+profileImg+'", "' + aadhar_number + '", "' + voter_id_number + '", "' + pan_number + '", "' + have_pet + '","' + have_vehicle + '", "' + vehicle_type + '", "' + no_of_vehicle + '", "' + no_of_pets + '","1","' + vehicle_type1 + '","' + four_wheeler + '") ON DUPLICATE KEY update blood_group="' + blood_group + '", date_of_birth="' + date_of_birth + '", signature_file="' + signatureImg + '",id_image="' + profileImg + '", aadhar_number="' + aadhar_number + '", voter_id_number="' + voter_id_number + '", pan_number="' + pan_number + '", have_pet="' + have_pet + '", have_vehicle="' + have_vehicle + '", vehicle_type="' + vehicle_type + '", no_of_vehicle="' + no_of_vehicle + '", no_of_pets="' + no_of_pets + '", vehicle_type1="' + vehicle_type1 + '",four_wc="' + four_wheeler + '"';
-                        pool.query(InsertOrUpdateMetaQuery, function(err, rows) {
-                            if (err) {
-                                console.log(err);
-                                result.err = err;
-                                res.send(JSON.stringify(result));
-                                return;
-                            }
-                            else{
-                                result.success='Result Displayed Successfully';
-                                res.send(JSON.stringify(result));
-                            }
-                        });
+                        }
+                    });
                 }
-            }
-        });
-                   
+            });
 
-                    }
-                });
-            }
+        }
         });
     };
 };

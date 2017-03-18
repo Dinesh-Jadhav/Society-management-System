@@ -162,7 +162,12 @@ socialApp.config(function($routeProvider, $crypthmacProvider, $httpProvider) {
         templateUrl: 'serviceadmin/html/service-all.html',
         activetab: 'Service',
         title: 'All Services |  Service Admin'
-    });
+    }).when('/regi-vendor', { 
+        controller: 'regVendor',
+        templateUrl: 'serviceadmin/html/registered-vendor.html',
+        activetab: 'Service',
+        title: 'Registered Vendors |  Service Admin' 
+       });
 
     /*routes for manager*/
     $routeProvider.when('/society-manager-login', {

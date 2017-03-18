@@ -172,10 +172,19 @@ exports.addManager = function(pool, randomstring, crypto, transporter) {
 exports.societyBlockList = function(pool) {
     return function(req, res) {
         sess = req.session;
+        console.log(sess);
         var id = sess.userID;
         res.setHeader('Content-Type', 'application/json');
         var result = {};
-        var query = "SELECT sm.name as society_name, bm.name as block_name, bm.id FROM block_master as bm INNER JOIN society_master as sm on sm.id=bm.parent_id where bm.block_manager='" + id + "' and bm.status= 1 ";
+        if(sess.usertype=='cp'){
+           var condition = 'block_manager.chair_person_id= '+id+'';
+           console.log(condition);
+        }else{
+            var condition = 'bm.block_manager=' + id +'';
+            console.log(condition);
+        }
+        var query = "SELECT sm.name as society_name, bm.name as block_name, bm.id FROM block_master as bm INNER JOIN society_master as sm on sm.id=bm.parent_id where "+condition+"  and bm.status= 1 ";
+        console.log(query);
         pool.query(query, function(err, rows, fields) {
             if (err) {
                 console.log(err);

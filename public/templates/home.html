@@ -286,6 +286,52 @@
         </div>
     </div>
 </section>
+
+<!-- Vendor Information -->
+
+<div id="vendor">
+<section class="padd-form1">
+    <div class="container" id ="about1">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 style="color:#0f8fd2;">Vendor </h3>
+                <p></p>
+            </div>
+            <div class="col-sm-6" style="border-left:1px solid #666;">
+                <h3 style="color:#0f8fd2;"> Register Vendor </h3>
+                <FORM name="regform">
+                    <div class="col-sm-12">
+                        <input type="text" name="nm" placeholder="Name" ng-model="vendorReg.name" required>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="email" name="e-mail" placeholder="Email" ng-model="vendorReg.email" required>
+                        <p ng-show="regform.e-mail.$invalid && !regform.e-mail.$pristine" class="help-block red-text">Enter e-mail</p>
+                    </div>
+                    <div><br></div>
+                    <div class="col-sm-12">
+                        <select name="sub" ng-model="vendorReg.service" required>
+                            <option value=""> Select Service</option>
+                            <option ng-repeat="ser in services" value="{{ser.service_name}}">{{ser.service_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" name="sub" placeholder="Mobile Number" maxlength="10" minlength="10" ng-model="vendorReg.mobile_number" required>
+                    </div>
+                    <div class="col-sm-12">
+                        <textarea name="desc" rows="5" placeholder="Personal Message" ng-model="vendorReg.personal_message" required></textarea>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 left_side">{{registrationStatus}}</div>
+                        <div class="col-sm-6 right_side text-right padd-rightno">
+                            <button type="submit" ng-disabled="regform.$invalid" class="button_blue middle_btn pull-right" ng-click="registerVendor()"> Submit </button>
+                        </div>
+                    </div>
+                </FORM>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
 <!-- - - - - - - - - - - - -  - - -  6 image part section end - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - -  - - -   ENQUIRY FORM image part section - - - - - - - - - - - - - -->
 <div id="about">

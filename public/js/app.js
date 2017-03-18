@@ -8,15 +8,19 @@ socialApp.config(['$routeProvider',function($routeProvider) {
 		controller: 'home',
         templateUrl: 'templates/home.html',
         title: 'Home | Society Management'
-	})
+	}).when('/societies', { 
+           controller: 'society',
+           templateUrl: 'templates/societies.html',
+           title: 'Societies | Society Management' 
+   })
     .when('/features', {
         controller: 'home',
         templateUrl: 'templates/home.html',
         title: 'Features | Society Management'
     })
     .when('/societies', {
-        controller: 'home',
-        templateUrl: 'templates/home.html',
+        controller: 'society',
+        templateUrl: 'templates/societies.html',
         title: 'Societies | Society Management'
     })
     .when('/vendors', {

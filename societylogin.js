@@ -1,7 +1,7 @@
-/*exports.login = function(crypto, pool) {
+exports.login = function(crypto, pool) {
     return function(req, res) {
         {
-            res.setHeader('Content-Type', 'application/json'); 
+             
             sess = req.session;
             var manager_name = req.body.userName;
             var password = req.body.password;
@@ -13,27 +13,33 @@
                 } else {
                     if (rows.length == 0) {
                         var q = 'SELECT cpm.* FROM chair_person_master cpm inner join block_master bm on bm.chair_person_id = cpm.id inner join society_master sm on sm.id = bm.parent_id where email = "' + manager_name + '"';
-                        var result = {};
+                        var result1 = {};
                         pool.query(q, function(err, rows) {
                         if (err) {
-                        result.error = err;
+                        result1.error = err;
                         console.log(err);
                         } else {
                              if(rows.length==0){
-                              result.error = "Manager not Exist.";      
-                            }
+                              result1.error = "Manager not Exist.";      
+                              res.setHeader('Content-Type', 'application/json');
+                                res.send(JSON.stringify(result1));
+                            }else{
                           if (password == rows[0].password) {
                                 sess.userID = rows[0].id;
                                 sess.userPrivilege = 1;
                                 sess.userLevel = "societyManager";
-                                result.success = rows[0];
-                                res.send(JSON.stringify(result));
+                                sess.usertype="cp";
+                                result1.success = rows[0];
+                                res.setHeader('Content-Type', 'application/json');
+                                res.send(JSON.stringify(result1));
                                  } else {
-                                  result.error = "Password didn't match.";
-                                  res.send(JSON.stringify(result));
+                                   result1.error = "Password didn't match.";
+                                   res.setHeader('Content-Type', 'application/json');
+                                   res.send(JSON.stringify(result1));
                                 }                           
                              
                            }
+                          } 
                         });
                         }
 
@@ -46,22 +52,28 @@
                                 sess.userPrivilege = 1;
                                 sess.userLevel = "societyManager";
                                 result.success = rows[0];
+                                res.setHeader('Content-Type', 'application/json');
+               res.send(JSON.stringify(result));
                             } else {
                                 result.error = "Password didn't match.";
+                            res.setHeader('Content-Type', 'application/json');
+               res.send(JSON.stringify(result));
                             }
                         } else {
                             result.error = "User Not Varified.";
+                            res.setHeader('Content-Type', 'application/json');
+               res.send(JSON.stringify(result));
                         }
                     }
                 }
-               res.send(JSON.stringify(result));
+
             });
         };
     };
 };
-*/
 
-exports.login = function(crypto, pool) {
+
+/*exports.login = function(crypto, pool) {
     return function(req, res) {
         {
             sess = req.session;
@@ -100,7 +112,7 @@ exports.login = function(crypto, pool) {
         };
     };
 };
-
+*/
 
 
 exports.resetPasswordProcess = function(transporter, randomstring, pool) {

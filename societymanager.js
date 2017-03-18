@@ -392,7 +392,7 @@ exports.updateManager = function(pool) {
                     }else{
                     if(rows.length>0){
             var image1 = rows[0].imgName;
-        var querystring = 'update society_manager SET manager_name = "' + manager_name + '", email = "' + email + '",idType ="' + idType + '",idNumber ="' + idNumber + '",idImage="'+image1+'" where id="' + mgr_id + '"';
+        var querystring = 'update society_manager SET manager_name = "' + manager_name + '", email = "' + email + '",idType ="' + idType + '",idNumber ="' + idNumber + '",Phone_Number = "'+Phone_Number +'",idImage="'+image1+'" where id="' + mgr_id + '"';
         pool.query(querystring, function(err, rows, fields) {
             if (err) {
                 result.error = err;

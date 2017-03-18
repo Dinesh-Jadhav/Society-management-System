@@ -475,7 +475,26 @@ exports.updateSocietyDetails = function(pool) {
     }
 }
 });
-}
+
+ var query = 'UPDATE society_master SET owner="' + owner + '",chair_person="' + chair_person + '",secretary="' + secretary + '",treasurer="' + treasurer + '",society_manager = "' + society_manager + '",chair_person_contact = "' + chair_person_contact + '",secretary_contact = "' + secretary_contact + '",treasurer_contact = "' + treasurer_contact + '",established_date = "' + established_date + '",name = "' + name + '",contact_number = "' + contact_number + '" where id = "' + society_id + '"';
+            pool.query(query, function(err, rows, fields) {
+            if (err) {
+                console.log(err);
+                data.error = err;
+            } else {
+                var q = 'update society_manager_meta smm INNER join block_master bm On bm.block_manager = smm.manager_id set marchant_key = "' + marchant_key + '" ,marchant_salt = "' + marchant_salt + '" ,merchant_id = "' + merchant_id + '" where bm.parent_id ="' + society_id + '"';
+                pool.query(q, function(err, rows, fields) {
+                   if (err) {
+                        console.log(err);
+                        data.error = err;
+                    } else {
+                        data.success = "updated Successfully";
+                        res.send(JSON.stringify(data));
+                    }
+                });
+            }
+        });
+    }
 }
 
 exports.listOfManagers = function(pool) {

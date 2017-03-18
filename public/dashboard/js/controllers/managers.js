@@ -135,6 +135,7 @@ socialApp.controller('editManager',['$scope', '$http', '$location', '$compile','
         });
         
         $scope.upload_idImage = function() {
+            $scope.$emit('LOAD');
             var file = $scope.idFile;
             console.log(file);
             if (angular.isUndefined(file)) {
@@ -146,6 +147,7 @@ socialApp.controller('editManager',['$scope', '$http', '$location', '$compile','
                 console.log(response.photoId);
                 $scope.manager.image = response.photoId;
                           });
+            $scope.$emit('UNLOAD');
         };        
         $scope.editManager = function(){   
             var value = $scope.manager;

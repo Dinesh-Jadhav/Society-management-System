@@ -175,7 +175,7 @@ socialApp.controller('societyListByID', ['$scope', '$http', '$location', '$compi
     }
 }]);
 
-socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http) {
+socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$http','Upload','$timeout',function($scope, $routeParams, $location, $http,Upload,$timeout) {
     $scope.$emit('LOAD');
     //var block_id = $routeParams.blockId;
      var id = $routeParams.id;
@@ -211,7 +211,33 @@ socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$ht
         $scope.$emit('UNLOAD');
     });
 
-    
+    $scope.upload_logo = function (dataUrl, name, type) {
+            Upload.upload({
+                url: '/uploadPhoto',
+                data: {
+                    file: Upload.dataUrltoBlob(dataUrl, name),
+                    type: type 
+                },
+            }).then(function (response) {
+                
+                $timeout(function () {
+                    $scope.onUpload = false;
+                    $scope.close=false;
+                    $scope.crop =false;
+                    $scope.progress =-1;
+                });
+                $scope.societyDetails.logoImg = response.data.photoId;
+            }, function (response) {
+                if (response.status > 0) $scope.errorMsg = response.status 
+                    + ': ' + response.data;
+                $scope.onUpload = false;
+            }, function (evt) {
+                $scope.crop =true;
+                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+            });
+        }
+
+
     $scope.editSociety = function() {
         $scope.$emit('LOAD');
         $scope.error = false;

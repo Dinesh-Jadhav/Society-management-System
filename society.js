@@ -420,6 +420,7 @@ exports.updateSocietyDetails = function(pool) {
     return function(req, res) {
         res.setHeader('Content-Type', 'application/json');
         var data = {};
+        console.log(JSON.stringify(req.body));
         var society_id = req.body.societyid;
         var chair_person = req.body.chair_person;
         var secretary = req.body.secretary;
@@ -434,6 +435,7 @@ exports.updateSocietyDetails = function(pool) {
         var merchant_id = req.body.merchant_id;
         var marchant_key = req.body.marchant_key;
         var marchant_salt = req.body.marchant_salt;
+        var image = req.body.logoImg;
         if(req.body.block_manager!=undefined){
          var society_manager = req.body.block_manager;
          }else{
@@ -452,8 +454,7 @@ exports.updateSocietyDetails = function(pool) {
                     }else{
                     if(rows.length>0){
             var image1 = rows[0].imgName;
-
-        var query = 'UPDATE society_master SET owner="' + owner + '",chair_person="' + chair_person + '",secretary="' + secretary + '",treasurer="' + treasurer + '",society_manager = "' + society_manager + '",chair_person_contact = "' + chair_person_contact + '",secretary_contact = "' + secretary_contact + '",treasurer_contact = "' + treasurer_contact + '",established_date = "' + established_date + '",name = "' + name + '",contact_number = "' + contact_number + '" where id = "' + society_id + '"';
+            var query = 'UPDATE society_master SET owner="' + owner + '",chair_person="' + chair_person + '",secretary="' + secretary + '",treasurer="' + treasurer + '",society_manager = "' + society_manager + '",chair_person_contact = "' + chair_person_contact + '",secretary_contact = "' + secretary_contact + '",treasurer_contact = "' + treasurer_contact + '",established_date = "' + established_date + '",name = "' + name + '",contact_number = "' + contact_number + '",general_img = "'+ image1 +'" where id = "' + society_id + '"';
             pool.query(query, function(err, rows, fields) {
             if (err) {
                 console.log(err);

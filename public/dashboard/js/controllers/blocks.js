@@ -1,6 +1,7 @@
 /*List of Add block page*/
 socialApp.controller('block',['$scope', '$http', '$location', '$compile','Upload', '$timeout','$routeParams', function ($scope, $http,$location, $compile, Upload, $timeout, $routeParams) {
 		$scope.$emit('LOAD');
+		var chair_person_id;
 		var id = $routeParams.id;
 		$scope.blocks = [
 							{
@@ -8,8 +9,15 @@ socialApp.controller('block',['$scope', '$http', '$location', '$compile','Upload
 							}
 						];
 		$http.post('/getSocietyDetail', {id: id}).success(function(response){
-			if(response.success){
+			    if(response.success){
 				var result = JSON.parse(response.success);
+				$http.post('/getchairpersonDetail',{email:result.chair_person_email}).success(function(response){ 
+			      if(response.success)
+			      	{  
+			      	 chair_person_id=response.success.id; 
+			        }
+			     })
+
 				if(result.has_blocks){
 
 					$scope.hasBlocks = true;
@@ -68,7 +76,8 @@ socialApp.controller('block',['$scope', '$http', '$location', '$compile','Upload
 		            
 		             	value.slug = response.slug;
 		             	value.parent_id = id;
-		             	 
+		             	value.chair_personid = chair_person_id;
+		             	console.log(value) 
 			            $http.post('/addBlock', value).success(function(addResponse){
 			            	$timeout(function(){
 								$scope.$emit('UNLOAD');	

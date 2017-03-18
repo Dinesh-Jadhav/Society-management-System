@@ -17,6 +17,7 @@ socialApp.controller('societyLogin',['$scope', '$http', '$location', '$compile',
 		$scope.loginAction = function(){
 			$scope.$emit('LOAD');
 			$http.post("/society-login", $scope.user).success(function(response,status,headers,config){
+                console.log(response);
 		            if (response.error) 
 		            {
 		            	$scope.noError = false;	
@@ -25,6 +26,7 @@ socialApp.controller('societyLogin',['$scope', '$http', '$location', '$compile',
 		            }
 		            else
 		            {
+                        console.log(JSON.stringify(response.success));
                         window.localStorage.setItem('userDetails', JSON.stringify(response.success));
                         $scope.$emit('UNLOAD');
 		            	$location.path("/select-block");

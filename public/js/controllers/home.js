@@ -1,8 +1,26 @@
-socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$window','$route', function($scope, $http, $interval, $timeout, $window,$route) {
+socialApp.controller('home', ['$scope', '$http', '$timeout', '$interval', '$window','$route','$location','$anchorScroll', function($scope, $http, $interval, $timeout, $window,$route,$location,$anchorScroll) {
+    
+     $scope.scrollTo = function(id) {
+         $location.hash(id);
+         $anchorScroll();
+    }
+
+    $scope.scrollAbout = function(aid) {
+         $location.hash(aid);
+         $anchorScroll();
+    }
+
+    $scope.scrollContact = function(cid) {
+         $location.hash(cid);
+         $anchorScroll();
+    }
+
     $scope.help = {
         /* time: '9am-12pm',
          service: 'Architech'*/
     };
+
+
 
     /*$http.post('/ListServices').success(function(response){
         console.log(response);

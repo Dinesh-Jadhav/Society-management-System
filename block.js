@@ -9,10 +9,56 @@ exports.addBlock= function(pool){
         var block_storeys= $data.storeys;
         var block_flats= $data.flats;
         var block_parent_id = $data.parent_id;
+        var chair_person_id = $data.chair_personid;
         var parkAvail = $data.parkAvail;
         var parkArea = $data.parkArea;
         var result = {};
+        if(block_name=='' || block_des=='' || block_storeys=='' || block_manager==''|| block_storeys=='' || block_flats==''){
+            result.error = 'Parameter Missing';
+            res.send(JSON.stringify(result));
+            return;
+        }
+        if (typeof parkArea == 'undefined' || parkAvail==0) {
+            parkArea = '';
+        }
+        var queryString = 'insert into block_master(parent_id, name, slug, description, storeys, num_of_flats, block_manager,parking_avail,parking_area,chair_person_id, status) values("'+block_parent_id+'", "'+block_name+'", "'+block_slug+'", "'+block_des+'", "'+block_storeys+'", "'+block_flats+'", "'+block_manager+'","'+parkAvail+'","'+parkArea+'","'+chair_person_id+'","1")';
 
+        pool.query(queryString, function(err, rows, fields) {
+            if (err)
+            {
+                console.log(err);
+                result.error= err;
+            }
+            else{
+                var insertID = rows.insertId;;
+                if(insertID >0)
+                {
+                    pool.query("insert into slug_master values('NULL','"+block_slug+"','block_master','"+insertID+"','1')");
+                } 
+                result.success = "Blocks added successfully";
+            }
+
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(result)); 
+        });  
+    }; 
+};
+
+/*exports.addBlock= function(pool){
+    return function(req,res){
+        res.setHeader('Content-Type', 'application/json');
+        $data = req.body;
+        var block_name =  $data.name;
+        var block_slug =  $data.slug;
+        var block_des = $data.description;
+        var block_manager= $data.manager;
+        var block_storeys= $data.storeys;
+        var block_flats= $data.flats;
+        var block_parent_id = $data.parent_id;
+        var chair_person_id = $data.chair_personid;
+        var parkAvail = $data.parkAvail;
+        var parkArea = $data.parkArea;
+        var result = {};
         if(block_name=='' || block_des=='' || block_storeys=='' || block_manager==''|| block_storeys=='' || block_flats==''){
             result.error = 'Parameter Missing';
             res.send(JSON.stringify(result));
@@ -43,7 +89,7 @@ exports.addBlock= function(pool){
         });  
     }; 
 };
-
+*/
 exports.getblockList= function(pool,slug){
     return function(req,res){  
         var id = req.query.id;

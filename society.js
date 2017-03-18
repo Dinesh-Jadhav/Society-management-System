@@ -53,7 +53,7 @@ exports.getSocietyDetail = function(pool, slug) {
         var id = req.body.id;
         res.setHeader('Content-Type', 'application/json');
         var result = {};
-        var query = "select sm.id,name,sm.slug,sm.address,sm.lattitute,sm.longtitute,sm.owner,DATE_FORMAT(sm.established_date,'%d, %b %Y') as established_date,sm.contact_number,sm.chair_person, sm.chair_person_contact,sm.secretary,sm.secretary_contact,sm.treasurer,sm.treasurer_contact,sm.society_manager,sm.cover_img,sm.general_img,sm.has_blocks,sm.last_update_time,sm.updated_by_ip,sm.status, sMan.manager_name from society_master as sm inner join society_manager as sMan on sm.society_manager = sMan.id where sm.id='" + id + "'";
+        var query = "select sm.id,name,sm.slug,sm.address,sm.lattitute,sm.chair_person_email,sm.longtitute,sm.owner,DATE_FORMAT(sm.established_date,'%d, %b %Y') as established_date,sm.contact_number,sm.chair_person, sm.chair_person_contact,sm.secretary,sm.secretary_contact,sm.treasurer,sm.treasurer_contact,sm.society_manager,sm.cover_img,sm.general_img,sm.has_blocks,sm.last_update_time,sm.updated_by_ip,sm.status, sMan.manager_name from society_master as sm inner join society_manager as sMan on sm.society_manager = sMan.id where sm.id='" + id + "'";
         query += " order by id desc";
         pool.query(query, function(err, rows, fields) {
             if (err) {
@@ -93,13 +93,23 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
             var has_block = 0;
         }
         var established_date = new Date($data.EstDate);
-        var newDate = established_date.getFullYear() + '-' + (established_date.getMonth() + 1) + '-' + established_date.getDate();
+        var newDate = established_date.getFullYear() + '-' + (established_date.getMonth() + 1) + '-' + established_date.getDate()+' '+established_date.getHours()+'-'+established_date.getMinutes();
         var datetimestamp = Date.now();
         var cover_img_id = $data.coverImg;
         var logo_img_id = $data.logoImg;
         var updated_by_ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
         var result = {};
-        if (name == '' || slug == '' || address == '' || lat == '' || long == '' || owner == '' || contact_number == '' || chair_person == '' || chair_person_contact == '' || secretary == '' || secretary_contact == '' || treasurer == '' || treasurer_contact == '' || $data.EstDate == '' || cover_img_id == '' || logo_img_id == '') {
+        var q= 'select * from chair_person_master where email="'+chair_person_email+'"';
+        pool.query(q,function(err,rows){
+            if(err){
+                console.log(err);
+            }else{
+                if(rows.length>0){
+                result.error="error";
+                res.send(JSON.stringify(result));
+                return;
+                }else{
+                  if (name == '' || slug == '' || address == '' || lat == '' || long == '' || owner == '' || contact_number == '' || chair_person == '' || chair_person_contact == '' || secretary == '' || secretary_contact == '' || treasurer == '' || treasurer_contact == '' || $data.EstDate == '' || cover_img_id == '' || logo_img_id == '') {
             result.error = 'Parameter Msissing';
             res.send(JSON.stringify(result));
             return;
@@ -121,11 +131,11 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
                     console.log('LogoImg');
                 } else {
                     logo_img = rows[0].imgName;
-                    var inQuery = "INSERT INTO society_master (`name`,`slug`, `address`, `lattitute`, `longtitute`, `owner`, `established_date`, `contact_number`,`chair_person`, `chair_person_contact`,`secretary`,`secretary_contact`,`treasurer`,`treasurer_contact`,`society_manager`, `cover_img`, `general_img`,`has_blocks`, `last_update_time` , `updated_by_ip` , `status`,`chair_person_email`) VALUES ('" + name + "','" + slug + "','" + address + "','" + lat + "','" + long + "','" + owner + "','" + newDate + "','" + contact_number + "', '" + chair_person + "','" + chair_person_contact + "','" + secretary + "','" + secretary_contact + "','" + treasurer + "','" + treasurer_contact + "'," + manager + ",'" + cover_img + "', '" + logo_img + "' ," + has_block + ", '', '" + updated_by_ip + "' ,'1','"+chair_person_email+"')";
-                    pool.query(inQuery, this);
-                }
-            },
-            function insertResponse(err, rows, fields) {
+                        var inQuery = "INSERT INTO society_master (`name`,`slug`, `address`, `lattitute`, `longtitute`, `owner`, `established_date`, `contact_number`,`chair_person`, `chair_person_contact`,`secretary`,`secretary_contact`,`treasurer`,`treasurer_contact`,`society_manager`, `cover_img`, `general_img`,`has_blocks`, `last_update_time` , `updated_by_ip` , `status`,`chair_person_email`) VALUES ('" + name + "','" + slug + "','" + address + "','" + lat + "','" + long + "','" + owner + "','" + newDate + "','" + contact_number + "', '" + chair_person + "','" + chair_person_contact + "','" + secretary + "','" + secretary_contact + "','" + treasurer + "','" + treasurer_contact + "'," + manager + ",'" + cover_img + "', '" + logo_img + "' ," + has_block + ", '', '" + updated_by_ip + "' ,'1','"+chair_person_email+"')";
+                                   pool.query(inQuery, this);        
+                      }
+                    },
+              function insertResponse(err, rows, fields) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -161,7 +171,7 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
                                 console.log(err);
                                 result.error = err;
                             } else {
-                                /*var text = "";
+                                var text = "";
                                 var randS = randomstring.generate();
                                 for (var i = 0; i < 10; i++) {
                                   text += randS.charAt(Math.floor(Math.random() * randS.length));
@@ -190,18 +200,18 @@ exports.addSociety = function(formidable, fs, pool,transporter, randomstring, st
                                            }
                                      });
                                     }
-                                });*/
-                              result.success = "Society Registered Successfully";
-                                        res.send(JSON.stringify(result));
-                                        return;
-                                          
+                                });           
                             }
                         });
 
                     }
                 }
             }
-        );
+        );            
+                }
+            }
+        });
+        
     };
 };
 
@@ -221,7 +231,7 @@ exports.getsocietyList = function(pool, slug) {
         if (search_key != '') {
             query += ' WHERE sm.name like "%' + search_key + '%" or sm.owner like "%' + search_key + '%"';
         }
-        query += " order by sm.id desc";
+        query += " ORDER BY sm.established_date DESC";
         pool.query(query, function(err, rows, fields) {
             if (err) {
                 console.log('error');
@@ -392,7 +402,7 @@ exports.getSingleSocietyDetails = function(pool) {
     return function(req, res) {
         var data = {};
         var society_id = req.body.id;
-        var query = 'select sm.* ,smm.* from society_master sm INNER JOIN block_master bm on sm.id = bm.parent_id INNER JOIN society_manager_meta smm on smm.manager_id = bm.block_manager where sm.id = "' + society_id + '" GROUP BY sm.id';
+        var query = 'select sm.*,sm.id as societyid ,smm.* from society_master sm left JOIN block_master bm on sm.id = bm.parent_id left JOIN society_manager_meta smm on smm.manager_id = bm.block_manager where sm.id = "' + society_id + '" GROUP BY sm.id';
         res.setHeader('Content-Type', 'application/json');
         pool.query(query, function(err, rows, fields) {
             if (err) {
@@ -406,35 +416,11 @@ exports.getSingleSocietyDetails = function(pool) {
     }
 }
 
-/*exports.updateSocietyDetails = function(pool) {
-    return function(req, res) {
-        var data = {};
-        var society_id = req.body.id;
-        var chair_person = req.body.chair_person;
-        var secretary = req.body.secretary;
-        var treasurer = req.body.treasurer;
-        var owner = req.body.owner;
-        var society_manager = req.body.society_manager;
-        var query = 'UPDATE `society_master` SET `owner`="' + owner + '",`chair_person`="' + chair_person + '",`secretary`="' + secretary + '",`treasurer`="' + treasurer + '",`society_manager` = "' + society_manager + '" where id = "' + society_id + '"';
-        res.setHeader('Content-Type', 'application/json');
-        pool.query(query, function(err, rows, fields) {
-            if (err) {
-                console.log(err);
-                data.error = err;
-            } else {
-                data.success = rows[0];
-                res.send(JSON.stringify(data));
-            }
-        });
-    }
-}*/
-
 exports.updateSocietyDetails = function(pool) {
     return function(req, res) {
         res.setHeader('Content-Type', 'application/json');
         var data = {};
-        console.log(JSON.stringify(req.body));
-        var society_id = req.body.id;
+        var society_id = req.body.societyid;
         var chair_person = req.body.chair_person;
         var secretary = req.body.secretary;
         var treasurer = req.body.treasurer;
@@ -448,7 +434,25 @@ exports.updateSocietyDetails = function(pool) {
         var merchant_id = req.body.merchant_id;
         var marchant_key = req.body.marchant_key;
         var marchant_salt = req.body.marchant_salt;
-        var society_manager = req.body.block_manager;
+        if(req.body.block_manager!=undefined){
+         var society_manager = req.body.block_manager;
+         }else{
+            var society_manager = req.body.society_manager;           
+        }
+
+        if(req.body.manager_id==null){
+           var society_manager = req.body.society_manager
+        } 
+       
+        var Q = "select * from image_temp where id='" + image + "'";
+        pool.query(Q,function(err, rows, fields) {
+            if (err) {
+                    result.error = err;
+                    res.send(JSON.stringify(result));
+                    }else{
+                    if(rows.length>0){
+            var image1 = rows[0].imgName;
+
         var query = 'UPDATE society_master SET owner="' + owner + '",chair_person="' + chair_person + '",secretary="' + secretary + '",treasurer="' + treasurer + '",society_manager = "' + society_manager + '",chair_person_contact = "' + chair_person_contact + '",secretary_contact = "' + secretary_contact + '",treasurer_contact = "' + treasurer_contact + '",established_date = "' + established_date + '",name = "' + name + '",contact_number = "' + contact_number + '" where id = "' + society_id + '"';
             pool.query(query, function(err, rows, fields) {
             if (err) {
@@ -469,46 +473,9 @@ exports.updateSocietyDetails = function(pool) {
         });
     }
 }
-/*exports.updateSocietyDetails = function(pool) {
-    return function(req, res) {
-        var data = {};
-        console.log(JSON.stringify(req.body));
-        var society_id = req.body.id;
-        var chair_person = req.body.chair_person;
-        var secretary = req.body.secretary;
-        var treasurer = req.body.treasurer;
-        var owner = req.body.owner;
-        var chair_person_contact = req.body.chair_person_contact;
-        var secretary_contact = req.body.secretary_contact;
-        var treasurer_contact = req.body.treasurer_contact;
-        var established_date = req.body.established_date;
-        var name = req.body.name;
-        var contact_number = req.body.contact_number;
-        var merchant_id = req.body.merchant_id;
-        var marchant_key = req.body.marchant_key;
-        var marchant_salt = req.body.marchant_salt;
-        var society_manager = req.body.society_manager;
-        var query = 'UPDATE `society_master` SET `owner`="' + owner + '",`chair_person`="' + chair_person + '",`secretary`="' + secretary + '",`treasurer`="' + treasurer + '",`society_manager` = "' + society_manager + '",,`chair_person_contact` = "' + chair_person_contact + '",`secretary_contact` = "' + secretary_contact + '",`treasurer_contact` = "' + treasurer_contact + '",`established_date` = "' + established_date + '",`name` = "' + name + '",`contact_number` = "' + contact_number + '" where id = "' + society_id + '"';
-        res.setHeader('Content-Type', 'application/json');
-        pool.query(query, function(err, rows, fields) {
-            if (err) {
-                console.log(err);
-                data.error = err;
-            } else {
-                var q = 'update society_manager_meta smm INNER join block_master bm On bm.block_manager = smm.manager_id set marchant_key = "' + marchant_key + '" ,marchant_salt = "' + marchant_salt + '" ,merchant_id = "' + marchant_id + '" where bm.parent_id ="' + society_id + '"';
-                pool.query(q, function(err, rows, fields) {
-                    if (err) {
-                        console.log(err);
-                        data.error = err;
-                    } else {
-                        data.success = "updated Successfully";
-                        res.send(JSON.stringify(data));
-                    }
-                });
-            }
-        });
-    }
-}*/
+});
+}
+}
 
 exports.listOfManagers = function(pool) {
     return function(req, res) {
@@ -733,3 +700,20 @@ exports.societyDetails = function(pool) {
         });
     };
 };
+
+exports.getchairpersonDetail = function (pool){ 
+   return function(req,res){ 
+          var mailid = req.body.email;
+          var result = {};
+          var q='select * from chair_person_master where email= "'+mailid+'"';
+          pool.query(q,function(err,rows){
+          if(err){ 
+              console.log(err);
+              console.log("email id not found");
+            }else{
+              result.success=rows[0];
+              res.send(JSON.stringify(result)); 
+             }
+           })
+      }
+  }

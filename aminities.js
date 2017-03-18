@@ -99,7 +99,7 @@ exports.listOfRequestedAmenitiesForResident = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var resident_id = req.body.resident_id;
         var result = {}
-        var querystring = 'select am.aminity_name,am.charges, ar.* from amenities_master am INNER JOIN amenity_request ar ON am.id = ar.amenity_id INNER JOIN residents r ON ar.resident_id = r.id INNER JOIN flat_master fm ON r.flat_id = fm.id where ar.resident_id = "' + resident_id + '"';
+        var querystring = 'select am.aminity_name,am.charges, ar.* from amenities_master am INNER JOIN amenity_request ar ON am.id = ar.amenity_id INNER JOIN residents r ON ar.resident_id = r.id INNER JOIN flat_master fm ON r.flat_id = fm.id where ar.resident_id = "' + resident_id + '" order by request_date desc';
         pool.query(querystring, function(err, rows, fields) {
             if (err) {
                 result.error = err;

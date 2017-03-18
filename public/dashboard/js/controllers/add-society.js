@@ -95,10 +95,13 @@ socialApp.controller('society',['$scope', '$http', '$location', '$compile','Uplo
             	$scope.society.slug = response.slug;
 
             	$http.post('/addSociety', $scope.society).success(function(addResponse){
+	             	console.log(addResponse);
 	             	if(addResponse.success){
-		    			$location.path('/add-blocks/'+addResponse.lastInsertId);
-	    				$scope.$emit('UNLOAD');
-	    			}
+                        $location.path('/add-blocks/'+addResponse.lastInsertId);
+	    				$scope.$emit('UNLOAD');                               
+		    		}else if(addResponse.error){
+	    				alert("Chair person email id alerady exist");
+        			}
 	    		
 	    		});
 	    	});

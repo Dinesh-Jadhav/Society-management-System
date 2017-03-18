@@ -1,3 +1,66 @@
+/*exports.login = function(crypto, pool) {
+    return function(req, res) {
+        {
+            res.setHeader('Content-Type', 'application/json'); 
+            sess = req.session;
+            var manager_name = req.body.userName;
+            var password = req.body.password;
+            var queryString = 'SELECT sman.* FROM society_manager sman inner join block_master bm on bm.block_manager = sman.id inner join society_master sm on sm.id = bm.parent_id where email = "' + manager_name + '"';
+            var result = {};
+            pool.query(queryString, function(err, rows, fields) {
+                if (err) {
+                    result.error = err;
+                } else {
+                    if (rows.length == 0) {
+                        var q = 'SELECT cpm.* FROM chair_person_master cpm inner join block_master bm on bm.chair_person_id = cpm.id inner join society_master sm on sm.id = bm.parent_id where email = "' + manager_name + '"';
+                        var result = {};
+                        pool.query(q, function(err, rows) {
+                        if (err) {
+                        result.error = err;
+                        console.log(err);
+                        } else {
+                             if(rows.length==0){
+                              result.error = "Manager not Exist.";      
+                            }
+                          if (password == rows[0].password) {
+                                sess.userID = rows[0].id;
+                                sess.userPrivilege = 1;
+                                sess.userLevel = "societyManager";
+                                result.success = rows[0];
+                                res.send(JSON.stringify(result));
+                                 } else {
+                                  result.error = "Password didn't match.";
+                                  res.send(JSON.stringify(result));
+                                }                           
+                             
+                           }
+                        });
+                        }
+
+                       else {
+                        var result = {};
+                        if (rows[0].status == 1) { //Creating hash with received password value for comparison : DR
+                            var passwordn = crypto.createHash('md5').update(password).digest("hex");
+                            if (passwordn == rows[0].password) {
+                                sess.userID = rows[0].id;
+                                sess.userPrivilege = 1;
+                                sess.userLevel = "societyManager";
+                                result.success = rows[0];
+                            } else {
+                                result.error = "Password didn't match.";
+                            }
+                        } else {
+                            result.error = "User Not Varified.";
+                        }
+                    }
+                }
+               res.send(JSON.stringify(result));
+            });
+        };
+    };
+};
+*/
+
 exports.login = function(crypto, pool) {
     return function(req, res) {
         {
@@ -37,7 +100,6 @@ exports.login = function(crypto, pool) {
         };
     };
 };
-
 
 
 

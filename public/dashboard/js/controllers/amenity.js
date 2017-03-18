@@ -154,15 +154,20 @@ socialApp.controller('RequestEminity', ['$scope', '$routeParams', '$http', '$tim
         });
     }
 }]);
-socialApp.controller('RequestedListForResident', ['$scope', '$http', '$timeout', 'DTOptionsBuilder', function($scope, $http, $timeout, DTOptionsBuilder) {
+socialApp.controller('RequestedListForResident', ['$scope', '$http', '$timeout', 'DTOptionsBuilder','DTColumnDefBuilder', function($scope, $http, $timeout, DTOptionsBuilder,DTColumnDefBuilder) {
     $scope.$emit('LOAD');
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withOption('order', [1, 'desc'])
+        .withOption('order', [5, 'desc'])
         .withButtons([
             'print',
             'excel',
             'pdf'
         ]);
+
+         $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([5])
+                              .withOption('type', 'date')
+        ];
     var userDetails = JSON.parse(window.localStorage.getItem('userDetails'));
     var id = userDetails.id;
     $scope.Amenities = [];

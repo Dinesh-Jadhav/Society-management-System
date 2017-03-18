@@ -263,7 +263,7 @@ exports.listOfRequestedFacilitiesForResident1 = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var resident_id = req.body.resident_id;
         var result = {}
-        var querystring = 'select fr.*, fm.facility_name, fm.charges, fm.description from facility_request fr INNER JOIN  facility_master fm ON fm.id = fr.facility_id INNER JOIN residents r ON fr.resident_id = r.id INNER JOIN flat_master fl_m ON r.flat_id = fl_m.id where resident_id = "' + resident_id + '"';
+        var querystring = 'select fr.*, fm.facility_name, fm.charges, fm.description from facility_request fr INNER JOIN  facility_master fm ON fm.id = fr.facility_id INNER JOIN residents r ON fr.resident_id = r.id INNER JOIN flat_master fl_m ON r.flat_id = fl_m.id where resident_id = "' + resident_id + '" order by request_date desc';
         pool.query(querystring, function(err, rows, fields) {
             if (err) {
                 result.error = err;

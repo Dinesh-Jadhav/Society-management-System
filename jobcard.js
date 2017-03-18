@@ -14,8 +14,9 @@ exports.addJobcard = function(pool) {
         var end_date = req.body.end_date;
         var pay_type = req.body.pay_type;
         var charge = req.body.charge;
-
-        var Q = 'INSERT INTO job_card_master(`vendor_id`, `category_id`, `block_id`, `job_card_type`, `contract_type`,`start_date`,`end_date`, `total_visits`,`visits_left`, `approximate_visit_date`, `reccuring_days`,`pay_type`,`charge`,`description`, `status`) VALUES ("' + vendor_id + '","' + category_id + '","' + block_id + '","' + type + '","' + contract_type + '","' + start_date + '","' + end_date + '","' + total_visits + '", "' + total_visits + '","' + approximate_visit_date + '","' + reccuring_days + '","' + pay_type + '","' + charge + '","' + description + '","-1")';
+        var start_date = new Date(req.body.start_date);  
+        var newDate = start_date.getFullYear() + '-' + (start_date.getMonth() + 1) + '-' + start_date.getDate()+' '+start_date.getHours()+'-'+start_date.getMinutes();
+        var Q = 'INSERT INTO job_card_master(`vendor_id`, `category_id`, `block_id`, `job_card_type`, `contract_type`,`start_date`,`end_date`, `total_visits`,`visits_left`, `approximate_visit_date`, `reccuring_days`,`pay_type`,`charge`,`description`, `status`) VALUES ("' + vendor_id + '","' + category_id + '","' + block_id + '","' + type + '","' + contract_type + '","' + newDate + '","' + end_date + '","' + total_visits + '", "' + total_visits + '","' + approximate_visit_date + '","' + reccuring_days + '","' + pay_type + '","' + charge + '","' + description + '","-1")';
         pool.query(Q, function(err, rows) {
             if (err) {
                 console.log(err);
@@ -69,7 +70,7 @@ exports.jobcardDetails = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var result = {};
         var block_id = req.body.block_id;
-        var Q = 'select vm.*, jm.*, mm.*, jm.id as job_card_id from job_card_master jm INNER JOIN vendor_master vm ON vm.id = jm.vendor_id INNER JOIN maintainace_category_master mm ON mm.id = jm.category_id where jm.block_id = "' + block_id + '"';
+        var Q = 'select vm.*, jm.*, mm.*, jm.id as job_card_id from job_card_master jm INNER JOIN vendor_master vm ON vm.id = jm.vendor_id INNER JOIN maintainace_category_master mm ON mm.id = jm.category_id where jm.block_id = "' + block_id + '" order by addedon desc';
         pool.query(Q, function(err, rows) {
             if (err) {
                 console.log(err);

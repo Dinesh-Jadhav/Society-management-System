@@ -29,7 +29,14 @@ exports.addPaymentDetails = function(pool) {
         var Pay_by = data.udf2;
         var block_id = data.udf3;
         var status = 1;
-
+        if(block_id==10){
+            var Q = 'update job_card_master set status = "0" where id = "' + resident_id + '"';
+                pool.query(Q, function(err, rows) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+        }
         var productstr = "";
         var proInfo = "";
         if (productinfo == "maintainance") {
@@ -187,7 +194,7 @@ exports.transactionHistoryToManager = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var result = {};
         var block_id = req.body.id;
-        var Q = 'SELECT tr.*, concat(r.first_name, " ", r.last_name) as resident_name, fm.flat_number, bm.name from transaction_history tr INNER JOIN residents r on r.id = tr.resident_id INNER JOIN flat_master fm on fm.id = r.flat_id INNER JOIN block_master bm on bm.id= fm.block_id INNER JOIN society_manager sm on sm.id = bm.block_manager where bm.id = "' + block_id + '" ';
+        var Q = 'SELECT tr.*, concat(r.first_name, " ", r.last_name) as resident_name, fm.flat_number, bm.name from transaction_history tr INNER JOIN residents r on r.id = tr.resident_id INNER JOIN flat_master fm on fm.id = r.flat_id INNER JOIN block_master bm on bm.id= fm.block_id INNER JOIN society_manager sm on sm.id = bm.block_manager where bm.id = "' + block_id + '" order by addedon desc';
         pool.query(Q, function(err, rows) {
             if (err) {
                 result.error = err;

@@ -47,16 +47,20 @@ socialApp.controller('CreateJobCard', ['$scope', '$routeParams', '$http', '$loca
     }
 }]);
 
-socialApp.controller('RecurrentJobCard', ['$scope', '$routeParams', '$http', '$route', '$window', 'DTOptionsBuilder', function($scope, $routeParams, $http, $route, $window, DTOptionsBuilder) {
+socialApp.controller('RecurrentJobCard', ['$scope', '$routeParams', '$http', '$route', '$window', 'DTOptionsBuilder','DTColumnDefBuilder', function($scope, $routeParams, $http, $route, $window, DTOptionsBuilder,DTColumnDefBuilder) {
     $scope.$emit('LOAD');
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withOption('order', [1, 'desc'])
+        .withOption('order', [4, 'desc'])
         .withButtons([
             'print',
             'excel',
             'pdf'
         ]);
 
+         $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([4])
+                              .withOption('type', 'date')
+        ];
     var block_id = atob($routeParams.blockID);
     $scope.jobcard = {
         block_id: block_id

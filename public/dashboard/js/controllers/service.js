@@ -58,7 +58,7 @@ socialApp.controller('serviceList', ['$scope', '$http', '$routeParams', '$route'
     }
 }]);
 
-socialApp.controller('serviceAll', ['$scope', '$http', '$route', 'DTOptionsBuilder', function($scope, $http, $route, DTOptionsBuilder) {
+socialApp.controller('serviceAll', ['$scope', '$http', '$route', 'DTOptionsBuilder','DTColumnDefBuilder', function($scope, $http, $route, DTOptionsBuilder,DTColumnDefBuilder) {
     $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('order', [1, 'desc'])
         .withButtons([
@@ -145,14 +145,19 @@ socialApp.controller('requestService', ['$scope', '$http', '$location', '$route'
     }
 }]);
 
-socialApp.controller('Serviceall', ['$scope', '$http', '$timeout', 'DTOptionsBuilder', '$routeParams', function($scope, $http, $timeout, DTOptionsBuilder, $routeParams) {
+socialApp.controller('Serviceall', ['$scope', '$http', '$timeout', 'DTOptionsBuilder', '$routeParams','DTColumnDefBuilder', function($scope, $http, $timeout, DTOptionsBuilder, $routeParams,DTColumnDefBuilder) {
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-        .withOption('order', [1, 'desc'])
+        .withOption('order', [3, 'desc'])
         .withButtons([
             'print',
             'excel',
             'pdf'
         ]);
+
+        $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef([3])
+                              .withOption('type', 'date')
+        ];
     //var userDetails = JSON.parse(window.localStorage.getItem('userDetails'));
     var block_id = atob($routeParams.blockID);
 

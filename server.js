@@ -258,6 +258,7 @@
     /*Society Management*/
     app.post('/enqiuryDetails', society.enqiuryDetails(pool, transporter));
     app.post('/getSocietyDetail', society.getSocietyDetail(pool));
+    app.post('/getchairpersonDetail', society.getchairpersonDetail(pool));
     app.post('/getActiveSocieties', society.getActiveSocieties(pool));
     app.get('/getsocietyList', society.getsocietyList(pool));
     app.get('/getAllSocieties', society.getAllSocieties(pool));

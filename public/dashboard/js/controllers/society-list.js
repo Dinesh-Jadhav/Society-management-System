@@ -211,6 +211,7 @@ socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$ht
         $scope.$emit('UNLOAD');
     });
 
+    
     $scope.editSociety = function() {
         $scope.$emit('LOAD');
         $scope.error = false;

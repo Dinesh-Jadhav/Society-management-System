@@ -38,17 +38,17 @@
                     <div class="form-group">
                         <label>Address(*)</label>
                         <textarea ng-blur="GetLocation()" class="form-control" placeholder="Enter Address" ng-model="society.address" name="societyAddress" required></textarea>
-                        <p ng-show="societyAddForm.societyAddress.$invalid && !societyAddForm.societyAddress.$pristine" class="help-block red-text">Please enter address</p>
+                        <p ng-show="societyAddForm.societyAddress.$invalid && !societyAddForm.societyAddress.$pristine" class="help-block red-text" reqiured>Please enter address</p>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="hidden" name="lat" ng-model="society.latitude" class="form-control" placeholder="Latitude" readonly >
+                                <input type="hidden" name="lat" ng-model="society.latitude" class="form-control" placeholder="Latitude" readonly required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="hidden" ng-model="society.longitude" class="form-control" placeholder="Longitude" readonly>
+                                <input type="hidden" ng-model="society.longitude" class="form-control" placeholder="Longitude" readonly required>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Choose Location on Map(*)</label>
-                                <div id="dvMap" style="height: 250px; width: 100%" ng-init="LoadMap()"></div>
+                                <div id="dvMap" style="height: 250px; width: 100%" ng-init="LoadMap()" required></div>
                             </div>
                             <p ng-show="societyAddForm.lat.$invalid && !societyAddForm.lat.$pristine" class="help-block red-text">Please select address on map</p>
                         </div>

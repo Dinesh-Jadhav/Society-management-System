@@ -13,7 +13,7 @@ exports.getmanagerList = function(pool) {
 
         res.setHeader('Content-Type', 'application/json');
         var result = {};
-        var query = "select *,DATE_FORMAT(added_date, '%d %M, %Y %H:%m:%s') as added_date from  `society_manager`";
+        var query = "select *,DATE_FORMAT(added_date, '%d %M, %Y %h:%m') as added_date from  `society_manager`";
         if (search_key != '') {
             query += ' WHERE manager_name like "%' + search_key + '%" or email like "%' + search_key + '%"';
         }
@@ -309,12 +309,7 @@ exports.paymentDuesFromManagerForSinglePay = function(pool) {
                 result.error = err;
                 console.log(err);
             } else {
-                var Q = 'update job_card_master set status = "0" where id = "' + job_id + '"';
-                pool.query(Q, function(err, rows) {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+                
                 var Q = 'insert into expenses_history (`jobcard_id`,`payment_type`,`date`,`status`) values("' + job_id + '","1",now(),"1")';
                 pool.query(Q, function(err, rows) {
                     if (err) {
@@ -376,6 +371,7 @@ exports.updateManager = function(pool) {
         var email = req.body.email;
         var idType = req.body.idType;
         var idNumber = req.body.idNumber;
+        var Phone_Number = req.body.Phone_Number;
         var image=req.body.image;
         var result = {};
 
@@ -385,7 +381,7 @@ exports.updateManager = function(pool) {
                     result.error = err;
                     res.send(JSON.stringify(result));
                     }else{
-            if(rows.length>0){
+                    if(rows.length>0){
             var image1 = rows[0].imgName;
         var querystring = 'update society_manager SET manager_name = "' + manager_name + '", email = "' + email + '",idType ="' + idType + '",idNumber ="' + idNumber + '",idImage="'+image1+'" where id="' + mgr_id + '"';
         pool.query(querystring, function(err, rows, fields) {
@@ -397,28 +393,24 @@ exports.updateManager = function(pool) {
                 result.success = "Manager updated successfully";
                 res.send(JSON.stringify(result));
             };
-        });
-    }
-    }
-    });
-}
-}
-
-/*var queryString = "select * from image_temp where id='" + image + "'";
-                pool.query(queryString, function(err, rows, fields) {
-                    if (err) {
-                    result.error = err;
-                    res.send(JSON.stringify(result));
-                    }else{
-            if(rows.length>0){
-            var image1 = rows[0].imgName;
-            var query = "INSERT INTO society_manager (`idType`,`idNumber`, `manager_name`,  `email`,`password`,`description`,`status`,`merchant_key`,`merchant_id`,`merchant_salt`,`added_date`,`idImage`) VALUES ('" + idType + "','" + idNumber + "','" + manager_name + "','" + email + "','" + password + "','" + description + "','1','" + merchant_key + "','" + merchant_id + "','" + merchant_salt + "',now(),'"+image1+"')";
-            pool.query(query, function(err, rows, fields) {
+          });
+        }else{
+       var querystring = 'update society_manager SET manager_name = "' + manager_name + '", email = "' + email + '",idType ="' + idType + '",idNumber ="' + idNumber + '" where id="' + mgr_id + '"';
+        pool.query(querystring, function(err, rows, fields) {
             if (err) {
-            console.log(err);
-            result.error = err;
-            res.send(JSON.stringify(result));*/
-
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows;
+                result.success = "Manager updated successfully";
+                res.send(JSON.stringify(result));
+            };
+        });
+      }
+    }
+   });
+  }
+}
 
 exports.managerDetails = function(pool) {
     return function(req, res) {

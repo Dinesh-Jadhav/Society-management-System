@@ -95,7 +95,7 @@ exports.maintananceListToResident = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var resident_id = req.body.resident_id;
         var result = {}
-        var querystring = 'select concat(r.first_name," ",r.last_name) as resident_name,r.contact_no,r.email,mm.* from maintainance_master mm INNER JOIN block_master bm ON mm.block_id = bm.block_manager INNER JOIN flat_master fm ON bm.id = fm.block_id INNER JOIN residents r ON fm.id = r.flat_id where r.id = "' + resident_id + '" and mm.id not in(SELECT maintainance_master_meta.maintanance_id from maintainance_master_meta inner join maintainance_master on maintainance_master.id=maintainance_master_meta.maintanance_id)';
+        var querystring = 'select concat(r.first_name," ",r.last_name) as resident_name,r.contact_no,r.email,mm.* from maintainance_master mm INNER JOIN block_master bm ON mm.block_id = bm.block_manager INNER JOIN flat_master fm ON bm.id = fm.block_id INNER JOIN residents r ON fm.id = r.flat_id where r.id = "' + resident_id + '" and mm.id not in(SELECT maintainance_master_meta.maintanance_id from maintainance_master_meta inner join maintainance_master on maintainance_master.id=maintainance_master_meta.maintanance_id) order by last_payment_date desc';
 
         pool.query(querystring, function(err, rows, fields) {
             if (err) {

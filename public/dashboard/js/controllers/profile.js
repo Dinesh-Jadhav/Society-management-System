@@ -158,7 +158,7 @@ socialApp.controller('updateProfile', ['$scope', '$http', '$location', '$routePa
     
     $scope.updateProfileDetails = function() {
 
-        
+        $scope.$apply();
         
         if ($scope.profileDetails.have_pet == 'N') {
             $scope.profileDetails.no_of_pets = '';

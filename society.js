@@ -418,7 +418,6 @@ exports.getSingleSocietyDetails = function(pool) {
 
 exports.updateSocietyDetails = function(pool) {
     return function(req, res) {
-        res.setHeader('Content-Type', 'application/json');
         var data = {};
         console.log(JSON.stringify(req.body));
         var society_id = req.body.societyid;
@@ -470,6 +469,7 @@ exports.updateSocietyDetails = function(pool) {
                     } else {
                         console.log("database");
                         data.success = "updated Successfully";
+                        res.setHeader('Content-Type', 'application/json');
                         res.send(JSON.stringify(data));
                     }
                 });
@@ -494,6 +494,7 @@ exports.updateSocietyDetails = function(pool) {
                     } else {
                         console.log("asdf");
                         data.success = "updated Successfully";
+                        res.setHeader('Content-Type', 'application/json');
                         res.send(JSON.stringify(data));
                     }
                 });

@@ -330,20 +330,19 @@ exports.defaulterResidentList = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var block_id = req.body.block_id;
         var result = {}
-        var querystring = 'SELECT r.*, fm.flat_number, mm.year, mm.month, mm.amount from residents r INNER join flat_master fm on fm.id = r.flat_id INNER join block_master bm on bm.id = fm.block_id left join maintainance_master mm on bm.id = mm.block_id WHERE bm.id="' + block_id + '" and mm.id = "' + maintanance_id + '" and r.id not in(SELECT resident_id from maintainance_master_meta inner join (SELECT mm1.id from maintainance_master mm1 INNER JOIN block_master bm on bm.id = mm1.block_id where mm1.block_id="' + block_id + '" and mm1.id="' + maintanance_id + '") as mm on mm.id = maintainance_master_meta.maintanance_id) GROUP by r.id';
+        var querystring = 'select df.*,fm.flat_number,bm.name as block_name,smas.name as society_name,df.id,df.flat_id, df.first_name, df.last_name,((select sum(amount) from maintainance_master where block_id = "' + block_id + '")-pl.total_paid) as dues from residents df inner join flat_master fm on df.flat_id = fm.id inner join block_master bm on bm.id = fm.block_id INNER join society_master smas on bm.parent_id = smas.id LEFT JOIN (select r.id,r.flat_id, IFNULL(tr.total_paid,0) as total_paid from residents r LEFT JOIN (select m.resident_id, IFNULL(sum(mm.amount),0) as total_paid from maintainance_master_meta m LEFT JOIN maintainance_master mm on mm.id=m.maintanance_id GROUP BY m.resident_id) tr on tr.resident_id = r.id where r.flat_id IN (select id from flat_master where block_id = "' + block_id + '")) pl on pl.id = df.id where pl.total_paid < (select sum(amount) from maintainance_master where block_id = "' + block_id + '")';
         pool.query(querystring, function(err, rows, fields) {
             if (err) {
                 result.error = err;
                 console.log(err);
             } else {
                 result.data = rows;
-                result.success = "mantainance successfully displayed";
+                result.success = "mantainance defaulter successfully displayed";
                 res.send(JSON.stringify(result));
             };
         });
     };
 }
-
 
 exports.deletemaintanance = function(pool) {
     return function(req, res) {
@@ -405,6 +404,25 @@ exports.updateMaintanance = function(pool) {
             } else {
                 result.data = rows;
                 result.success = "mantainance successfully displayed";
+                res.send(JSON.stringify(result));
+            };
+        });
+    };
+}
+
+exports.totalDefaulterResidentList = function(pool) {
+    return function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        var block_id = req.body.block_id;
+        var result = {}
+        var querystring = 'select df.*,fm.flat_number,bm.name as block_name,smas.name as society_name,df.id,count(df.id) as totalDefaulter,df.flat_id, df.first_name, df.last_name,((select sum(amount) from maintainance_master where block_id = "' + block_id + '")-pl.total_paid) as dues from residents df inner join flat_master fm on df.flat_id = fm.id inner join block_master bm on bm.id = fm.block_id INNER join society_master smas on bm.parent_id = smas.id LEFT JOIN (select r.id,r.flat_id, IFNULL(tr.total_paid,0) as total_paid from residents r LEFT JOIN (select m.resident_id, IFNULL(sum(mm.amount),0) as total_paid from maintainance_master_meta m LEFT JOIN maintainance_master mm on mm.id=m.maintanance_id GROUP BY m.resident_id) tr on tr.resident_id = r.id where r.flat_id IN (select id from flat_master where block_id = "' + block_id + '")) pl on pl.id = df.id where pl.total_paid < (select sum(amount) from maintainance_master where block_id = "' + block_id + '")';
+        pool.query(querystring, function(err, rows, fields) {
+            if (err) {
+                result.error = err;
+                console.log(err);
+            } else {
+                result.data = rows[0];
+                result.success = "mantainance defaulter successfully displayed";
                 res.send(JSON.stringify(result));
             };
         });

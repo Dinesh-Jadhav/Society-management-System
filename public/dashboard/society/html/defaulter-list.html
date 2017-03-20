@@ -12,7 +12,7 @@
                         <i class="fa fa-dashboard"></i> <a href="javascript:void(0)">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-users"></i> Unpaid Resident List
+                        <i class="fa fa-users"></i> Defaulter List
                     </li>
                 </ol>
             </div>
@@ -20,29 +20,29 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <h2> Maintainance Unpaid Resident List </h2>
+                <h2> Defaulter List </h2>
                 <div class="table-responsive">
                     <table id="entry-grid" datatable="ng" class="stripe" dt-options="dtOptions" width="100%">
                         <thead>
-                            <th><input type="checkbox" ng-model="selectAll" ng-change="selectAllRes()"></th>
+                            <!-- <th><input type="checkbox" ng-model="selectAll" ng-change="selectAllRes()"></th> -->
                             <th>Flat Number</th>
+                            <th>Society Name</th>
                             <th>Resident's Name</th>
                             <th>Resident's E-Mail</th>
                             <th>Resident's Mobile Number</th>
-                            <th>Date</th>
-                            <th>Amount Paid</th>
+                            <th>Amount Due's</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="res in reslist">
-                                <td align="center">
-                                    <input type="checkbox" ng-model="isSelected[res.id]" ng-true-value="1" ng-false-value="0"  ng-change="selectRes(res.id)">
-                                </td>
+                             <tr ng-repeat="res in reslist">
+                                <!-- <td align="center">
+                                    <input type="checkbox" ng-model="isSelected[res.id]" ng-true-value="1" ng-false-value="0"  ng-change="selectRes(res.id)"> 
+                                </td> -->
                                 <td>{{res.flat_number}}</td>
+                                <td>{{res.society_name}}-{{res.block_name}}</td>
                                 <td>{{res.first_name}} {{res.last_name}}</td>
                                 <td>{{res.email}}</td>
                                 <td>{{res.contact_no}}</td>
-                                <td>{{res.month | date: 'dd MMM,yyyy'}}, {{res.year | date: 'dd MMM,yyyy'}}</td>
-                                <td>{{res.amount}}</td>
+                                <td>{{res.dues}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -60,14 +60,14 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" ng-disabled="noResident">Notify</button>
+                    <button class="btn btn-success pull-right" ng-click="sendMsg()">Notify</button>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6">
+            <!-- <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <button class="btn btn-success" data-toggle="modal" data-target="#myModal1" ng-disabled="noResident">S.M.S</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- /.container-fluid -->

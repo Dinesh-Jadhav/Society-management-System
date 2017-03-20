@@ -683,25 +683,19 @@ socialApp.controller('PaidResidents', ['$scope', '$route', '$routeParams', '$htt
 
 }]);
 
-socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$http', '$timeout', '$location','DTOptionsBuilder', function($scope, $route, $routeParams, $http, $timeout, $location,DTOptionsBuilder) {
-     $scope.dtOptions = DTOptionsBuilder.newOptions() 
-                        .withOption('order', [1, 'desc'])
-                        .withButtons([
-                            'print',
-                            'excel',
-                            'csv',
-                            'pdf'
-                        ]);
+socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$http', '$timeout', '$location', 'DTOptionsBuilder', function($scope, $route, $routeParams, $http, $timeout, $location, DTOptionsBuilder) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withOption('order', [1, 'desc']).withButtons(['print', 'excel', 'csv', 'pdf']);
     var block_id = atob($routeParams.blockID);
     var maintainanceID = atob($routeParams.maintainanceID);
     $scope.noResident = true;
     $scope.isSelected = [];
-
     notifiedResidents = [];
-
     $scope.$emit('LOAD');
     $scope.reslist = [];
-    $http.post('/unpaidResidentList', { block_id: block_id, maintanance_id: maintainanceID }).success(function(response) {
+    $http.post('/unpaidResidentList', {
+        block_id: block_id,
+        maintanance_id: maintainanceID
+    }).success(function(response) {
         if (response.hasOwnProperty('success')) {
             if (response.hasOwnProperty('data')) {
                 angular.forEach(response.data, function(item, key) {
@@ -713,7 +707,6 @@ socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$h
             $scope.$emit('UNLOAD');
         }, 1000);
     });
-
     $scope.selectAllRes = function() {
         if ($scope.selectAll) {
             notifiedResidents = [];
@@ -722,9 +715,7 @@ socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$h
                 if (notifiedResidents.indexOf($scope.reslist[i].id) < 0) {
                     notifiedResidents.push($scope.reslist[i].id);
                 }
-
             }
-
         } else {
             for (var i = $scope.reslist.length - 1; i >= 0; i--) {
                 $scope.isSelected[$scope.reslist[i].id] = 0;
@@ -743,7 +734,6 @@ socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$h
             if (notifiedResidents.indexOf(res_id) < 0) {
                 notifiedResidents.push(res_id);
             }
-
         } else {
             $scope.isSelected[res_id] = 0;
             var index = notifiedResidents.indexOf(res_id);
@@ -756,13 +746,15 @@ socialApp.controller('UnPaidResidents', ['$scope', '$route', '$routeParams', '$h
         }
     }
     $scope.sendMsg = function() {
+        console.log(maintainanceID);
         var data = {
             message: $scope.message,
-            id: notifiedResidents
+            id: notifiedResidents,
+            maintanance_id: maintainanceID
         };
-        /*$http.post(url, data).success(function(response){
+        $http.post('/sendSmsAndMailToUnpaidRes', data).success(function(response) {
 
-        });*/
+        });
     }
 }]);
 
@@ -1260,85 +1252,26 @@ socialApp.controller('adhocExpense', ['$scope','$http','$route','$timeout','$rou
     } 
 }]);
 
-socialApp.controller('defaulterList', ['$scope', '$route', '$routeParams', '$http', '$timeout', '$location','DTOptionsBuilder', function($scope, $route, $routeParams, $http, $timeout, $location,DTOptionsBuilder) {
-     $scope.dtOptions = DTOptionsBuilder.newOptions() 
-                        .withOption('order', [1, 'desc'])
-                        .withButtons([
-                            'print',
-                            'excel',
-                            'csv',
-                            'pdf'
-                        ]);
+socialApp.controller('defaulterList', ['$scope', '$route', '$routeParams', '$http', '$timeout', '$location', 'DTOptionsBuilder', function($scope, $route, $routeParams, $http, $timeout, $location, DTOptionsBuilder) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withOption('order', [1, 'desc']).withButtons(['print', 'excel', 'csv', 'pdf']);
     var block_id = atob($routeParams.blockID);
-    
     $scope.noResident = true;
     $scope.isSelected = [];
-
     notifiedResidents = [];
-
     $scope.$emit('LOAD');
     $scope.reslist = [];
-    $http.post('/unpaidResidentList', { block_id: block_id}).success(function(response) {
+    $http.post('/defaulterResidentList', {
+        block_id: block_id
+    }).success(function(response) {
         if (response.hasOwnProperty('success')) {
-            if (response.hasOwnProperty('data')) {
-                angular.forEach(response.data, function(item, key) {
-                    $scope.reslist.push(item);
-                });
-            }
+            $scope.reslist = response.data;
         }
         $timeout(function() {
             $scope.$emit('UNLOAD');
         }, 1000);
     });
-
-    $scope.selectAllRes = function() {
-        if ($scope.selectAll) {
-            notifiedResidents = [];
-            for (var i = $scope.reslist.length - 1; i >= 0; i--) {
-                $scope.isSelected[$scope.reslist[i].id] = 1;
-                if (notifiedResidents.indexOf($scope.reslist[i].id) < 0) {
-                    notifiedResidents.push($scope.reslist[i].id);
-                }
-
-            }
-
-        } else {
-            for (var i = $scope.reslist.length - 1; i >= 0; i--) {
-                $scope.isSelected[$scope.reslist[i].id] = 0;
-                notifiedResidents.splice(i, 1);
-            }
-        }
-        if (notifiedResidents.length > 0) {
-            $scope.noResident = false;
-        } else {
-            $scope.noResident = true;
-        }
-    }
-    $scope.selectRes = function(res_id) {
-        $scope.selectAll = false;
-        if ($scope.isSelected[res_id]) {
-            if (notifiedResidents.indexOf(res_id) < 0) {
-                notifiedResidents.push(res_id);
-            }
-
-        } else {
-            $scope.isSelected[res_id] = 0;
-            var index = notifiedResidents.indexOf(res_id);
-            notifiedResidents.splice(index, 1);
-        }
-        if (notifiedResidents.length > 0) {
-            $scope.noResident = false;
-        } else {
-            $scope.noResident = true;
-        }
-    }
     $scope.sendMsg = function() {
-        var data = {
-            message: $scope.message,
-            id: notifiedResidents
-        };
-        /*$http.post(url, data).success(function(response){
-
-        });*/
+        var data = $scope.reslist;
+        $http.post('/sendSmsOrNotification', data).success(function(response) {});
     }
 }]);

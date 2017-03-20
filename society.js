@@ -793,3 +793,107 @@ exports.vendorRegistrationList = function(pool) {
         })
     }
 }
+
+ 
+/*exports.sendSmsOrNotification = function(pool) {
+    return function(req, res) {
+        var result = {};
+          transporter.sendMail({
+                    from: 'man2helpsm@gmail.com',
+                    to: 'man2helpsm@gmail.com ',
+                    subject: 'Vendor registration',
+                    html: ''
+                }, function(error, response) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        sms.sendSMS(mobile_number, 'Your vendor registration successfully done.', function(res) {
+                            console.log(res);
+                        });
+                        console.log('Message sent');
+                        result.success = "vendor registered successfully";
+                        res.send(JSON.stringify(result));
+                    }
+                })
+        }
+}
+*/
+
+exports.sendSmsAndMailToUnpaidRes = function(pool, transporter, sms) {
+    return function(req, res) {
+        var result = [];
+        result = req.body;
+        var maintenance_id = req.body.maintanance_id;
+        var Message = req.body.message;
+        result1 = {};
+        for (var i = result.id.length - 1; i >= 0; i--) {
+            console.log(result.id[i]);
+            var q = 'select r.*,fm.flat_number,bm.name as block_name,sm.name as so_name  from residents r inner join flat_master fm on fm.id =r.flat_id INNER join block_master as bm on bm.id = fm.block_id inner join society_master sm on sm.id = bm.parent_id where r.id ="' + result.id[i] + '"'
+            pool.query(q, function(err, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(rows);
+                    var q1 = 'SELECT * FROM `maintainance_master` where id ="' + maintenance_id + '"';
+                    pool.query(q1, function(err, row) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            transporter.sendMail({
+                                from: 'man2helpsm@gmail.com',
+                                to: rows[0].email,
+                                subject: 'Maintenance Due',
+                                html: 'Hello ' + rows[0].first_name + ' ' + rows[0].last_name + 'Your maintenance amount for ' + rows[0].so_name + '-' + rows[0].block_name + '-' + rows[0].flat_number + ' is due' + row[0].amount + ' Rs please pay your maintenance as soon as possible Message from manager is :' + Message + 'Thank you'
+                            }, function(error, response) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    if (rows[0].contact_no == '') {
+                                        rows[0].contact_no = '999999999';
+                                    }
+                                    sms.sendSMS(rows[0].contact_no, 'Hello ' + rows[0].first_name + ' ' + rows[0].last_name + 'Your maintenance amount for ' + rows[0].society_name + '-' + rows[0].block_name + '-' + rows[0].flat_number + ' is due' + row[0].amount + ' Rs please pay your maintenance as soon as possibleThank you', function(res) {
+                                        console.log(res);
+                                    });
+                                    console.log('Message sent');
+                                    result.success = "notify to unpaid residents;"
+                                    res.send(JSON.stringify(result));
+                                }
+                            })
+                        }
+                    })
+                }
+            });
+        }
+    }
+}
+exports.sendSmsOrNotification = function(transporter, sms) {
+        return function(req, res) {
+                var result = [];
+                result = req.body;
+                console.log(result);
+                for (var i = result.length - 1; i >= 0; i--) {
+                    console.log(result[i].contact_no);
+                    console.log(result[i].society_name);
+                    transporter.sendMail({
+                                from: 'man2helpsm@gmail.com',
+                                to: result[i].email,
+                                subject: 'Defaulter maintenance ',
+                                html: 'Hello ' + result[i].first_name + 'Your maintenance amount for ' + result[i].society_name + '-' + result[i].block_name + '-' + result[i].flat_number + ' is due' + result[i].dues + ' Rs please pay your maintenance as soon as possibleThank you'
+                            }, function(error, response) {
+                                if (error) {
+                                    console.log(error);
+                                } else { //console.log(result[i].society_name); 
+                                  /*var contact='7387797998';                       
+                                  console.log(result[i].society_name);                       
+                                  sms.sendSMS(contact, 'Your maintenance amount for '+result[i].society_name+'-'+result[i].block_name+'-'+result[i].flat_number+' is due '+result[i].dues+'Rs please pay your maintenance as soon as possible.',
+                                  function(res) {  
+                                  console.log(res);
+                                  });*/
+                                  console.log('Message sent');
+                                  result.success = "vendor registered successfully";
+                                  res.send(JSON.stringify(result));  
+                                }
+                    })
+                } 
+        }
+    }

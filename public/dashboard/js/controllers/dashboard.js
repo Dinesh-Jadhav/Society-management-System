@@ -346,6 +346,15 @@ socialApp.controller('societyDashboard', ['$scope', '$http', '$location', '$comp
         }
     });
 
+    $scope.totaldefaulter = 0;
+        $http.post('/totalDefaulterResidentList', {
+            block_id: block_id
+        }).success(function(resp) {
+        if (resp.hasOwnProperty('success')) {
+            $scope.totaldefaulter = resp.data.totalDefaulter;
+        }
+    });
+        
     $scope.status='0';
     
     $scope.addandremove=function(){

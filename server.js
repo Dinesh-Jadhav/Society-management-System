@@ -279,6 +279,8 @@
     app.post('/getTenatsForAdminByBlockId', society.getTenatsForAdminByBlockId(pool));
     app.post('/vendorRegistration', society.vendorRegistration(pool ,transporter,sms));  
     app.post('/vendorRegistrationList', society.vendorRegistrationList(pool));
+     app.post('/sendSmsOrNotification', society.sendSmsOrNotification(transporter, sms));
+app.post('/sendSmsAndMailToUnpaidRes', society.sendSmsAndMailToUnpaidRes(pool, transporter, sms));
 
     /*service admin*/
     app.post('/service_login', service_admin.service_login(crypto,pool));
@@ -476,8 +478,8 @@
     app.post('/deletemaintanance', maintainance.deletemaintanance(pool));
     app.post('/singlemaintanance', maintainance.singlemaintanance(pool));
     app.post('/updateMaintanance', maintainance.updateMaintanance(pool));
-
-    
+    app.post('/defaulterResidentList', maintainance.defaulterResidentList(pool));
+    app.post('/totalDefaulterResidentList', maintainance.totalDefaulterResidentList(pool));
 
     /*Contribution */
     app.post('/addContribution', contribution.addContribution(pool));

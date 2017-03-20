@@ -460,12 +460,15 @@ exports.updateSocietyDetails = function(pool) {
                 console.log(err);
                 data.error = err;
             } else {
+
                 var q = 'update society_manager_meta smm INNER join block_master bm On bm.block_manager = smm.manager_id set marchant_key = "' + marchant_key + '" ,marchant_salt = "' + marchant_salt + '" ,merchant_id = "' + merchant_id + '" where bm.parent_id ="' + society_id + '"';
+                console.log(q);
                 pool.query(q, function(err, rows, fields) {
                    if (err) {
                         console.log(err);
                         data.error = err;
                     } else {
+                        console.log("database");
                         data.success = "updated Successfully";
                         res.send(JSON.stringify(data));
                     }
@@ -483,11 +486,13 @@ exports.updateSocietyDetails = function(pool) {
                 data.error = err;
             } else {
                 var q = 'update society_manager_meta smm INNER join block_master bm On bm.block_manager = smm.manager_id set marchant_key = "' + marchant_key + '" ,marchant_salt = "' + marchant_salt + '" ,merchant_id = "' + merchant_id + '" where bm.parent_id ="' + society_id + '"';
+                console.log(q);
                 pool.query(q, function(err, rows, fields) {
                    if (err) {
                         console.log(err);
                         data.error = err;
                     } else {
+                        console.log("asdf");
                         data.success = "updated Successfully";
                         res.send(JSON.stringify(data));
                     }

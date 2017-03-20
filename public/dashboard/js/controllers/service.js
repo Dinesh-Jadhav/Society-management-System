@@ -28,10 +28,17 @@ socialApp.controller('serviceList', ['$scope', '$http', '$routeParams', '$route'
 
     $scope.service_name = {};
     $scope.services = [];
-    $http.post('/requestedServicesListToAdmin').success(function(response) {
+   $http.post('/requestedServicesListToAdmin').success(function(response) {
         console.log(response);
         if (response.hasOwnProperty('success')) {
-            $scope.services = response.data;
+            if (response.hasOwnProperty('data')) {
+                angular.forEach(response.data, function(item, key) {
+                    if (item.resident_comment == 'undefined') {
+                        item.resident_comment = '--';
+                    }
+                    $scope.services.push(item);
+                });
+            }
         }
         $scope.$emit('UNLOAD');
     });

@@ -212,7 +212,7 @@ socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$ht
     });
 
     $scope.upload_logo = function (dataUrl, name, type) {
-        $scope.$emit('LOAD');
+        
             Upload.upload({
                 url: '/uploadPhoto',
                 data: {
@@ -236,7 +236,6 @@ socialApp.controller('editSociety', ['$scope', '$routeParams', '$location', '$ht
                 $scope.crop =true;
                 $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
             });
-            $scope.$emit('UNLOAD');
         }
 
 

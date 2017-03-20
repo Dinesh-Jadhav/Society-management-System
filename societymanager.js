@@ -177,7 +177,7 @@ exports.societyBlockList = function(pool) {
         res.setHeader('Content-Type', 'application/json');
         var result = {};
         if(sess.usertype=='cp'){
-           var condition = 'block_manager.chair_person_id= '+id+'';
+           var condition = 'bm.chair_person_id= '+id+'';
            console.log(condition);
         }else{
             var condition = 'bm.block_manager=' + id +'';
